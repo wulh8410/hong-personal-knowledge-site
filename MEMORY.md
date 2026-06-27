@@ -18,3 +18,4 @@
 - 2026-06-27：当前仓库初始只有个人主页开发方案文档，根目录缺少 `AGENTS.md` 和 `MEMORY.md`；因模板目录 `~/.codex/templates/` 不存在，已按用户提供规则创建本地约束文件。
 - 2026-06-27：V1 采用无复杂后台方案，文章放在 `content/articles`，案例放在 `content/cases`，知识库配置集中在 `lib/constants.ts`，内容读取集中在 `lib/content.ts`，便于后续替换为 Decap CMS 等 Markdown CMS。
 - 2026-06-27：当前 Windows 环境下 Next.js 16 默认 Turbopack 构建缺少可用原生绑定，`package.json` 已将 `dev` 和 `build` 固定为 `--webpack`，避免本地构建失败。
+- 2026-06-27：GitHub 私有仓库已创建并推送到 `https://github.com/wulh8410/hong-personal-knowledge-site`；Vercel CLI 可通过 `npm exec --yes vercel@latest -- ...` 使用，但当前机器没有 Vercel 登录缓存，`vercel whoami` 会等待登录导致超时。
