@@ -21,3 +21,4 @@
 - 2026-06-27：GitHub 私有仓库已创建并推送到 `https://github.com/wulh8410/hong-personal-knowledge-site`；Vercel CLI 可通过 `npm exec --yes vercel@latest -- ...` 使用，但当前机器没有 Vercel 登录缓存，`vercel whoami` 会等待登录导致超时。
 - 2026-06-27：用户反馈已登录 Vercel 后，本进程仍未发现 `~/.vercel` 或 `VERCEL_TOKEN`，`vercel whoami` 与 `vercel deploy --prod --yes` 均超时；下一步需要在当前环境完成 Vercel 登录，或临时提供 `VERCEL_TOKEN` 只用于部署命令。
 - 2026-06-27：Vercel 生产部署成功，项目 scope 为 `wulh19841020-9594s-projects`，生产域名为 `https://hong-amber.vercel.app`；部署命令需临时清空非法 `HTTP_PROXY`/`HTTPS_PROXY` 环境变量，例如 `$env:HTTP_PROXY=''; $env:HTTPS_PROXY=''; npm exec --yes vercel@latest -- deploy --prod --yes --scope wulh19841020-9594s-projects`。
+- 2026-06-27：首页 V2 重设计方向：采用深色技术感首屏、真实商务照、紧凑能力矩阵、知识库暗色专题区、精选文章、项目经验和微信二维码联系区；移动端隐藏首屏证明卡片以避免过长，保证首屏能看到个人照且无横向溢出。

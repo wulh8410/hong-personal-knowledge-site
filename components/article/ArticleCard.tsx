@@ -6,9 +6,9 @@ import { formatDate } from "@/lib/utils"
 
 export function ArticleCard({ article }: { article: Article }) {
   return (
-    <article className="group flex h-full flex-col rounded-2xl border border-line bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-soft">
+    <article className="group flex h-full flex-col border border-line bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-emerald-300 hover:shadow-[0_18px_50px_rgba(15,23,42,0.08)]">
       <div className="flex items-center justify-between gap-3">
-        <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-medium text-wechat">
+        <span className="bg-emerald-50 px-3 py-1 text-xs font-medium text-wechat">
           {article.category}
         </span>
         {article.featured ? <span className="text-xs font-medium text-slate-500">精选</span> : null}
@@ -21,7 +21,7 @@ export function ArticleCard({ article }: { article: Article }) {
       <p className="mt-3 line-clamp-3 flex-1 text-sm leading-7 text-slate-600">{article.description}</p>
       <div className="mt-5 flex flex-wrap gap-2">
         {article.tags.slice(0, 4).map((tag) => (
-          <span key={tag} className="rounded-full bg-slate-100 px-2.5 py-1 text-xs text-slate-600">
+          <span key={tag} className="bg-slate-100 px-2.5 py-1 text-xs text-slate-600">
             {tag}
           </span>
         ))}
