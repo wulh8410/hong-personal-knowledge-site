@@ -1,0 +1,20 @@
+# 项目记忆
+
+## 项目基础
+
+- 项目名：hong
+- 初始化日期：2026-06-27
+- 当前目标：开发第一版个人品牌知识库型官网，V1 不做复杂后台。
+- 技术栈：Next.js App Router + TypeScript + Tailwind CSS + Markdown 内容管理 + 静态生成。
+
+## 工作规则
+
+- 每次开始实质工作前先读取 `AGENTS.md` 和 `MEMORY.md`。
+- 工作中主动记录架构决策、踩坑、用户纠正、外部资源位置。
+- 凭据只记录位置，不记录值。
+
+## 本次记录
+
+- 2026-06-27：当前仓库初始只有个人主页开发方案文档，根目录缺少 `AGENTS.md` 和 `MEMORY.md`；因模板目录 `~/.codex/templates/` 不存在，已按用户提供规则创建本地约束文件。
+- 2026-06-27：V1 采用无复杂后台方案，文章放在 `content/articles`，案例放在 `content/cases`，知识库配置集中在 `lib/constants.ts`，内容读取集中在 `lib/content.ts`，便于后续替换为 Decap CMS 等 Markdown CMS。
+- 2026-06-27：当前 Windows 环境下 Next.js 16 默认 Turbopack 构建缺少可用原生绑定，`package.json` 已将 `dev` 和 `build` 固定为 `--webpack`，避免本地构建失败。

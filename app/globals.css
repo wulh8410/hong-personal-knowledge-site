@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #f8fafc;
+  color: #111827;
+}
+
+::selection {
+  background: rgba(34, 197, 94, 0.18);
+}
+
+.content-body {
+  color: #334155;
+  font-size: 1.05rem;
+  line-height: 2;
+}
+
+.content-body h2 {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  color: #111827;
+  font-size: 1.45rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.content-body h3 {
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  color: #111827;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.content-body p {
+  margin: 1rem 0;
+}
+
+.content-body ul,
+.content-body ol {
+  margin: 1rem 0;
+  padding-left: 1.25rem;
+}
+
+.content-body li {
+  margin: 0.35rem 0;
+}
+
+.content-body a {
+  color: #16a34a;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.anchor-heading {
+  text-decoration: none !important;
+  color: inherit !important;
+}
