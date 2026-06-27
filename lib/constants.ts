@@ -14,7 +14,7 @@ import type { KnowledgeBase } from "./types"
 export const siteConfig = {
   name: "宏的微信生态实战笔记",
   author: "宏",
-  url: process.env.NEXT_PUBLIC_SITE_URL || "https://your-domain.com",
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://hong-amber.vercel.app",
   description:
     "持续整理微信小店、微信推客、小程序商城、微信豆投放、AI 工具与 SEO/GEO 内容资产建设的实战经验。",
   keywords: [
