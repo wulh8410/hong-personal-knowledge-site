@@ -32,7 +32,7 @@ export default function CasesPage() {
       />
       <section className="bg-white py-14">
         <Container>
-          <p className="text-sm font-semibold text-wechat">Cases</p>
+          <p className="text-sm font-semibold text-wechat">实践经验</p>
           <h1 className="mt-4 text-4xl font-bold text-ink">案例与实践经验</h1>
           <p className="mt-5 max-w-3xl text-lg leading-9 text-slate-600">
             V1 先展示项目类型和交付经验，不做夸张营销，也不暴露客户隐私。

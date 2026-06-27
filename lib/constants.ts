@@ -16,7 +16,7 @@ export const siteConfig = {
   author: "宏",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://hong-amber.vercel.app",
   description:
-    "持续整理微信小店、微信推客、小程序商城、微信豆投放、AI 工具与 SEO/GEO 内容资产建设的实战经验。",
+    "持续整理微信小店、微信推客、小程序商城、微信豆投放、AI 工具与搜索和 AI 可见性内容资产建设的实战经验。",
   keywords: [
     "微信小店",
     "微信推客",
@@ -78,7 +78,7 @@ export const abilityItems = [
     icon: Bot
   },
   {
-    title: "SEO/GEO 内容增长",
+    title: "搜索与 AI 可见性内容增长",
     description: "把个人经验结构化成搜索引擎和 AI 搜索都能理解的内容资产。",
     keywords: ["SEO", "GEO", "结构化数据", "内容资产"],
     href: "/knowledge/seo-geo",
@@ -201,12 +201,12 @@ export const knowledgeBases: KnowledgeBase[] = [
   },
   {
     slug: "seo-geo",
-    title: "SEO/GEO 知识库",
+    title: "搜索与 AI 可见性知识库",
     shortDescription: "把经验变成搜索引擎和 AI 搜索能理解的结构化资产。",
     description:
-      "围绕个人主页、专题内容、结构化数据、内部链接和 AI 搜索可识别性，沉淀 GEO 内容资产建设方法。",
+      "围绕个人主页、专题内容、结构化数据、内部链接和 AI 搜索可识别性，沉淀搜索与 AI 可见性内容资产建设方法。",
     icon: "SearchCheck",
-    topics: ["个人主页 SEO", "GEO 是什么", "结构化数据", "专题页设计", "内容资产", "AI 搜索识别"],
+    topics: ["个人主页搜索优化", "AI 搜索可见性", "结构化数据", "专题页设计", "内容资产", "AI 搜索识别"],
     keywords: ["SEO", "GEO", "结构化数据", "内容资产"],
     updated: "2026-06-27",
     learningPath: [

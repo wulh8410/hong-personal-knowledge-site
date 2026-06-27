@@ -8,7 +8,7 @@ import { absoluteUrl } from "@/lib/utils"
 
 export const metadata: Metadata = {
   title: "关于宏",
-  description: "了解宏在微信生态电商、微信推客、AI 工具和 SEO/GEO 内容资产建设方面的长期实践方向。",
+  description: "了解宏在微信生态电商、微信推客、AI 工具和搜索与 AI 可见性内容资产建设方面的长期实践方向。",
   alternates: {
     canonical: absoluteUrl("/about")
   },
@@ -50,7 +50,7 @@ export default function AboutPage() {
             </p>
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
-            {["微信小店与视频号电商", "微信推客与机构平台", "小程序商城与私域闭环", "AI 工具与 Agent 工作流", "SEO/GEO 内容资产", "系统化知识库建设"].map(
+            {["微信小店与视频号电商", "微信推客与机构平台", "小程序商城与私域闭环", "AI 工具与自动化工作流", "搜索与 AI 可见性内容资产", "系统化知识库建设"].map(
               (item) => (
                 <div key={item} className="rounded-2xl border border-line bg-white p-5 text-sm font-medium text-ink shadow-sm">
                   {item}
@@ -76,10 +76,10 @@ export default function AboutPage() {
           <div className="rounded-2xl border border-line p-6">
             <h2 className="text-2xl font-bold text-ink">这个网站会更新什么</h2>
             <p className="mt-5 text-base leading-8 text-slate-600">
-              这里会持续整理我在微信生态电商、微信推客、AI 工具和 SEO/GEO 内容资产建设方面的实战观察。内容会优先服务真实问题：规则怎么理解、工具怎么选、流程怎么跑、经验怎么复用。
+              这里会持续整理我在微信生态电商、微信推客、AI 工具和搜索与 AI 可见性内容资产建设方面的实战观察。内容会优先服务真实问题：规则怎么理解、工具怎么选、流程怎么跑、经验怎么复用。
             </p>
             <p className="mt-4 text-base leading-8 text-slate-600">
-              联系方式、公众号、视频号和微信二维码会在正式上线前补齐，目前先保留占位，避免在代码里写入私人联系方式。
+              如果你也在做微信小店、推客、小程序商城，或者想把 AI 用到内容和运营里，可以从首页二维码加微信交流。
             </p>
           </div>
         </Container>
