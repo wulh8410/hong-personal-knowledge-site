@@ -2,10 +2,13 @@ import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 
 import { ArticleCard } from "@/components/article/ArticleCard"
+import { ImaKnowledgeSearch } from "@/components/ima/ImaKnowledgeSearch"
+import { ImaSourceOverview } from "@/components/ima/ImaSourceOverview"
 import { LearningPath } from "@/components/knowledge/LearningPath"
 import { Container } from "@/components/layout/Container"
 import { JsonLd } from "@/components/seo/JsonLd"
 import { getArticlesByKnowledgeBase, getKnowledgeBaseBySlug, getKnowledgeBases } from "@/lib/content"
+import { getImaSourcesForKnowledge } from "@/lib/ima-sources"
 import { breadcrumbJsonLd, faqJsonLd, knowledgeJsonLd } from "@/lib/seo"
 import { absoluteUrl } from "@/lib/utils"
 
@@ -43,6 +46,8 @@ export default async function KnowledgeDetailPage({ params }: PageProps) {
   if (!base) notFound()
 
   const articles = getArticlesByKnowledgeBase(slug)
+  const officialSources = getImaSourcesForKnowledge(slug)
+  const suggestedQuestions = officialSources.flatMap((source) => source.suggestedQuestions).slice(0, 6)
 
   return (
     <>
@@ -90,6 +95,28 @@ export default async function KnowledgeDetailPage({ params }: PageProps) {
           </div>
         </Container>
       </section>
+
+      {officialSources.length ? (
+        <section className="bg-white py-14">
+          <Container className="grid gap-8 lg:grid-cols-[0.86fr_1.14fr] lg:items-start">
+            <div>
+              <p className="text-sm font-semibold text-wechat">官方资料核对</p>
+              <h2 className="mt-3 text-3xl font-semibold leading-tight text-ink">先查 ima 原始资料，再看站内解释</h2>
+              <p className="mt-4 text-base leading-8 text-slate-600">
+                这个专题关联的官方资料库用于核对公告、规则和案例。站内内容负责解释路径，ima 负责承载原始资料来源。
+              </p>
+              <div className="mt-6">
+                <ImaSourceOverview knowledgeSlug={slug} compact />
+              </div>
+            </div>
+            <ImaKnowledgeSearch
+              sources={officialSources}
+              initialSource={officialSources[0].slug}
+              suggestedQuestions={suggestedQuestions}
+            />
+          </Container>
+        </section>
+      ) : null}
 
       <section className="bg-white py-14">
         <Container>

@@ -23,3 +23,5 @@
 - 2026-06-27：Vercel 生产部署成功，项目 scope 为 `wulh19841020-9594s-projects`，生产域名为 `https://hong-amber.vercel.app`；部署命令需临时清空非法 `HTTP_PROXY`/`HTTPS_PROXY` 环境变量，例如 `$env:HTTP_PROXY=''; $env:HTTPS_PROXY=''; npm exec --yes vercel@latest -- deploy --prod --yes --scope wulh19841020-9594s-projects`。
 - 2026-06-27：首页 V2 重设计方向：采用深色技术感首屏、真实商务照、紧凑能力矩阵、知识库暗色专题区、精选文章、项目经验和微信二维码联系区；移动端隐藏首屏证明卡片以避免过长，保证首屏能看到个人照且无横向溢出。
 - 2026-06-28：首页 V3 设计决策：用户明确否定 V2 的深色横幅广告感、零散底部和英文标签；新版改为轻色中文优先首屏，直接说明“帮商家和团队看懂微信生态”，用“我能提供什么”“建议阅读路径”“专题知识库”“联系宏”串起服务价值，底部使用真实微信二维码，二级页可见英文眉标和占位文案同步清理。
+- 2026-06-28：ima 技能已安装到本机 `C:\Users\xiang\.codex\skills\ima-skill`，下载源为腾讯 ima 技能包；ima API 凭据需要 `IMA_OPENAPI_CLIENTID` 与 `IMA_OPENAPI_APIKEY` 或 `~/.config/ima/client_id`、`~/.config/ima/api_key`，项目仓库不记录凭据值。当前网站接入思路：ima 作为官方公告、规则、案例的权威资料层和查询层，站内 Markdown 知识库作为宏的解释、路径和方法论层，不直接复制 ima 原始资料到静态页面。
+- 2026-06-28：站点已实现 ima 接入 V1.2：新增服务端接口 `/api/ima/search`，前端只展示资料库名称、标题、摘要和媒体类型，不暴露 `kb_id`/`media_id`；首页放轻量官方资料入口，`/knowledge` 和相关专题页提供查询组件。Vercel Production 已配置 `IMA_OPENAPI_CLIENTID` 与 `IMA_OPENAPI_APIKEY` 为 Sensitive 环境变量，凭据值不写入仓库或记忆。

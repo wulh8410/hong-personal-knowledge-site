@@ -1,9 +1,12 @@
 import type { Metadata } from "next"
 
+import { ImaKnowledgeSearch } from "@/components/ima/ImaKnowledgeSearch"
+import { ImaSourceOverview } from "@/components/ima/ImaSourceOverview"
 import { KnowledgeCard } from "@/components/knowledge/KnowledgeCard"
 import { Container } from "@/components/layout/Container"
 import { JsonLd } from "@/components/seo/JsonLd"
 import { getAllArticles, getKnowledgeBases } from "@/lib/content"
+import { imaSources } from "@/lib/ima-sources"
 import { breadcrumbJsonLd } from "@/lib/seo"
 import { absoluteUrl, formatDate } from "@/lib/utils"
 
@@ -46,6 +49,23 @@ export default function KnowledgePage() {
           {bases.map((base) => (
             <KnowledgeCard key={base.slug} base={base} />
           ))}
+        </Container>
+      </section>
+      <section className="bg-white py-14">
+        <Container>
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold text-wechat">官方资料来源</p>
+            <h2 className="mt-3 text-3xl font-semibold text-ink">用 ima 查公告、规则、投放和违规案例</h2>
+            <p className="mt-4 text-base leading-8 text-slate-600">
+              站内知识库负责把问题讲清楚，ima 资料库负责提供官方公告、规则原文和案例线索。两层配合，适合先查事实，再看方法。
+            </p>
+          </div>
+          <div className="mt-8">
+            <ImaSourceOverview />
+          </div>
+          <div className="mt-8">
+            <ImaKnowledgeSearch sources={imaSources} />
+          </div>
         </Container>
       </section>
       <section className="bg-white py-14">

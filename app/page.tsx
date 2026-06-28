@@ -17,6 +17,7 @@ import {
 } from "lucide-react"
 
 import { ArticleCard } from "@/components/article/ArticleCard"
+import { ImaSourceOverview } from "@/components/ima/ImaSourceOverview"
 import { Container } from "@/components/layout/Container"
 import { JsonLd } from "@/components/seo/JsonLd"
 import { getAllCases, getFeaturedArticles, getKnowledgeBases } from "@/lib/content"
@@ -263,6 +264,25 @@ export default function HomePage() {
         <Container>
           <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
             <SectionHeader
+              label="官方资料库支持"
+              title="站内讲方法，ima 查原始规则和案例"
+              subtitle="微信小店公告、推客资料、视频号投放和违规案例放在腾讯 ima 中，适合用来核对官方规则，再回到站内文章看解释和落地路径。"
+            />
+            <Link href="/knowledge#ima-search" className="inline-flex items-center gap-2 text-sm font-semibold text-wechat">
+              去查询官方资料
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+          <div className="mt-8">
+            <ImaSourceOverview />
+          </div>
+        </Container>
+      </section>
+
+      <section className="bg-white py-16">
+        <Container>
+          <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+            <SectionHeader
               label="先读这些"
               title="精选文章"
               subtitle="这些文章优先解释平台规则、实操路径和 AI 工具如何真正进入工作流。"
@@ -280,7 +300,7 @@ export default function HomePage() {
         </Container>
       </section>
 
-      <section className="bg-white py-16">
+      <section className="border-y border-line bg-[#f7f9fb] py-16">
         <Container>
           <SectionHeader
             label="实践经验"
