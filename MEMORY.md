@@ -25,3 +25,4 @@
 - 2026-06-28：首页 V3 设计决策：用户明确否定 V2 的深色横幅广告感、零散底部和英文标签；新版改为轻色中文优先首屏，直接说明“帮商家和团队看懂微信生态”，用“我能提供什么”“建议阅读路径”“专题知识库”“联系宏”串起服务价值，底部使用真实微信二维码，二级页可见英文眉标和占位文案同步清理。
 - 2026-06-28：ima 技能已安装到本机 `C:\Users\xiang\.codex\skills\ima-skill`，下载源为腾讯 ima 技能包；ima API 凭据需要 `IMA_OPENAPI_CLIENTID` 与 `IMA_OPENAPI_APIKEY` 或 `~/.config/ima/client_id`、`~/.config/ima/api_key`，项目仓库不记录凭据值。当前网站接入思路：ima 作为官方公告、规则、案例的权威资料层和查询层，站内 Markdown 知识库作为宏的解释、路径和方法论层，不直接复制 ima 原始资料到静态页面。
 - 2026-06-28：站点已实现 ima 接入 V1.2：新增服务端接口 `/api/ima/search`，前端只展示资料库名称、标题、摘要和媒体类型，不暴露 `kb_id`/`media_id`；首页放轻量官方资料入口，`/knowledge` 和相关专题页提供查询组件。Vercel Production 已配置 `IMA_OPENAPI_CLIENTID` 与 `IMA_OPENAPI_APIKEY` 为 Sensitive 环境变量，凭据值不写入仓库或记忆。
+- 2026-06-29：首页微调：首屏个人照改用 `public/images/avatar/hong-stage-background.png` 背景图；联系区不再突出个人微信二维码，改为公众号「宏记」、视频号「吴亮宏」、微信 `wulh8410` 三项文字入口；首页 section 小标签统一为浅绿边框胶囊样式，页脚版权文案居中。

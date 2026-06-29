@@ -9,10 +9,12 @@ import {
   MessageCircle,
   Network,
   PanelsTopLeft,
+  Rss,
   SearchCheck,
   ShieldCheck,
   Store,
   UsersRound,
+  Video,
   Workflow
 } from "lucide-react"
 
@@ -73,6 +75,27 @@ const startPath = [
 
 const audience = ["微信小店商家", "视频号电商团队", "微信推客机构", "小程序商城团队", "想用 AI 提效的内容团队"]
 
+const contactChannels = [
+  {
+    label: "公众号",
+    value: "宏记",
+    description: "系统文章与长期复盘",
+    icon: Rss
+  },
+  {
+    label: "视频号",
+    value: "吴亮宏",
+    description: "微信生态与 AI 实战分享",
+    icon: Video
+  },
+  {
+    label: "微信",
+    value: "wulh8410",
+    description: "交流请备注：微信生态 / AI / 内容资产",
+    icon: MessageCircle
+  }
+]
+
 export default function HomePage() {
   const knowledgeBases = getKnowledgeBases()
   const featuredArticles = getFeaturedArticles(6)
@@ -97,14 +120,14 @@ export default function HomePage() {
               我是宏，程序员出身，长期做微信小店、微信推客、小程序商城、微信豆投放和 AI 内容工作流。这个网站沉淀的是可执行、可复用、可持续更新的实战笔记。
             </p>
             <div className="mt-5 flex items-center gap-3 border border-line bg-white p-3 shadow-sm lg:hidden">
-              <div className="relative h-16 w-12 shrink-0 overflow-hidden bg-[#eef3ef]">
+              <div className="relative h-16 w-16 shrink-0 overflow-hidden bg-[#eef3ef]">
                 <Image
-                  src="/images/avatar/hong-business-white.png"
+                  src="/images/avatar/hong-stage-background.png"
                   alt="宏的个人商务照"
                   width={1050}
                   height={1400}
                   priority
-                  className="absolute bottom-0 left-1/2 h-[95%] w-auto max-w-none -translate-x-1/2 object-contain"
+                  className="h-full w-full object-cover object-[58%_center]"
                 />
               </div>
               <div>
@@ -139,12 +162,12 @@ export default function HomePage() {
           <aside className="hidden border border-line bg-white p-4 shadow-[0_24px_70px_rgba(15,23,42,0.10)] lg:block">
             <div className="relative h-[460px] overflow-hidden bg-[#eef3ef]">
               <Image
-                src="/images/avatar/hong-business-white.png"
+                src="/images/avatar/hong-stage-background.png"
                 alt="宏的个人商务照"
                 width={1050}
                 height={1400}
                 priority
-                className="absolute bottom-0 left-1/2 h-[96%] w-auto max-w-none -translate-x-1/2 object-contain"
+                className="h-full w-full object-cover object-[58%_center]"
               />
             </div>
             <div className="mt-4 grid grid-cols-3 gap-2 text-center">
@@ -335,7 +358,10 @@ export default function HomePage() {
       <section className="bg-[#07111f] py-16 text-white">
         <Container className="grid gap-8 lg:grid-cols-[1fr_320px] lg:items-center">
           <div>
-            <p className="text-sm font-semibold text-emerald-300">联系宏</p>
+            <div className="inline-flex items-center gap-2 border border-emerald-300/25 bg-emerald-300/10 px-3 py-1.5 text-xs font-semibold text-emerald-200">
+              <span className="h-1.5 w-1.5 bg-emerald-300" />
+              联系宏
+            </div>
             <h2 className="mt-3 max-w-3xl text-3xl font-semibold leading-tight sm:text-4xl">
               如果你正在做微信小店、推客、小程序商城，或者想把 AI 用到内容和运营里，可以先从一次交流开始。
             </h2>
@@ -355,20 +381,27 @@ export default function HomePage() {
               })}
             </div>
           </div>
-          <div className="bg-white p-4 text-ink">
-            <Image
-              src="/images/avatar/hong-wechat-qr.png"
-              alt="宏的个人微信二维码"
-              width={600}
-              height={600}
-              className="h-auto w-full"
-            />
-            <div className="mt-4 flex items-center gap-3 border-t border-line pt-4">
-              <MessageCircle className="h-5 w-5 text-wechat" />
-              <div>
-                <p className="text-sm font-semibold">扫码加微信</p>
-                <p className="mt-1 text-xs text-slate-500">请备注：微信生态 / AI / 内容资产</p>
-              </div>
+          <div className="border border-white/10 bg-white p-5 text-ink shadow-[0_22px_60px_rgba(0,0,0,0.22)]">
+            <div className="border-b border-line pb-4">
+              <p className="text-sm font-semibold text-wechat">关注与联系</p>
+              <p className="mt-2 text-sm leading-6 text-slate-600">优先看公开内容，需要具体交流再加微信。</p>
+            </div>
+            <div className="mt-4 grid gap-3">
+              {contactChannels.map((item) => {
+                const Icon = item.icon
+                return (
+                  <div key={item.label} className="grid grid-cols-[40px_1fr] gap-3 border border-line bg-slate-50 p-3">
+                    <div className="grid h-10 w-10 place-items-center bg-white text-wechat">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <p className="text-xs font-semibold text-slate-500">{item.label}</p>
+                      <p className="mt-1 text-base font-semibold text-ink">{item.value}</p>
+                      <p className="mt-1 text-xs leading-5 text-slate-500">{item.description}</p>
+                    </div>
+                  </div>
+                )
+              })}
             </div>
           </div>
         </Container>
@@ -388,7 +421,10 @@ function SectionHeader({
 }) {
   return (
     <div className="max-w-3xl">
-      <p className="text-sm font-semibold text-wechat">{label}</p>
+      <div className="inline-flex items-center gap-2 border border-emerald-200 bg-emerald-50 px-3 py-1.5 text-xs font-semibold text-wechat">
+        <span className="h-1.5 w-1.5 bg-wechat" />
+        {label}
+      </div>
       <h2 className="mt-3 text-3xl font-semibold leading-tight text-ink sm:text-4xl">{title}</h2>
       <p className="mt-4 text-base leading-8 text-slate-600">{subtitle}</p>
     </div>

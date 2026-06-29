@@ -59,7 +59,7 @@ export function Footer() {
           </div>
         </div>
       </Container>
-      <Container className="border-t border-line py-5 text-xs text-slate-500">
+      <Container className="border-t border-line py-5 text-center text-xs text-slate-500">
         © 2026 {siteConfig.name}. 持续更新微信生态与 AI 工具实战内容。
       </Container>
     </footer>
