@@ -8,7 +8,22 @@ import { ArticleCard } from "./ArticleCard"
 import { cn } from "@/lib/utils"
 
 export function ArticleListClient({ articles }: { articles: Article[] }) {
-  const categories = ["全部", ...Array.from(new Set(articles.map((article) => article.category)))]
+  const preferredCategories = [
+    "微信小店",
+    "视频号",
+    "广告投放",
+    "微信推客",
+    "违规规则及解析",
+    "微信公私域联运",
+    "AI 工具",
+    "GEO"
+  ]
+  const articleCategories = Array.from(new Set(articles.map((article) => article.category)))
+  const categories = [
+    "全部",
+    ...preferredCategories.filter((item) => articleCategories.includes(item)),
+    ...articleCategories.filter((item) => !preferredCategories.includes(item)).sort()
+  ]
   const [category, setCategory] = useState("全部")
   const [query, setQuery] = useState("")
 

@@ -3,7 +3,7 @@ title: "个人主页如何做 GEO？先把内容资产结构化"
 description: "个人品牌官网做 GEO 的第一步，是让作者、领域、专题和文章关系足够清楚。"
 date: "2026-06-27"
 updated: "2026-06-27"
-category: "SEO/GEO"
+category: "GEO"
 tags:
   - "GEO"
   - "SEO"
