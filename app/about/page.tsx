@@ -50,7 +50,7 @@ export default function AboutPage() {
             </p>
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
-            {["微信小店与视频号电商", "微信推客与机构平台", "小程序商城与私域闭环", "AI 工具与自动化工作流", "搜索与 AI 可见性内容资产", "系统化知识库建设"].map(
+            {["微信小店与视频号直播", "微信推客与机构平台", "小程序商城与私域闭环", "AI 工具与自动化工作流", "搜索与 AI 可见性内容资产", "系统化知识库建设"].map(
               (item) => (
                 <div key={item} className="rounded-2xl border border-line bg-white p-5 text-sm font-medium text-ink shadow-sm">
                   {item}

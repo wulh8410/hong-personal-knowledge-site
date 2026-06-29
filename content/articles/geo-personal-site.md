@@ -12,7 +12,7 @@ tags:
 author: "宏"
 featured: true
 readingTime: "8 分钟"
-knowledgeBase: "seo-geo"
+knowledgeBase: "geo"
 summary: "GEO 不是堆关键词，而是把内容资产组织成 AI 搜索能理解的实体和关系。"
 faq:
   - question: "个人主页做 GEO 最先改什么？"

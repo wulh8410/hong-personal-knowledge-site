@@ -1,6 +1,7 @@
 ---
 title: "微信推客 SaaS 系统交付与共创"
 type: "微信推客 SaaS"
+order: 4
 problem: "商家、机构和推客之间缺少统一的商品、佣金、授权和数据管理流程。"
 solution: "围绕选品、推客招募、授权管理、佣金配置和数据复盘设计系统化工作流。"
 deliverables:

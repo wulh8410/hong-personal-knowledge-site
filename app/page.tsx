@@ -27,8 +27,8 @@ import { personJsonLd, websiteJsonLd } from "@/lib/seo"
 
 const services = [
   {
-    title: "微信小店与视频号电商",
-    description: "看懂平台规则、交易链路、商品运营和售后边界，避免一上来就做错方向。",
+    title: "微信小店与视频号直播",
+    description: "看懂平台规则、交易链路、直播运营和售后边界，避免一上来就做错方向。",
     points: ["入局判断", "商品与交易", "规则避坑"],
     icon: Store
   },
@@ -55,7 +55,7 @@ const services = [
 const startPath = [
   {
     title: "先判断微信生态机会",
-    description: "适不适合做微信小店、推客、视频号电商，先看规则和链路。",
+    description: "适不适合做微信小店、推客、视频号直播，先看规则和链路。",
     href: "/knowledge/wechat-store",
     icon: ShieldCheck
   },
@@ -68,12 +68,12 @@ const startPath = [
   {
     title: "最后沉淀长期资产",
     description: "用专题页、文章和结构化内容，让经验持续被用户和 AI 发现。",
-    href: "/knowledge/seo-geo",
+    href: "/knowledge/geo",
     icon: SearchCheck
   }
 ]
 
-const audience = ["微信小店商家", "视频号电商团队", "微信推客机构", "小程序商城团队", "想用 AI 提效的内容团队"]
+const audience = ["微信小店商家", "视频号直播团队", "微信推客机构", "小程序商城团队", "想用 AI 提效的内容团队"]
 
 const contactChannels = [
   {
@@ -251,7 +251,7 @@ export default function HomePage() {
           <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
             <SectionHeader
               label="专题知识库"
-              title="把零散经验整理成 6 个专题"
+              title="把零散经验整理成 8 个专题"
               subtitle="每个专题都围绕一个长期方向：规则、路径、案例、工具和常见问题会持续补充。"
             />
             <Link href="/knowledge" className="inline-flex items-center gap-2 text-sm font-semibold text-wechat">

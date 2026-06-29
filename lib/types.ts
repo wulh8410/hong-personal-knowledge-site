@@ -47,6 +47,7 @@ export type CaseItem = {
   solution: string
   deliverables: string[]
   tags: string[]
+  order?: number
   public: boolean
   content: string
 }

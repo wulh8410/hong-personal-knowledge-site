@@ -29,7 +29,7 @@ export const imaSources: ImaSource[] = [
     name: "视频号投放大全",
     shortName: "视频号投放",
     description: "用于查询视频号投放入口、投放目标、素材测试、复盘指标和常见投放问题。",
-    topicSlugs: ["wechat-ads"],
+    topicSlugs: ["ad-traffic"],
     suggestedQuestions: ["视频号投放适合哪些目标？", "微信豆和小店广告应该怎么区分？", "投放素材测试应该先看哪些指标？"]
   },
   {
@@ -37,7 +37,7 @@ export const imaSources: ImaSource[] = [
     name: "微信小店视频号违规规则及案例大全",
     shortName: "违规规则案例",
     description: "用于查询微信小店和视频号常见违规规则、案例、处罚原因和整改方向。",
-    topicSlugs: ["wechat-store", "wechat-ads"],
+    topicSlugs: ["wechat-store", "ad-traffic", "store-live-violations"],
     suggestedQuestions: ["商品违规常见原因是什么？", "视频号带货哪些行为容易违规？", "被判违规后应该先查哪些规则？"]
   }
 ]
@@ -49,4 +49,3 @@ export function getImaSourcesForKnowledge(slug: string) {
 export function getImaSourceBySlug(slug: string) {
   return imaSources.find((source) => source.slug === slug)
 }
-

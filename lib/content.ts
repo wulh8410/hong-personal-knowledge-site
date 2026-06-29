@@ -103,15 +103,18 @@ export function getArticlesByKnowledgeBase(slug: string) {
 }
 
 export function getAllCases(): CaseItem[] {
-  return readMarkdownFiles("cases").map(({ slug, data, content }) => ({
-    slug,
-    title: String(data.title || slug),
-    type: String(data.type || "实践经验"),
-    problem: String(data.problem || ""),
-    solution: String(data.solution || ""),
-    deliverables: Array.isArray(data.deliverables) ? data.deliverables.map(String) : [],
-    tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
-    public: data.public !== false,
-    content
-  }))
+  return readMarkdownFiles("cases")
+    .map(({ slug, data, content }) => ({
+      slug,
+      title: String(data.title || slug),
+      type: String(data.type || "实践经验"),
+      problem: String(data.problem || ""),
+      solution: String(data.solution || ""),
+      deliverables: Array.isArray(data.deliverables) ? data.deliverables.map(String) : [],
+      tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
+      order: typeof data.order === "number" ? data.order : undefined,
+      public: data.public !== false,
+      content
+    }))
+    .sort((a, b) => (a.order ?? 999) - (b.order ?? 999))
 }

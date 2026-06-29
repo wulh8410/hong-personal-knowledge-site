@@ -6,7 +6,7 @@ updated: "2026-06-27"
 category: "微信小店"
 tags:
   - "微信小店"
-  - "视频号电商"
+  - "视频号直播"
   - "商家运营"
 author: "宏"
 featured: true

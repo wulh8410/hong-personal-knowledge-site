@@ -12,7 +12,7 @@ tags:
 author: "宏"
 featured: true
 readingTime: "6 分钟"
-knowledgeBase: "wechat-ads"
+knowledgeBase: "ad-traffic"
 summary: "微信豆、小店广告和 ADQ 的差异，核心在投放目标、账户体系、可控程度和复盘方式。"
 faq:
   - question: "小预算应该先投微信豆还是 ADQ？"
