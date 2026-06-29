@@ -356,7 +356,7 @@ export default function HomePage() {
       </section>
 
       <section className="bg-[#07111f] py-16 text-white">
-        <Container className="grid gap-8 lg:grid-cols-[1fr_320px] lg:items-center">
+        <Container className="grid gap-10 lg:grid-cols-[1fr_360px] lg:items-center">
           <div>
             <div className="inline-flex items-center gap-2 border border-emerald-300/25 bg-emerald-300/10 px-3 py-1.5 text-xs font-semibold text-emerald-200">
               <span className="h-1.5 w-1.5 bg-emerald-300" />
@@ -381,28 +381,36 @@ export default function HomePage() {
               })}
             </div>
           </div>
-          <div className="border border-white/10 bg-white p-5 text-ink shadow-[0_22px_60px_rgba(0,0,0,0.22)]">
-            <div className="border-b border-line pb-4">
-              <p className="text-sm font-semibold text-wechat">关注与联系</p>
-              <p className="mt-2 text-sm leading-6 text-slate-600">优先看公开内容，需要具体交流再加微信。</p>
+          <div className="border border-white/10 bg-white/[0.04] p-6 shadow-[0_24px_70px_rgba(0,0,0,0.18)]">
+            <div className="flex items-start justify-between gap-4 border-b border-white/10 pb-5">
+              <div>
+                <p className="text-xs font-semibold text-emerald-300">FOLLOW / CONTACT</p>
+                <h3 className="mt-2 text-xl font-semibold text-white">关注公开内容，再具体交流</h3>
+              </div>
+              <span className="mt-1 h-2.5 w-2.5 bg-emerald-300" />
             </div>
-            <div className="mt-4 grid gap-3">
+            <div className="grid">
               {contactChannels.map((item) => {
                 const Icon = item.icon
                 return (
-                  <div key={item.label} className="grid grid-cols-[40px_1fr] gap-3 border border-line bg-slate-50 p-3">
-                    <div className="grid h-10 w-10 place-items-center bg-white text-wechat">
+                  <div key={item.label} className="grid grid-cols-[2.75rem_1fr] gap-4 border-b border-white/10 py-4 last:border-b-0">
+                    <div className="grid h-11 w-11 place-items-center border border-emerald-300/20 bg-emerald-300/10 text-emerald-300">
                       <Icon className="h-5 w-5" />
                     </div>
-                    <div>
-                      <p className="text-xs font-semibold text-slate-500">{item.label}</p>
-                      <p className="mt-1 text-base font-semibold text-ink">{item.value}</p>
-                      <p className="mt-1 text-xs leading-5 text-slate-500">{item.description}</p>
+                    <div className="min-w-0">
+                      <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                        <p className="text-xs font-semibold text-slate-400">{item.label}</p>
+                        <p className="text-lg font-semibold text-white">{item.value}</p>
+                      </div>
+                      <p className="mt-1 text-sm leading-6 text-slate-300">{item.description}</p>
                     </div>
                   </div>
                 )
               })}
             </div>
+            <p className="mt-4 border-t border-white/10 pt-4 text-xs leading-5 text-slate-400">
+              微信交流建议备注：微信生态 / AI / 内容资产
+            </p>
           </div>
         </Container>
       </section>
