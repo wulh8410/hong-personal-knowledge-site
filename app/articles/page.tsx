@@ -75,9 +75,9 @@ export default function ArticlesPage() {
       <section id="top" className="bg-white py-14">
         <Container>
           <p className="text-sm font-semibold text-wechat">实战文章</p>
-          <h1 className="mt-4 text-4xl font-bold text-ink">文章目录</h1>
+          <h1 className="mt-4 text-4xl font-bold text-ink">微信生态实战文章</h1>
           <p className="mt-5 max-w-3xl text-lg leading-9 text-slate-600">
-            文章不再混在一个大列表里。先看最新更新，再按微信小店、视频号、广告投放、微信推客、违规规则和公私域联运等分类阅读。
+            如果你正在研究微信小店、视频号直播、投放、推客或公私域联运，可以先看最近更新，也可以按下面的主题直接进入对应内容。
           </p>
           <div className="mt-7 flex flex-wrap gap-2">
             {groupedArticles.map((group) => (
@@ -104,7 +104,7 @@ export default function ArticlesPage() {
               <h2 className="mt-3 text-3xl font-semibold text-ink">最新更新的 6 篇</h2>
             </div>
             <p className="max-w-xl text-sm leading-7 text-slate-600">
-              用最新内容承接最近更新，其余文章按专题分类往下浏览。
+              这里放最近整理和更新的内容，适合快速了解最近补充了哪些资料。
             </p>
           </div>
           <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">

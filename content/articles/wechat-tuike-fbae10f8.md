@@ -1,23 +1,21 @@
 ---
-title: "**什么是「推客带货」**"
-description: "<title「推客带货」是什么？商家接入后，私域流量变现效率翻倍</title"
-date: "2026-06-29"
-updated: "2026-06-29"
-category: "微信推客"
+title: 「推客带货」是什么？商家接入后，私域流量变现效率翻倍
+description: 本文将从概念、核心角色及优势等方面，对「推客带货」进行系统剖析，为商家朋友们提供专业参考。
+date: '2026-06-29'
+updated: '2026-06-29'
+category: 微信推客
 tags:
-  - "微信推客"
-  - "优选联盟"
-  - "分销"
-  - "私域"
-  - "公私域联运"
-  - "直播运营"
-author: "宏"
-knowledgeBase: "wechat-tuike"
-summary: "<title「推客带货」是什么？商家接入后，私域流量变现效率翻倍</title"
-sourcePath: "资料/文章集合/微信推客/「推客带货」是什么？商家接入后，私域流量变现效率翻倍.md"
+  - 微信推客
+  - 优选联盟
+  - 分销
+  - 私域
+  - 公私域联运
+  - 直播运营
+author: 宏
+knowledgeBase: wechat-tuike
+summary: 本文将从概念、核心角色及优势等方面，对「推客带货」进行系统剖析，为商家朋友们提供专业参考。
+sourcePath: 资料/文章集合/微信推客/「推客带货」是什么？商家接入后，私域流量变现效率翻倍.md
 ---
-<title>「推客带货」是什么？商家接入后，私域流量变现效率翻倍</title>
-
 本文将从概念、核心角色及优势等方面，对「推客带货」进行系统剖析，为商家朋友们提供专业参考。
 
 ![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=OWU4MDhhMTBkZDZkYjNjZjk5MzdlZDkxMDkwOGY4OGVfMWVhM2M2OWViOGU5MGZhZTdmY2Q1Y2NhOGY1Mjc1OGZfSUQ6NzUzMjA1NTA0OTEyNzg1NDEwOF8xNzgyNzMwOTI4OjE3ODI3MzQ1MjhfVjM)

@@ -1,24 +1,23 @@
 ---
-title: "个人主页如何做 GEO？先把内容资产结构化"
-description: "个人品牌官网做 GEO 的第一步，是让作者、领域、专题和文章关系足够清楚。"
-date: "2026-06-27"
-updated: "2026-06-27"
-category: "GEO"
+title: 个人主页如何做 GEO？先把内容资产结构化
+description: 个人品牌官网做 GEO 的第一步，是让作者、领域、专题和文章关系足够清楚。
+date: '2026-06-27'
+updated: '2026-06-27'
+category: GEO
 tags:
-  - "GEO"
-  - "SEO"
-  - "个人主页"
-  - "结构化数据"
-author: "宏"
+  - GEO
+  - SEO
+  - 个人主页
+  - 结构化数据
+author: 宏
 featured: true
-readingTime: "8 分钟"
-knowledgeBase: "geo"
-summary: "GEO 不是堆关键词，而是把内容资产组织成 AI 搜索能理解的实体和关系。"
+readingTime: 8 分钟
+knowledgeBase: geo
+summary: GEO 不是堆关键词，而是把内容资产组织成 AI 搜索能理解的实体和关系。
 faq:
-  - question: "个人主页做 GEO 最先改什么？"
-    answer: "先改信息结构，让首页、关于页、专题页、文章页共同说明作者是谁、长期研究什么、内容之间是什么关系。"
+  - question: 个人主页做 GEO 最先改什么？
+    answer: 先改信息结构，让首页、关于页、专题页、文章页共同说明作者是谁、长期研究什么、内容之间是什么关系。
 ---
-
 ## 这篇文章解决什么问题
 
 很多人做个人主页时，只把它当成名片。页面上有头像、简介、联系方式，却没有系统告诉搜索引擎和 AI 工具：这个人是谁，长期研究什么，内容之间有什么关系。

@@ -1,20 +1,20 @@
 ---
-title: "视频号违规申诉书SOP"
-description: "视频号违规申诉书SOP——短视频违规/直播违规/小店违规"
-date: "2026-06-29"
-updated: "2026-06-29"
-category: "违规规则及解析"
+title: 视频号违规申诉书SOP
+description: 视频号违规申诉书SOP——短视频违规/直播违规/小店违规
+date: '2026-06-29'
+updated: '2026-06-29'
+category: 违规规则及解析
 tags:
-  - "违规规则及解析"
-  - "微信小店"
-  - "视频号直播"
-  - "视频号"
-  - "违规规则"
-  - "申诉"
-author: "宏"
-knowledgeBase: "store-live-violations"
-summary: "视频号违规申诉书SOP——短视频违规/直播违规/小店违规"
-sourcePath: "资料/文章集合/违规规则及解析/视频号违规申诉书SOP.md"
+  - 违规规则及解析
+  - 微信小店
+  - 视频号直播
+  - 视频号
+  - 违规规则
+  - 申诉
+author: 宏
+knowledgeBase: store-live-violations
+summary: 视频号违规申诉书SOP——短视频违规/直播违规/小店违规
+sourcePath: 资料/文章集合/违规规则及解析/视频号违规申诉书SOP.md
 ---
 **视频号违规申诉书SOP——短视频违规/直播违规/小店违规**
 

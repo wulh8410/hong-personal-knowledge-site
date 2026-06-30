@@ -13,6 +13,8 @@ import { slugify } from "./utils"
 function normalizeMarkdown(markdown: string) {
   return markdown
     .replace(/^\s*<title>[\s\S]*?<\/title>\s*/i, "")
+    .replace(/^\s*#\s+(功能介绍|目录|正文|文章)\s*/m, "")
+    .replace(/^\s*(-{3,}|—{3,}|_{3,}|\*{3,})\s*$/gm, "")
     .replace(/<img\b([^>]*?)\shref=(["'])(.*?)\2([^>]*?)>/gi, '<img$1 src=$2$3$2$4>')
     .replace(/\n{3,}/g, "\n\n")
     .trim()

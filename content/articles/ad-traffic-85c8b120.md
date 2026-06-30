@@ -1,19 +1,19 @@
 ---
-title: "微信豆高效投放实战方案"
-description: "<sheet sheet-id=\"9t5OTU\" token=\"Ex9gsd6r3hHVP4tHw2jc86H1nbg\"</sheet"
-date: "2026-06-29"
-updated: "2026-06-29"
-category: "广告投放"
+title: 微信豆高效投放实战方案
+description: 微信豆投放主要分为短视频投流和直播间投流两种方式，其核心逻辑是付费作为“放大器”，通过算法放大优质内容的效果。
+date: '2026-06-29'
+updated: '2026-06-29'
+category: 广告投放
 tags:
-  - "广告投放"
-  - "微信小店"
-  - "微信豆"
-  - "投放"
-  - "直播运营"
-author: "宏"
-knowledgeBase: "ad-traffic"
-summary: "<sheet sheet-id=\"9t5OTU\" token=\"Ex9gsd6r3hHVP4tHw2jc86H1nbg\"</sheet"
-sourcePath: "资料/文章集合/广告投放/微信豆高效投放实战方案.md"
+  - 广告投放
+  - 微信小店
+  - 微信豆
+  - 投放
+  - 直播运营
+author: 宏
+knowledgeBase: ad-traffic
+summary: 微信豆投放主要分为短视频投流和直播间投流两种方式，其核心逻辑是付费作为“放大器”，通过算法放大优质内容的效果。
+sourcePath: 资料/文章集合/广告投放/微信豆高效投放实战方案.md
 ---
 ![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=MTAwMDJiY2JhYTc2ODQ2ZmJkMzNjN2VlMzVlNWExY2FfZjVlMzMyMWFmNGIzNmY2YWQ2N2Q3YWZmMzVhY2I5ZjZfSUQ6NzYxNzczNjc2NDI4MzQ3MzEyMF8xNzgyNzMxMzE5OjE3ODI3MzQ5MTlfVjM)
 

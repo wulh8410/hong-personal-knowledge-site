@@ -1,17 +1,17 @@
 ---
-title: "2026年微信小店服务商培训-服饰行业广告投放全攻略PPT"
-description: "围绕「2026年微信小店服务商培训-服饰行业广告投放全攻略PPT」整理的微信生态实战资料。"
-date: "2026-06-29"
-updated: "2026-06-29"
-category: "广告投放"
+title: 2026年微信小店服务商培训-服饰行业广告投放全攻略PPT
+description: 围绕「2026年微信小店服务商培训-服饰行业广告投放全攻略PPT」整理的微信生态实战资料。
+date: '2026-06-29'
+updated: '2026-06-29'
+category: 广告投放
 tags:
-  - "广告投放"
-  - "微信小店"
-  - "投放"
-author: "宏"
-knowledgeBase: "ad-traffic"
-summary: "围绕「2026年微信小店服务商培训-服饰行业广告投放全攻略PPT」整理的微信生态实战资料。"
-sourcePath: "资料/文章集合/广告投放/2026年微信小店服务商培训-服饰行业广告投放全攻略PPT.md"
+  - 广告投放
+  - 微信小店
+  - 投放
+author: 宏
+knowledgeBase: ad-traffic
+summary: 围绕「2026年微信小店服务商培训-服饰行业广告投放全攻略PPT」整理的微信生态实战资料。
+sourcePath: 资料/文章集合/广告投放/2026年微信小店服务商培训-服饰行业广告投放全攻略PPT.md
 ---
 ![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZDc1OWU2OTgwNzBhNTgwMTA5NmNjYzY3YmY1N2MwMGZfMmRiNGUyZGM1YmQ5NTI4NjNmMjYyYzI5NGExNzExMzdfSUQ6NzYxODg4OTM5NzMzMzk4NjQ5Ml8xNzgyNzMxMzE5OjE3ODI3MzQ5MTlfVjM)
 

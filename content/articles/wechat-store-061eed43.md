@@ -1,18 +1,18 @@
 ---
-title: "微信电商最重要一块拼图-微信小店"
-description: "导读：主要介绍微信小店在微信生态中的定位及影响，注册小店流程，规则，店铺如何起名，选择什么样的店铺类型更合适以及如何进行品牌认证及认证有什么优势，最后是汇总了一些微信小店的FAQ问题。这一篇可以当成一份微信小店的基础使用手册或工具书，用于日。"
-date: "2026-06-29"
-updated: "2026-06-29"
-category: "微信小店"
+title: 微信电商最重要一块拼图-微信小店
+description: 导读：主要介绍微信小店在微信生态中的定位及影响，注册小店流程，规则，店铺如何起名，选择什么样的店铺类型更合适以及如何进行品牌认证及认证有什么优势，最后是汇总了一些微信小店的FAQ问题。这一篇可以当成一份微信小店的基础使用手册或工具书，用于日。
+date: '2026-06-29'
+updated: '2026-06-29'
+category: 微信小店
 tags:
-  - "微信小店"
-  - "视频号直播"
-  - "视频号"
-  - "直播运营"
-author: "宏"
-knowledgeBase: "wechat-store"
-summary: "导读：主要介绍微信小店在微信生态中的定位及影响，注册小店流程，规则，店铺如何起名，选择什么样的店铺类型更合适以及如何进行品牌认证及认证有什么优势，最后是汇总了一些微信小店的FAQ问题。这一篇可以当成一份微信小店的基础使用手册或工具书，用于日。"
-sourcePath: "资料/文章集合/微信小店/微信电商最重要一块拼图-微信小店.md"
+  - 微信小店
+  - 视频号直播
+  - 视频号
+  - 直播运营
+author: 宏
+knowledgeBase: wechat-store
+summary: 导读：主要介绍微信小店在微信生态中的定位及影响，注册小店流程，规则，店铺如何起名，选择什么样的店铺类型更合适以及如何进行品牌认证及认证有什么优势，最后是汇总了一些微信小店的FAQ问题。这一篇可以当成一份微信小店的基础使用手册或工具书，用于日。
+sourcePath: 资料/文章集合/微信小店/微信电商最重要一块拼图-微信小店.md
 ---
 导读：主要介绍微信小店在微信生态中的定位及影响，注册小店流程，规则，店铺如何起名，选择什么样的店铺类型更合适以及如何进行品牌认证及认证有什么优势，最后是汇总了一些微信小店的FAQ问题。这一篇可以当成一份微信小店的基础使用手册或工具书，用于日常查阅。
 
@@ -90,8 +90,6 @@ sourcePath: "资料/文章集合/微信小店/微信电商最重要一块拼图-
 </column>
 </grid>
 
-
-
 第四是开放了更多类目，下调技术服务费以及降低门槛，允许0保证金试运营小店。
 
 涉及20多个一级类目调整，简化了入驻规则及降低准入门店，新增开放391个类目，例如服饰内衣，宠物生活等。
@@ -118,13 +116,9 @@ sourcePath: "资料/文章集合/微信小店/微信电商最重要一块拼图-
 </column>
 </grid>
 
-
-
 第五是店铺认证体系重新定义，之前的知名品牌金标下架不再沿用，小店名称也不能再包含有旗舰，官旗，官方等字眼，替换成了品牌标识的方式，包括 品牌自营 跟 品牌授权 两种。新的这种方式更进一步放低了品牌店的入驻门槛，只要你的品牌有商标，无需站外数据，就可以申请有品牌标识的小店，小店至此只分为品牌与非品牌两种，此前的很多不知名品牌或白牌即可升级到与知名品牌同一位置。
 
 ![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=YTQ0ZTc5ZWFjNWIwNjk4YjBkYmQ0ODFiMDFiMzE4ZWNfMDg2YjZhYWJiOTdmZmE2ZGY2NWE1YzJlYzdiMzY4NGVfSUQ6NzQxMTM0MzcwMTEwMTExNzQ0NF8xNzgyNzMxMzQzOjE3ODI3MzQ5NDNfVjM)
-
-
 
 畅想下未来的可能性，小店的商品卡是否可以直接分享至朋友圈呢？本地生活这一块，一直以来平台一直在内测，不出意外，最后也是由小店来承接本地生活。
 
@@ -171,8 +165,6 @@ sourcePath: "资料/文章集合/微信小店/微信电商最重要一块拼图-
 </column>
 </grid>
 
-
-
 ## 微信小店的品牌认证体系
 
 微信小店为什么要做品牌认证，有什么用处？
@@ -218,8 +210,6 @@ sourcePath: "资料/文章集合/微信小店/微信电商最重要一块拼图-
 ![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NTUzMDBmMzc2MTkzN2Q1NzRiZTc2NDZkOWI0NmY3ZDdfZTM2ODlkODIxMDk4NTAyODZlZjZjYmE0YjFlZDA0MGJfSUQ6NzQxMDIzOTAxMzU1NzI4ODk4OF8xNzgyNzMxMzQyOjE3ODI3MzQ5NDJfVjM)
 </column>
 </grid>
-
-
 
 微信小店品牌授权书模板：[https://docs.qq.com/doc/DUHlZeFZQTEJJTHFE](https://docs.qq.com/doc/DUHlZeFZQTEJJTHFE)
 

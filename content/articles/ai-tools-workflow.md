@@ -1,24 +1,23 @@
 ---
-title: "AI 工具如何提升内容生产效率？从 Codex、WorkBuddy 到 Marvis"
-description: "把 AI 工具放进内容、开发和运营流程，而不是只停留在单次聊天。"
-date: "2026-06-27"
-updated: "2026-06-27"
-category: "AI 工具"
+title: AI 工具如何提升内容生产效率？从 Codex、WorkBuddy 到 Marvis
+description: 把 AI 工具放进内容、开发和运营流程，而不是只停留在单次聊天。
+date: '2026-06-27'
+updated: '2026-06-27'
+category: AI 工具
 tags:
-  - "AI工具"
-  - "Codex"
-  - "Agent"
-  - "自动化"
-author: "宏"
+  - AI工具
+  - Codex
+  - Agent
+  - 自动化
+author: 宏
 featured: true
-readingTime: "7 分钟"
-knowledgeBase: "ai-tools"
-summary: "AI 工具真正产生效率，不是因为回答更快，而是因为它进入了可复用的工作流。"
+readingTime: 7 分钟
+knowledgeBase: ai-tools
+summary: AI 工具真正产生效率，不是因为回答更快，而是因为它进入了可复用的工作流。
 faq:
-  - question: "AI 工具应该先自动化什么？"
-    answer: "先自动化已经手工做过多次、步骤清楚、结果可验收的工作。不要一开始就自动化还没跑通的流程。"
+  - question: AI 工具应该先自动化什么？
+    answer: 先自动化已经手工做过多次、步骤清楚、结果可验收的工作。不要一开始就自动化还没跑通的流程。
 ---
-
 ## 这篇文章解决什么问题
 
 很多人用 AI 工具时，只是在聊天框里问问题。这样当然有用，但效率提升有限。真正的变化发生在你把 AI 放进固定流程之后。
