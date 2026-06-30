@@ -63,13 +63,15 @@ export default async function ArticleDetailPage({ params }: PageProps) {
           { name: article.title, url: `/articles/${article.slug}` }
         ])}
       />
-      <article className="bg-white py-14">
+      <article className="bg-white py-12 sm:py-16">
         <Container>
-          <div className="mx-auto max-w-4xl">
-            <p className="text-sm font-semibold text-wechat">{article.category}</p>
-            <h1 className="mt-4 text-4xl font-bold leading-tight text-ink">{article.title}</h1>
-            <p className="mt-5 text-lg leading-9 text-slate-600">{article.description}</p>
-            <div className="mt-6 flex flex-wrap gap-4 text-sm text-slate-500">
+          <div className="mx-auto max-w-3xl">
+            <p className="inline-flex items-center border border-emerald-200 bg-emerald-50 px-3 py-1.5 text-xs font-semibold text-wechat">
+              {article.category}
+            </p>
+            <h1 className="mt-5 text-3xl font-bold leading-tight text-ink sm:text-5xl">{article.title}</h1>
+            <p className="mt-5 text-base leading-8 text-slate-600 sm:text-lg sm:leading-9">{article.description}</p>
+            <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm text-slate-500">
               <span>作者：{article.author}</span>
               <span>发布：{formatDate(article.date)}</span>
               <span>更新：{formatDate(article.updated || article.date)}</span>
@@ -86,9 +88,9 @@ export default async function ArticleDetailPage({ params }: PageProps) {
         </Container>
       </article>
 
-      <section className="border-y border-line bg-surface py-14">
-        <Container className="grid gap-8 xl:grid-cols-[1fr_260px]">
-          <div className="mx-auto w-full max-w-3xl rounded-2xl border border-line bg-white p-6 shadow-sm sm:p-9">
+      <section className="border-y border-line bg-surface py-10 sm:py-14">
+        <Container className="grid gap-8 xl:grid-cols-[minmax(0,1fr)_260px]">
+          <div className="mx-auto w-full max-w-4xl border border-line bg-white p-5 shadow-sm sm:p-9 lg:p-11">
             <div className="content-body" dangerouslySetInnerHTML={{ __html: html }} />
             {article.faq?.length ? (
               <div className="mt-12 rounded-2xl bg-surface p-6">
