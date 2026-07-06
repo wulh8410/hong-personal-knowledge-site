@@ -13,7 +13,7 @@ const channels = [
     label: "视频号",
     value: "吴亮宏",
     description: "直播投放、实战拆解与最新分享。",
-    src: "/images/ip-redesign/social-video-account.jpg",
+    src: "/images/ip-redesign/social-video-account-qr.png",
     alt: "视频号吴亮宏二维码"
   },
   {
@@ -53,8 +53,8 @@ export function ContactSignal({ compact = false }: { compact?: boolean }) {
                   {channel.label} <span className="mx-2 text-wechat">|</span> {channel.value}
                 </p>
                 <div className="mt-5 flex items-start gap-4">
-                  <div className="relative h-28 w-28 shrink-0 overflow-hidden bg-white p-1">
-                    <Image src={channel.src} alt={channel.alt} fill sizes="112px" className="object-contain" />
+                  <div className="relative h-36 w-36 shrink-0 overflow-hidden bg-white p-1">
+                    <Image src={channel.src} alt={channel.alt} fill unoptimized sizes="144px" className="object-contain" />
                   </div>
                   <p className="text-xs leading-6 text-white/58">{channel.description}</p>
                 </div>

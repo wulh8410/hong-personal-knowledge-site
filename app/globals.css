@@ -107,10 +107,11 @@ select:focus-visible {
 }
 
 .content-body {
-  color: #363c42;
-  font-size: 1.05rem;
-  line-height: 1.9;
+  color: #30363b;
+  font-size: 1.0625rem;
+  line-height: 1.85;
   overflow-wrap: break-word;
+  text-align: left;
 }
 
 .content-body > *:first-child {
@@ -118,33 +119,43 @@ select:focus-visible {
 }
 
 .content-body h1 {
-  margin-top: 2.75rem;
-  margin-bottom: 1.25rem;
-  border-bottom: 1px solid var(--archive-line);
-  padding-bottom: 0.85rem;
+  margin-top: 3.75rem;
+  margin-bottom: 1.35rem;
+  border-top: 1px solid var(--archive-line);
+  padding-top: 1.5rem;
   color: var(--archive-ink);
-  font-size: 1.75rem;
+  font-size: 1.65rem;
   font-weight: 750;
   line-height: 1.35;
 }
 
 .content-body h2 {
-  margin-top: 3rem;
-  margin-bottom: 1.1rem;
-  border-left: 4px solid var(--archive-green);
-  padding-left: 0.9rem;
+  margin-top: 3.75rem;
+  margin-bottom: 1.35rem;
+  border-top: 1px solid var(--archive-line);
+  padding-top: 1.45rem;
   color: var(--archive-ink);
-  font-size: 1.55rem;
+  font-size: 1.6rem;
   font-weight: 750;
   line-height: 1.35;
 }
 
+.content-body h2::before {
+  display: block;
+  width: 2rem;
+  height: 0.2rem;
+  margin-bottom: 0.8rem;
+  background: var(--archive-green);
+  content: "";
+}
+
 .content-body h3 {
-  margin-top: 2.25rem;
-  margin-bottom: 0.75rem;
+  margin-top: 2.5rem;
+  margin-bottom: 0.85rem;
   color: var(--archive-ink);
-  font-size: 1.25rem;
+  font-size: 1.22rem;
   font-weight: 700;
+  line-height: 1.5;
 }
 
 .content-body h4 {
@@ -156,8 +167,12 @@ select:focus-visible {
 }
 
 .content-body p {
-  margin: 1rem 0;
+  margin: 1.05rem 0;
   min-height: 1px;
+}
+
+.content-body p:empty {
+  display: none;
 }
 
 .content-body strong,
@@ -168,13 +183,26 @@ select:focus-visible {
 
 .content-body ul,
 .content-body ol {
-  margin: 1rem 0 1.25rem;
-  padding-left: 1.5rem;
+  margin: 1.1rem 0 1.35rem;
+  padding-left: 1.65rem;
 }
 
 .content-body li {
-  margin: 0.45rem 0;
-  padding-left: 0.15rem;
+  margin: 0.5rem 0;
+  padding-left: 0.25rem;
+}
+
+.content-body li > p {
+  margin: 0.3rem 0;
+}
+
+.content-body li > ul,
+.content-body li > ol {
+  margin: 0.45rem 0 0.8rem;
+}
+
+.content-body li li {
+  margin: 0.32rem 0;
 }
 
 .content-body li::marker {
@@ -182,11 +210,11 @@ select:focus-visible {
 }
 
 .content-body blockquote {
-  margin: 1.5rem 0;
-  border-left: 4px solid var(--archive-green);
+  margin: 2rem 0;
+  border-left: 3px solid var(--archive-green);
   background: #eef8f1;
-  padding: 1rem 1.25rem;
-  color: #475569;
+  padding: 1.15rem 1.4rem;
+  color: #3f4b45;
 }
 
 .content-body blockquote p {
@@ -206,7 +234,7 @@ select:focus-visible {
 }
 
 .content-body img {
-  margin: 1.5rem auto;
+  margin: 2rem auto;
   max-width: 100%;
   height: auto;
   border: 1px solid var(--archive-line);
@@ -217,7 +245,7 @@ select:focus-visible {
   display: block;
   width: 100%;
   max-width: 100%;
-  margin: 1.5rem 0;
+  margin: 2rem 0;
   overflow-x: auto;
   border-collapse: collapse;
   border: 1px solid var(--archive-line);
@@ -256,7 +284,7 @@ select:focus-visible {
 }
 
 .content-body pre {
-  margin: 1.5rem 0;
+  margin: 2rem 0;
   overflow-x: auto;
   background: #0f172a;
   padding: 1rem;
@@ -281,7 +309,7 @@ select:focus-visible {
 @media (max-width: 640px) {
   .content-body {
     font-size: 1rem;
-    line-height: 1.85;
+    line-height: 1.9;
   }
 
   .content-body h1 {
@@ -289,11 +317,22 @@ select:focus-visible {
   }
 
   .content-body h2 {
-    font-size: 1.28rem;
+    margin-top: 3rem;
+    font-size: 1.35rem;
   }
 
   .content-body h3 {
     font-size: 1.12rem;
+  }
+
+  .content-body ul,
+  .content-body ol {
+    padding-left: 1.2rem;
+  }
+
+  .content-body li > ul,
+  .content-body li > ol {
+    padding-left: 1rem;
   }
 
   .content-body th,

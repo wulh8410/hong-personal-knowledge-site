@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server"
 
-import { getImaSourceBySlug, imaSources } from "@/lib/ima-sources"
+import { getImaSourceBySlug } from "@/lib/ima-sources"
 
 export const runtime = "nodejs"
 
@@ -8,15 +8,6 @@ type ImaApiResponse<T> = {
   code?: number
   msg?: string
   data?: T
-}
-
-type IMAKnowledgeBaseSearchData = {
-  info_list?: {
-    id?: string
-    name?: string
-    kb_id?: string
-    kb_name?: string
-  }[]
 }
 
 type IMAKnowledgeSearchData = {
@@ -30,6 +21,13 @@ type IMAKnowledgeSearchData = {
 }
 
 const IMA_BASE_URL = "https://ima.qq.com"
+
+const knowledgeBaseIds: Record<string, string> = {
+  "wechat-store-rules": "lnjCSbFM0iMtELSpYQg7wAD9hbXX8cA8PE7s346NQh8=",
+  "video-channel-ads": "JEJJbbzPGhv-KoUZ6G6-APTDewAVM0mzPxSTG9y4bBA=",
+  "wechat-tuike": "hPPISeQLYr3PgSQ3-BbckUOap88X62JsqDudhZOtbo4=",
+  "store-violation-cases": "E1brEUZntgvy43c6t3uhuQWGad6hxWNeidzY-g61zSw="
+}
 
 function stripMarkup(value = "") {
   return value.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim()
@@ -80,27 +78,23 @@ async function imaPost<T>(path: string, body: unknown): Promise<ImaApiResponse<T
   }
 }
 
-async function resolveKnowledgeBaseId(sourceName: string) {
-  const response = await imaPost<IMAKnowledgeBaseSearchData>("openapi/wiki/v1/search_knowledge_base", {
-    query: sourceName,
-    cursor: "",
-    limit: 10
-  })
+function queryCandidates(query: string) {
+  const candidates = [query]
+  const rules: [RegExp, string][] = [
+    [/微信豆/, "微信豆"],
+    [/加热/, "加热"],
+    [/投放|广告|ADQ/i, "投放"],
+    [/推客|佣金|分销|带货计划/, "推客"],
+    [/违规|处罚|申诉|整改/, "违规"],
+    [/公告/, "公告"],
+    [/规则|保证金|开店|类目|准入|变化/, "规则"]
+  ]
 
-  if (response.code !== 0) {
-    throw new Error(response.msg || "无法查询 IMA 知识库。")
+  for (const [pattern, keyword] of rules) {
+    if (pattern.test(query)) candidates.push(keyword)
   }
 
-  const list = response.data?.info_list || []
-  const exact = list.find((item) => (item.kb_name || item.name) === sourceName)
-  const target = exact || list[0]
-  const id = target?.kb_id || target?.id
-
-  if (!id) {
-    throw new Error(`未找到资料库「${sourceName}」。`)
-  }
-
-  return id
+  return [...new Set(candidates)]
 }
 
 export async function POST(request: Request) {
@@ -112,7 +106,7 @@ export async function POST(request: Request) {
   }
 
   const query = (payload.query || "").trim()
-  const sourceSlug = (payload.source || "all").trim()
+  const sourceSlug = (payload.source || "").trim()
 
   if (query.length < 2) {
     return NextResponse.json({ error: "请输入至少 2 个字再搜索。" }, { status: 400 })
@@ -122,20 +116,19 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "IMA 服务端凭据未配置，暂时不能查询官方资料。" }, { status: 503 })
   }
 
-  const targetSources =
-    sourceSlug === "all" ? imaSources : getImaSourceBySlug(sourceSlug) ? [getImaSourceBySlug(sourceSlug)!] : []
-
-  if (!targetSources.length) {
+  const source = getImaSourceBySlug(sourceSlug)
+  const knowledgeBaseId = knowledgeBaseIds[sourceSlug]
+  if (!source || !knowledgeBaseId) {
     return NextResponse.json({ error: "未找到对应的官方资料库。" }, { status: 404 })
   }
 
   try {
-    const results = []
+    let matchedQuery = query
+    let items: NonNullable<IMAKnowledgeSearchData["info_list"]> = []
 
-    for (const source of targetSources) {
-      const knowledgeBaseId = await resolveKnowledgeBaseId(source.name)
+    for (const candidate of queryCandidates(query)) {
       const response = await imaPost<IMAKnowledgeSearchData>("openapi/wiki/v1/search_knowledge", {
-        query,
+        query: candidate,
         knowledge_base_id: knowledgeBaseId,
         cursor: ""
       })
@@ -144,19 +137,33 @@ export async function POST(request: Request) {
         throw new Error(response.msg || `资料库「${source.shortName}」查询失败。`)
       }
 
-      for (const item of response.data?.info_list || []) {
-        results.push({
-          title: item.title || "未命名资料",
-          sourceName: source.shortName,
-          sourceSlug: source.slug,
-          mediaType: mediaTypeLabel(item.media_type),
-          excerpt: stripMarkup(item.highlight_content || "")
-        })
+      items = response.data?.info_list || []
+      if (items.length) {
+        matchedQuery = candidate
+        break
       }
     }
 
+    const seen = new Set<string>()
+    const results = items
+      .filter((item) => {
+        const key = item.media_id || item.title || ""
+        if (!key || seen.has(key)) return false
+        seen.add(key)
+        return true
+      })
+      .map((item) => ({
+        title: item.title || "未命名资料",
+        sourceName: source.shortName,
+        sourceSlug: source.slug,
+        mediaType: mediaTypeLabel(item.media_type),
+        excerpt: stripMarkup(item.highlight_content || "")
+      }))
+
     return NextResponse.json({
       query,
+      matchedQuery,
+      sourceName: source.shortName,
       count: results.length,
       results: results.slice(0, 12)
     })
@@ -167,4 +174,3 @@ export async function POST(request: Request) {
     )
   }
 }
-

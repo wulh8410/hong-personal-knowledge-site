@@ -5,6 +5,7 @@ import { ArrowRight } from "lucide-react"
 
 import { ImaKnowledgeSearch } from "@/components/ima/ImaKnowledgeSearch"
 import { ArchiveLink, CoordinateMark, FieldIndex, RedNote, SectionLabel } from "@/components/ip/ArchiveUI"
+import { KnowledgeQrList } from "@/components/knowledge/KnowledgeQrList"
 import { Container } from "@/components/layout/Container"
 import { JsonLd } from "@/components/seo/JsonLd"
 import { imaSources } from "@/lib/ima-sources"
@@ -28,22 +29,22 @@ const qrLibraries = [
   {
     index: "01",
     name: "微信小店官方公告与规则知识库",
-    src: "/images/ip-redesign/qr-store-rules.png"
+    src: "/images/ip-redesign/qr-store-rules-code.png"
   },
   {
     index: "02",
     name: "视频号投放大全",
-    src: "/images/ip-redesign/qr-video-ads.png"
+    src: "/images/ip-redesign/qr-video-ads-code.png"
   },
   {
     index: "03",
     name: "微信推客知识库",
-    src: "/images/ip-redesign/qr-wechat-tuike.png"
+    src: "/images/ip-redesign/qr-wechat-tuike-code.png"
   },
   {
     index: "04",
     name: "微信小店视频号违规规则及案例大全",
-    src: "/images/ip-redesign/qr-violations.png"
+    src: "/images/ip-redesign/qr-violations-code.png"
   }
 ]
 
@@ -90,7 +91,7 @@ export default function KnowledgePage() {
 
       <section id="libraries" className="archive-grid-dark overflow-hidden border-b border-white/10 text-white">
         <Container className="grid min-w-0 min-h-[790px] gap-4 py-10 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:gap-12 lg:py-20">
-          <div className="relative order-2 min-w-0 min-h-[610px] lg:order-1">
+          <div className="relative order-2 min-w-0 min-h-[510px] lg:order-1 lg:min-h-[610px]">
             <div className="absolute left-0 top-0 hidden lg:block">
               <FieldIndex current="08" dark />
             </div>
@@ -103,22 +104,24 @@ export default function KnowledgePage() {
               {qrLibraries.map((library, index) => (
                 <article
                   key={library.index}
-                  className={`relative h-[500px] w-[300px] shrink-0 snap-start border border-white/35 bg-[#151a20] p-2 shadow-dossier lg:absolute lg:h-[510px] lg:w-[292px] ${deckPositions[index]}`}
+                  className={`relative h-[366px] w-[300px] shrink-0 snap-start border border-white/35 bg-[#151a20] p-2 shadow-dossier lg:absolute lg:h-[360px] lg:w-[292px] ${deckPositions[index]}`}
                   style={{ zIndex: index + 1 }}
                 >
                   <span className="absolute -top-8 left-4 grid h-12 w-12 place-items-center border border-white/30 bg-ink font-mono text-xl text-white/80">
                     {library.index}
                   </span>
-                  <div className="relative h-full w-full overflow-hidden bg-white">
+                  <div className="relative aspect-square w-full overflow-hidden bg-white">
                     <Image
                       src={library.src}
                       alt={`${library.name}知识码`}
                       fill
+                      unoptimized
                       priority={index < 2}
                       sizes="292px"
                       className="object-contain"
                     />
                   </div>
+                  <p className="line-clamp-2 px-2 pb-1 pt-3 text-xs leading-5 text-white/70">{library.name}</p>
                 </article>
               ))}
             </div>
@@ -139,14 +142,8 @@ export default function KnowledgePage() {
               公告、规则、投放和违规案例放在 ima；站内文章负责解释判断、路径和落地动作。
             </p>
 
-            <div className="mt-7 border-t border-white/15 sm:mt-9">
-              {qrLibraries.map((library) => (
-                <div key={library.index} className="grid grid-cols-[44px_1fr_18px] items-center gap-4 border-b border-white/12 py-3 sm:py-4">
-                  <span className="font-mono text-sm text-white/62">{library.index}</span>
-                  <span className="text-sm text-white/72">{library.name}</span>
-                  <span className="h-5 border-r-2 border-y border-cobalt" />
-                </div>
-              ))}
+            <div className="mt-7 sm:mt-9">
+              <KnowledgeQrList libraries={qrLibraries} />
             </div>
 
             <div className="mt-7 flex flex-col gap-3 sm:mt-9 sm:flex-row">

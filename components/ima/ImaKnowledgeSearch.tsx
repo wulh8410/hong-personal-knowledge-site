@@ -22,13 +22,15 @@ type ImaKnowledgeSearchProps = {
 
 export function ImaKnowledgeSearch({
   sources,
-  initialSource = "all",
+  initialSource,
   suggestedQuestions = [],
   showIntro = true
 }: ImaKnowledgeSearchProps) {
   const [query, setQuery] = useState("")
-  const [source, setSource] = useState(initialSource)
+  const [source, setSource] = useState(initialSource || sources[0]?.slug || "")
   const [results, setResults] = useState<ImaResult[]>([])
+  const [matchedQuery, setMatchedQuery] = useState("")
+  const [sourceName, setSourceName] = useState("")
   const [error, setError] = useState("")
   const [searched, setSearched] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -56,13 +58,19 @@ export function ImaKnowledgeSearch({
 
       if (!response.ok) {
         setResults([])
+        setMatchedQuery("")
+        setSourceName("")
         setError(data.error || "查询失败，请稍后再试。")
         return
       }
 
       setResults(data.results || [])
+      setMatchedQuery(data.matchedQuery || finalQuery)
+      setSourceName(data.sourceName || "")
     } catch {
       setResults([])
+      setMatchedQuery("")
+      setSourceName("")
       setError("查询失败，请稍后再试。")
     } finally {
       setLoading(false)
@@ -97,11 +105,15 @@ export function ImaKnowledgeSearch({
       >
         <select
           value={source}
-          onChange={(event) => setSource(event.target.value)}
+          onChange={(event) => {
+            setSource(event.target.value)
+            setResults([])
+            setSearched(false)
+            setError("")
+          }}
           aria-label="选择资料库"
           className="h-16 border-b border-wechat/35 bg-paper px-4 text-sm text-ink lg:border-b-0 lg:border-r"
         >
-          <option value="all">全部官方资料库</option>
           {sources.map((item) => (
             <option key={item.slug} value={item.slug}>
               {item.shortName}
@@ -143,17 +155,24 @@ export function ImaKnowledgeSearch({
       {searched && !loading && !error ? (
         <div className="mt-6">
           {results.length ? (
-            <div className="grid gap-3">
-              {results.map((item, index) => (
-                <article key={`${item.sourceSlug}-${item.title}-${index}`} className="border-b border-line bg-paper py-5">
-                  <div className="flex flex-wrap items-center gap-2 text-xs text-slate-500">
-                    <span className="border border-wechat/30 px-2 py-1 text-wechat">{item.sourceName}</span>
-                    <span>{item.mediaType}</span>
-                  </div>
-                  <h3 className="mt-3 text-base font-semibold leading-7 text-ink">{item.title}</h3>
-                  {item.excerpt ? <p className="mt-2 text-sm leading-7 text-ink/58">{item.excerpt}</p> : null}
-                </article>
-              ))}
+            <div>
+              <p className="border-b border-line pb-4 text-sm text-ink/55">
+                已在「{sourceName}」中按
+                <span className="mx-1 font-semibold text-ink">“{matchedQuery}”</span>
+                找到 {results.length} 条相关资料
+              </p>
+              <div className="grid gap-3">
+                {results.map((item, index) => (
+                  <article key={`${item.sourceSlug}-${item.title}-${index}`} className="border-b border-line bg-paper py-5">
+                    <div className="flex flex-wrap items-center gap-2 text-xs text-slate-500">
+                      <span className="border border-wechat/30 px-2 py-1 text-wechat">{item.sourceName}</span>
+                      <span>{item.mediaType}</span>
+                    </div>
+                    <h3 className="mt-3 text-base font-semibold leading-7 text-ink">{item.title}</h3>
+                    {item.excerpt ? <p className="mt-2 text-sm leading-7 text-ink/58">{item.excerpt}</p> : null}
+                  </article>
+                ))}
+              </div>
             </div>
           ) : (
             <div className="border border-dashed border-line bg-paper p-6 text-center text-sm text-ink/50">

@@ -82,7 +82,7 @@ const contactChannels = [
     label: "视频号",
     value: "吴亮宏",
     description: "直播投放、实战拆解与最新分享。",
-    src: "/images/ip-redesign/social-video-account.jpg",
+    src: "/images/ip-redesign/social-video-account-qr.png",
     alt: "视频号吴亮宏二维码"
   },
   {
@@ -205,7 +205,7 @@ export default function HomePage() {
               alt="宏在微信公开课互动展区"
               fill
               sizes="(max-width: 1440px) 100vw, 1344px"
-              className="hidden object-cover md:block"
+              className="hidden object-cover object-top md:block"
             />
             <Image
               src="/images/ip-redesign/openclass-2026-talk-mobile.png"
@@ -363,10 +363,10 @@ export default function HomePage() {
             <SectionLabel title="信号台" english="SIGNAL DESK" dark />
             <div className="mt-8">
               {contactChannels.map((channel) => (
-                <article key={channel.index} className="grid grid-cols-[28px_112px_1fr] gap-4 border-b border-white/12 py-5 first:pt-0">
+                <article key={channel.index} className="grid grid-cols-[28px_132px_1fr] gap-4 border-b border-white/12 py-5 first:pt-0 sm:grid-cols-[28px_148px_1fr]">
                   <span className="mt-4 font-mono text-xs text-wechat">{channel.index}</span>
                   <div className="relative aspect-square overflow-hidden bg-white p-1">
-                    <Image src={channel.src} alt={channel.alt} fill sizes="112px" className="object-contain" />
+                    <Image src={channel.src} alt={channel.alt} fill unoptimized sizes="148px" className="object-contain" />
                   </div>
                   <div className="pt-3">
                     <h3 className="text-base font-semibold">
