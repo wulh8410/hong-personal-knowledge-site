@@ -1,416 +1,391 @@
 import Image from "next/image"
 import Link from "next/link"
-import {
-  ArrowRight,
-  Bot,
-  CheckCircle2,
-  FileText,
-  Layers3,
-  MessageCircle,
-  Network,
-  PanelsTopLeft,
-  Rss,
-  SearchCheck,
-  ShieldCheck,
-  Store,
-  UsersRound,
-  Video,
-  Workflow
-} from "lucide-react"
+import { ArrowRight } from "lucide-react"
 
-import { ArticleCard } from "@/components/article/ArticleCard"
-import { ImaSourceOverview } from "@/components/ima/ImaSourceOverview"
+import { ArchiveLink, CoordinateMark, FieldIndex, RedNote, SectionLabel } from "@/components/ip/ArchiveUI"
 import { Container } from "@/components/layout/Container"
 import { JsonLd } from "@/components/seo/JsonLd"
-import { getAllCases, getFeaturedArticles, getKnowledgeBases } from "@/lib/content"
+import { getFeaturedArticles, getKnowledgeBases } from "@/lib/content"
 import { personJsonLd, websiteJsonLd } from "@/lib/seo"
+import { formatDate } from "@/lib/utils"
 
-const services = [
+const capabilityTrack = [
   {
-    title: "微信小店与视频号直播",
-    description: "看懂平台规则、交易链路、直播运营和售后边界，避免一上来就做错方向。",
-    points: ["入局判断", "商品与交易", "规则避坑"],
-    icon: Store
+    index: "01",
+    title: "技术底座",
+    description: "SaaS 系统 · 小程序商城 · 自动化工作流",
+    english: "FOUNDATION / ENGINEERING"
   },
   {
-    title: "微信推客与分销体系",
-    description: "拆清个人推客、商家佣金、直播/短视频授权和机构平台的协作方式。",
-    points: ["佣金机制", "授权场景", "机构平台"],
-    icon: UsersRound
+    index: "02",
+    title: "运营增长",
+    description: "视频号直播 · 微信豆投放 · 微信推客",
+    english: "GROWTH / OPERATIONS"
   },
   {
-    title: "小程序商城与私域闭环",
-    description: "用小程序、会员、企微和内容触达承接微信生态流量，而不是只做一个页面。",
-    points: ["商城规划", "会员复购", "企微承接"],
-    icon: PanelsTopLeft
-  },
-  {
-    title: "AI 工具与内容资产",
-    description: "把选题、文章、知识库和自动化流程做成可复用资产，让搜索和 AI 更容易理解你。",
-    points: ["内容工作流", "知识库沉淀", "AI 搜索可见"],
-    icon: Bot
+    index: "03",
+    title: "知识资产",
+    description: "AI 工具 · 专题内容 · GEO 实战",
+    english: "ASSET / CONTENT"
   }
 ]
 
-const startPath = [
+const proofTrack = [
   {
-    title: "先判断微信生态机会",
-    description: "适不适合做微信小店、推客、视频号直播，先看规则和链路。",
-    href: "/knowledge/wechat-store",
-    icon: ShieldCheck
+    index: "01",
+    title: "程序员出身",
+    description: "SaaS 系统 · 小程序商城 · 企业数字化"
   },
   {
-    title: "再设计可执行路径",
-    description: "商家、推客、内容、投放、私域、系统分别怎么配合。",
-    href: "/knowledge/wechat-tuike",
-    icon: Workflow
+    index: "02",
+    title: "品牌经营与私域",
+    description: "惠氏 · 嘉实多 · 立白 · 香飘飘"
   },
   {
-    title: "最后沉淀长期资产",
-    description: "用专题页、文章和结构化内容，让经验持续被用户和 AI 发现。",
-    href: "/knowledge/geo",
-    icon: SearchCheck
+    index: "03",
+    title: "直播与投放实战",
+    description: "立白 · 燕之屋 · 徐福记｜微信豆千万级经验"
+  },
+  {
+    index: "04",
+    title: "AI 与知识资产",
+    description: "内容工作流 · 知识库 · GEO 实战探索"
   }
 ]
 
-const audience = ["微信小店商家", "视频号直播团队", "微信推客机构", "小程序商城团队", "想用 AI 提效的内容团队"]
+const heroIndex = [
+  "首页",
+  "方法论",
+  "实战体系",
+  "案例复盘",
+  "增长工具箱",
+  "知识库",
+  "公开课",
+  "AI / GEO",
+  "资源清单",
+  "关于我",
+  "联系我",
+  "更新日志"
+]
 
 const contactChannels = [
   {
+    index: "01",
     label: "公众号",
     value: "宏记",
-    description: "系统文章与长期复盘",
-    icon: Rss
+    description: "获取方法论、案例复盘与更新日志。",
+    src: "/images/ip-redesign/social-wechat-official.jpg",
+    alt: "公众号宏记二维码"
   },
   {
+    index: "02",
     label: "视频号",
     value: "吴亮宏",
-    description: "微信生态与 AI 实战分享",
-    icon: Video
+    description: "直播投放、实战拆解与最新分享。",
+    src: "/images/ip-redesign/social-video-account.jpg",
+    alt: "视频号吴亮宏二维码"
   },
   {
+    index: "03",
     label: "微信",
     value: "wulh8410",
-    description: "交流请备注：微信生态 / AI / 内容资产",
-    icon: MessageCircle
+    description: "添加后请备注具体问题与合作方向。",
+    src: "/images/avatar/hong-wechat-qr.png",
+    alt: "宏的个人微信二维码"
   }
 ]
 
 export default function HomePage() {
   const knowledgeBases = getKnowledgeBases()
-  const featuredArticles = getFeaturedArticles(6)
-  const cases = getAllCases()
+  const latestArticles = getFeaturedArticles(3)
 
   return (
     <>
       <JsonLd data={personJsonLd()} />
       <JsonLd data={websiteJsonLd()} />
 
-      <section className="bg-[#f5f8f6]">
-        <Container className="grid gap-10 py-10 lg:grid-cols-[1fr_420px] lg:items-center lg:py-20">
-          <div>
-            <p className="inline-flex items-center gap-2 border border-emerald-200 bg-white px-3 py-1.5 text-sm font-semibold text-wechat">
-              <Network className="h-4 w-4" />
-              宏｜微信生态电商与 AI 工具实战
+      <section className="archive-grid-dark relative min-h-[calc(100svh-104px)] overflow-hidden border-b border-white/10 text-white">
+        <Container className="relative grid min-h-[calc(100svh-104px)] gap-8 py-10 lg:grid-cols-[minmax(0,1fr)_minmax(430px,0.82fr)] lg:items-center lg:gap-10 lg:py-16 2xl:pr-[250px]">
+          <div className="relative z-20 archive-fade-in">
+            <div className="flex items-center gap-4 border-l border-white/18 pl-6">
+              <span className="h-2 w-2 rounded-full bg-wechat" />
+              <span className="font-mono text-[10px] text-white/50">01&nbsp;&nbsp;/&nbsp;&nbsp;FIELD DOSSIER</span>
+            </div>
+            <p className="mt-9 flex items-center gap-4 text-base text-white/70 sm:mt-14 sm:text-lg">
+              <span className="text-2xl font-semibold text-wechat">宏</span>
+              <span className="h-7 w-px bg-white/45" />
+              <span>15 年微信生态全链路实战</span>
             </p>
-            <h1 className="mt-5 max-w-4xl text-[34px] font-semibold leading-[1.12] text-ink sm:text-5xl lg:mt-6 lg:text-[58px] lg:leading-tight">
-              帮商家和团队看懂微信生态，把方法落到系统、内容和增长动作里
+            <h1 className="mt-5 max-w-4xl text-[38px] font-semibold leading-[1.12] text-white sm:mt-7 sm:text-[58px] sm:leading-[1.16] lg:text-[68px]">
+              把技术做成增长，
+              <br />
+              把经验沉淀成知识
             </h1>
-            <p className="mt-5 max-w-3xl text-base leading-8 text-slate-600 sm:text-lg sm:leading-9 lg:mt-6">
-              我是宏，程序员出身，长期做微信小店、微信推客、小程序商城、微信豆投放和 AI 内容工作流。这个网站沉淀的是可执行、可复用、可持续更新的实战笔记。
+            <div className="mt-6 h-0.5 w-10 bg-wechat sm:mt-7" />
+            <p className="mt-5 max-w-2xl text-sm leading-7 text-white/62 sm:mt-7 sm:text-base sm:leading-8">
+              微信小店 · 视频号直播 · 微信豆投放 · 微信推客 · AI / GEO
             </p>
-            <div className="mt-5 flex items-center gap-3 border border-line bg-white p-3 shadow-sm lg:hidden">
-              <div className="relative h-16 w-16 shrink-0 overflow-hidden bg-[#eef3ef]">
-                <Image
-                  src="/images/avatar/hong-stage-background.png"
-                  alt="宏的个人商务照"
-                  width={1050}
-                  height={1400}
-                  priority
-                  className="h-full w-full object-cover object-[58%_center]"
-                />
-              </div>
-              <div>
-                <p className="text-sm font-semibold text-ink">宏</p>
-                <p className="mt-1 text-xs leading-5 text-slate-600">微信生态电商与 AI 工具实战</p>
-              </div>
-            </div>
-            <div className="mt-6 flex flex-wrap gap-1.5 sm:gap-2 lg:mt-7">
-              {audience.map((item) => (
-                <span key={item} className="border border-line bg-white px-3 py-1.5 text-xs text-slate-700 sm:text-sm">
-                  {item}
-                </span>
-              ))}
-            </div>
-            <div className="mt-7 flex flex-row gap-3 lg:mt-8">
-              <Link
-                href="/knowledge"
-                className="inline-flex h-11 flex-1 items-center justify-center gap-2 bg-ink px-4 text-sm font-semibold text-white transition hover:bg-slate-800 sm:h-12 sm:flex-none sm:px-6"
-              >
-                从知识库开始
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link
-                href="/articles"
-                className="inline-flex h-11 flex-1 items-center justify-center border border-slate-300 bg-white px-4 text-sm font-semibold text-ink transition hover:border-wechat hover:text-wechat sm:h-12 sm:flex-none sm:px-6"
-              >
-                看最新文章
-              </Link>
+            <div className="mt-7 flex flex-col gap-3 sm:mt-9 sm:flex-row">
+              <ArchiveLink href="/knowledge" primary className="sm:min-w-56">
+                进入知识库
+              </ArchiveLink>
+              <ArchiveLink href="/articles" dark className="sm:min-w-48">
+                阅读最新文章
+              </ArchiveLink>
             </div>
           </div>
 
-          <aside className="hidden border border-line bg-white p-4 shadow-[0_24px_70px_rgba(15,23,42,0.10)] lg:block">
-            <div className="relative h-[460px] overflow-hidden bg-[#eef3ef]">
-              <Image
-                src="/images/avatar/hong-stage-background.png"
-                alt="宏的个人商务照"
-                width={1050}
-                height={1400}
-                priority
-                className="h-full w-full object-cover object-[58%_center]"
-              />
-            </div>
-            <div className="mt-4 grid grid-cols-3 gap-2 text-center">
-              {[
-                ["定位", "微信生态"],
-                ["方法", "规则到落地"],
-                ["资产", "内容知识库"]
-              ].map(([label, value]) => (
-                <div key={label} className="bg-slate-50 px-2 py-3">
-                  <p className="text-xs text-slate-500">{label}</p>
-                  <p className="mt-1 text-sm font-semibold text-ink">{value}</p>
-                </div>
+          <div
+            className="relative z-10 min-h-[360px] overflow-hidden sm:min-h-[420px] lg:h-[680px]"
+            style={{
+              maskImage: "linear-gradient(90deg, transparent 0%, black 16%, black 100%)",
+              WebkitMaskImage: "linear-gradient(90deg, transparent 0%, black 16%, black 100%)"
+            }}
+          >
+            <Image
+              src="/images/avatar/hong-stage-background.png"
+              alt="宏在微信生态增长峰会进行视频号直播分享"
+              fill
+              priority
+              sizes="(max-width: 1024px) 90vw, 620px"
+              className="object-cover object-[60%_center] lg:scale-[1.16]"
+            />
+            <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(11,15,20,0.48),transparent_36%)]" />
+          </div>
+
+          <div className="absolute bottom-10 left-12 hidden items-center gap-8 lg:flex">
+            <CoordinateMark dark />
+            <span className="dot-field h-10 w-28 text-white/18" />
+          </div>
+
+          <aside className="absolute inset-y-0 right-0 hidden w-[220px] border-l border-white/10 bg-ink/78 px-8 py-12 2xl:block">
+            <ol className="relative mt-1 grid gap-[18px] border-l border-white/20 pl-8">
+              {heroIndex.map((item, index) => (
+                <li
+                  key={item}
+                  className={`relative flex items-center gap-4 font-mono text-[11px] ${
+                    index === 0 ? "text-wechat" : "text-white/38"
+                  }`}
+                >
+                  <span
+                    className={`absolute -left-[37px] h-2 w-2 rounded-full ${
+                      index === 0 ? "bg-wechat" : "border border-white/24 bg-ink"
+                    }`}
+                  />
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <span>{item}</span>
+                </li>
               ))}
-            </div>
+            </ol>
+            <p className="absolute bottom-12 left-12 font-mono text-[10px] leading-5 text-white/35">
+              SCROLL
+              <br />
+              TO EXPLORE
+            </p>
           </aside>
         </Container>
       </section>
 
-      <section className="bg-white py-12 lg:py-16">
+      <section className="paper-texture relative overflow-hidden border-b border-line py-16 lg:py-24">
         <Container>
-          <SectionHeader
-            label="我能提供什么"
-            title="不是卖概念，而是把微信生态里的关键问题讲清楚、做成可执行方案"
-            subtitle="围绕商家最常遇到的四类问题：平台规则、分销协作、商城承接、内容和 AI 工作流。"
-          />
-          <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-            {services.map((item) => {
-              const Icon = item.icon
-              return (
-                <article key={item.title} className="border border-line bg-white p-5 shadow-sm">
-                  <div className="grid h-11 w-11 place-items-center bg-emerald-50 text-wechat">
-                    <Icon className="h-5 w-5" />
-                  </div>
-                  <h2 className="mt-5 text-lg font-semibold leading-7 text-ink">{item.title}</h2>
-                  <p className="mt-3 text-sm leading-7 text-slate-600">{item.description}</p>
-                  <div className="mt-5 grid gap-2">
-                    {item.points.map((point) => (
-                      <div key={point} className="flex items-center gap-2 text-sm text-slate-700">
-                        <CheckCircle2 className="h-4 w-4 text-wechat" />
-                        {point}
-                      </div>
-                    ))}
-                  </div>
-                </article>
-              )
-            })}
+          <div className="flex items-start justify-between gap-8">
+            <div>
+              <SectionLabel title="技术 × 运营 × 内容资产" />
+              <h2 className="mt-8 text-[38px] font-semibold leading-tight sm:text-[54px]">懂技术，也懂运营</h2>
+              <p className="mt-4 text-base text-ink/58 sm:text-lg">从系统架构到直播间，从投放数据到长期知识资产</p>
+            </div>
+            <div className="hidden lg:block">
+              <CoordinateMark />
+            </div>
           </div>
-        </Container>
-      </section>
 
-      <section className="border-y border-line bg-[#f7f9fb] py-16">
-        <Container className="grid gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
-          <SectionHeader
-            label="建议阅读路径"
-            title="第一次来，可以按这 3 步看"
-            subtitle="先判断机会，再拆执行路径，最后把经验沉淀成能被搜索和 AI 识别的内容资产。"
-          />
-          <div className="grid gap-4">
-            {startPath.map((item, index) => {
-              const Icon = item.icon
-              return (
-                <Link key={item.title} href={item.href} className="group grid gap-4 border border-line bg-white p-5 sm:grid-cols-[56px_1fr_auto] sm:items-center">
-                  <div className="grid h-14 w-14 place-items-center bg-ink text-white">
-                    <Icon className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold text-wechat">第 {index + 1} 步</p>
-                    <h3 className="mt-1 text-lg font-semibold text-ink">{item.title}</h3>
-                    <p className="mt-2 text-sm leading-7 text-slate-600">{item.description}</p>
-                  </div>
-                  <ArrowRight className="hidden h-5 w-5 text-slate-300 transition group-hover:translate-x-1 group-hover:text-wechat sm:block" />
-                </Link>
-              )
-            })}
-          </div>
-        </Container>
-      </section>
-
-      <section className="bg-white py-16">
-        <Container>
-          <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
-            <SectionHeader
-              label="专题知识库"
-              title="把零散经验整理成 8 个专题"
-              subtitle="每个专题都围绕一个长期方向：规则、路径、案例、工具和常见问题会持续补充。"
+          <div className="relative mt-10 aspect-[16/5] min-h-[260px] overflow-hidden border border-line">
+            <Image
+              src="/images/ip-redesign/openclass-2026-talk-desktop.png"
+              alt="宏在微信公开课互动展区"
+              fill
+              sizes="(max-width: 1440px) 100vw, 1344px"
+              className="hidden object-cover md:block"
             />
-            <Link href="/knowledge" className="inline-flex items-center gap-2 text-sm font-semibold text-wechat">
-              进入知识库
+            <Image
+              src="/images/ip-redesign/openclass-2026-talk-mobile.png"
+              alt="宏在微信公开课互动展区"
+              fill
+              sizes="(max-width: 767px) 100vw, 1px"
+              className="object-cover md:hidden"
+            />
+          </div>
+
+          <div className="relative mt-5 grid gap-8 border-t-2 border-wechat pt-10 md:grid-cols-3">
+            {capabilityTrack.map((item) => (
+              <article key={item.index} className="relative border-l border-line pl-5 md:border-l-0 md:pl-0">
+                <span className="absolute -top-[47px] left-0 h-4 w-4 rounded-full border-2 border-wechat bg-paper" />
+                <p className="font-mono text-sm text-wechat">{item.index}</p>
+                <h3 className="mt-4 text-2xl font-semibold">{item.title}</h3>
+                <p className="mt-2 text-sm leading-7 text-ink/58">{item.description}</p>
+                <p className="mt-6 font-mono text-[10px] text-cobalt">{item.english}</p>
+              </article>
+            ))}
+          </div>
+
+          <div className="mt-12 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-end">
+            <RedNote>重复三遍的事，值得被 AI 化。</RedNote>
+            <Link href="/about#experience" className="inline-flex items-center gap-4 border-b border-cobalt pb-2 text-sm font-semibold">
+              查看我的实战路径
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
-          <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-            {knowledgeBases.map((base) => (
-              <Link key={base.slug} href={`/knowledge/${base.slug}`} className="group border border-line bg-white p-5 shadow-sm transition hover:border-emerald-300 hover:shadow-[0_18px_50px_rgba(15,23,42,0.08)]">
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <p className="text-sm font-semibold text-wechat">{base.articleCount || 0} 篇内容</p>
-                    <h3 className="mt-2 text-lg font-semibold text-ink">{base.title}</h3>
-                  </div>
-                  <ArrowRight className="h-5 w-5 text-slate-300 transition group-hover:translate-x-1 group-hover:text-wechat" />
-                </div>
-                <p className="mt-4 min-h-14 text-sm leading-7 text-slate-600">{base.shortDescription}</p>
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {base.topics.slice(0, 4).map((topic) => (
-                    <span key={topic} className="bg-slate-100 px-2.5 py-1 text-xs text-slate-600">
-                      {topic}
-                    </span>
-                  ))}
-                </div>
+        </Container>
+      </section>
+
+      <section className="archive-grid-dark overflow-hidden border-b border-white/10 py-16 text-white lg:py-24">
+        <Container>
+          <div className="flex items-start justify-between gap-8">
+            <SectionLabel title="专题知识库" english="KNOWLEDGE SYSTEM" dark />
+            <div className="hidden lg:block">
+              <CoordinateMark dark />
+            </div>
+          </div>
+          <div className="mx-auto mt-12 max-w-5xl text-center">
+            <h2 className="text-[36px] font-semibold leading-tight sm:text-[48px]">
+              八个专题，构成一套<span className="text-wechat">微信生态作战地图</span>
+            </h2>
+            <p className="mt-5 text-base text-white/58">先查规则，再拆路径，最后把经验沉淀成可复用资产。</p>
+          </div>
+
+          <div className="mt-12 flex snap-x gap-2 overflow-x-auto pb-4 lg:grid lg:grid-cols-8 lg:overflow-visible">
+            {knowledgeBases.map((base, index) => (
+              <Link
+                key={base.slug}
+                href={`/knowledge/${base.slug}`}
+                className={`group relative min-h-[340px] min-w-[240px] snap-start border px-5 py-6 transition lg:min-w-0 ${
+                  index === 0
+                    ? "border-wechat bg-wechat/[0.08] shadow-[inset_0_0_55px_rgba(7,193,96,0.08)]"
+                    : "border-white/20 hover:border-wechat/70 hover:bg-white/[0.03]"
+                }`}
+                style={{ clipPath: "polygon(10% 0, 100% 0, 90% 100%, 0 100%)" }}
+              >
+                <p className={`font-mono text-sm ${index === 0 ? "text-wechat" : "text-white/35"}`}>
+                  {String(index + 1).padStart(2, "0")}
+                </p>
+                <h3 className={`mt-12 text-xl font-semibold leading-8 ${index === 0 ? "text-wechat" : "text-white"}`}>
+                  {base.title
+                    .replace("知识库", "")
+                    .replace("微信小店&直播", "违规")
+                    .replace("实战探索", "探索")
+                    .replace("微信公私域联运", "公私域联运")}
+                </h3>
+                <span className={`mt-6 block h-px w-6 ${index === 0 ? "bg-wechat" : "bg-white/28"}`} />
+                <p className="mt-6 text-xs leading-6 text-white/48">{base.shortDescription}</p>
+                <p className="absolute bottom-7 left-5 font-mono text-[10px] text-white/42">专题索引 · 持续更新</p>
               </Link>
             ))}
           </div>
-        </Container>
-      </section>
 
-      <section className="border-y border-line bg-[#f7f9fb] py-16">
-        <Container>
-          <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
-            <SectionHeader
-              label="官方资料库支持"
-              title="站内讲方法，ima 查原始规则和案例"
-              subtitle="微信小店公告、推客资料、视频号投放和违规案例放在腾讯 ima 中，适合用来核对官方规则，再回到站内文章看解释和落地路径。"
-            />
-            <Link href="/knowledge#ima-search" className="inline-flex items-center gap-2 text-sm font-semibold text-wechat">
-              去查询官方资料
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-          <div className="mt-8">
-            <ImaSourceOverview />
+          <div className="mt-10 flex justify-center">
+            <ArchiveLink href="/knowledge" primary className="min-w-72">
+              查看全部知识库
+            </ArchiveLink>
           </div>
         </Container>
       </section>
 
-      <section className="bg-white py-16">
+      <section className="paper-texture overflow-hidden border-b border-line py-16 lg:py-24">
         <Container>
-          <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
-            <SectionHeader
-              label="先读这些"
-              title="精选文章"
-              subtitle="这些文章优先解释平台规则、实操路径和 AI 工具如何真正进入工作流。"
-            />
-            <Link href="/articles" className="inline-flex items-center gap-2 text-sm font-semibold text-wechat">
-              查看全部文章
-              <ArrowRight className="h-4 w-4" />
-            </Link>
+          <div className="flex items-start justify-between gap-8">
+            <div>
+              <SectionLabel title="实战履历" english="PROOF OF WORK" />
+              <h2 className="mt-8 max-w-5xl text-[38px] font-semibold leading-tight sm:text-[54px]">
+                不是头衔堆叠，
+                <br />
+                是一条长期做成事情的路径
+              </h2>
+              <p className="mt-4 text-base text-ink/58 sm:text-lg">15 年一线实践，从写系统，到做增长，再到把经验沉淀成知识。</p>
+            </div>
+            <FieldIndex current="04" />
           </div>
-          <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-            {featuredArticles.map((article) => (
-              <ArticleCard key={article.slug} article={article} />
-            ))}
-          </div>
-        </Container>
-      </section>
 
-      <section className="border-y border-line bg-[#f7f9fb] py-16">
-        <Container>
-          <SectionHeader
-            label="实践经验"
-            title="我参与过的项目类型"
-            subtitle="不写夸张数据，只保留能说明经验边界的项目类型和交付内容。"
-          />
-          <div className="mt-8 grid gap-4 lg:grid-cols-3">
-            {cases.map((item) => (
-              <article key={item.slug} className="border border-line bg-white p-5 shadow-sm">
-                <div className="flex items-center gap-3">
-                  <div className="grid h-10 w-10 place-items-center bg-ink text-white">
-                    <Layers3 className="h-5 w-5" />
-                  </div>
-                  <p className="text-sm font-semibold text-wechat">{item.type}</p>
-                </div>
-                <h3 className="mt-5 text-lg font-semibold text-ink">{item.title}</h3>
-                <p className="mt-3 text-sm leading-7 text-slate-600">{item.problem}</p>
-                <div className="mt-5 grid gap-2">
-                  {item.deliverables.slice(0, 3).map((deliverable) => (
-                    <div key={deliverable} className="flex items-center gap-2 text-sm text-slate-700">
-                      <CheckCircle2 className="h-4 w-4 text-wechat" />
-                      {deliverable}
-                    </div>
-                  ))}
-                </div>
+          <div className="mt-10 grid min-h-[360px] gap-3 bg-ink p-3 md:grid-cols-[1.15fr_0.72fr_0.88fr_1fr]">
+            <PhotoFrame src="/images/ip-redesign/openclass-2026-stage-desktop.png" alt="2026 微信公开课现场" />
+            <PhotoFrame src="/images/ip-redesign/openclass-2025-mobile.png" alt="2025 微信公开课现场" />
+            <div className="flex flex-col justify-center bg-paper px-7 py-10 text-ink">
+              <span className="w-fit border border-ink/30 px-2 py-1 font-mono text-[10px]">沉淀 · 方法论 · 复利</span>
+              <h3 className="mt-6 text-2xl font-semibold leading-9">把实战经验，沉淀为可复用的知识体系</h3>
+              <p className="mt-4 text-sm leading-7 text-ink/58">从项目打法到方法模型，从内容资产到知识库建设，让经验持续复利。</p>
+            </div>
+            <PhotoFrame src="/images/ip-redesign/openclass-2026-talk-mobile.png" alt="微信公开课 TALK 展区" />
+          </div>
+
+          <div className="grid border-t-2 border-wechat md:grid-cols-4">
+            {proofTrack.map((item) => (
+              <article key={item.index} className="border-b border-line px-3 py-7 md:border-b-0 md:border-r md:last:border-r-0">
+                <p className="font-mono text-sm text-wechat">{item.index}</p>
+                <h3 className="mt-3 text-xl font-semibold">{item.title}</h3>
+                <p className="mt-2 text-xs leading-6 text-ink/55">{item.description}</p>
               </article>
             ))}
           </div>
         </Container>
       </section>
 
-      <section className="bg-[#07111f] py-16 text-white">
-        <Container className="grid gap-10 lg:grid-cols-[1fr_360px] lg:items-center">
-          <div>
-            <div className="inline-flex items-center gap-2 border border-emerald-300/25 bg-emerald-300/10 px-3 py-1.5 text-xs font-semibold text-emerald-200">
-              <span className="h-1.5 w-1.5 bg-emerald-300" />
-              联系宏
-            </div>
-            <h2 className="mt-3 max-w-3xl text-3xl font-semibold leading-tight sm:text-4xl">
-              如果你正在做微信小店、推客、小程序商城，或者想把 AI 用到内容和运营里，可以先从一次交流开始。
-            </h2>
-            <div className="mt-7 grid gap-3 sm:grid-cols-3">
-              {[
-                { label: "规则怎么理解", icon: ShieldCheck },
-                { label: "路径怎么落地", icon: Workflow },
-                { label: "内容怎么沉淀", icon: FileText }
-              ].map((item) => {
-                const Icon = item.icon
-                return (
-                  <div key={item.label} className="flex items-center gap-3 border border-white/10 bg-white/[0.04] p-4">
-                    <Icon className="h-5 w-5 text-emerald-300" />
-                    <span className="text-sm font-semibold">{item.label}</span>
+      <section className="archive-grid-dark text-white">
+        <Container className="grid lg:grid-cols-[1.65fr_1fr]">
+          <div className="border-white/10 py-16 lg:border-r lg:pr-12 lg:py-20">
+            <SectionLabel title="最近更新" english="KEEP SHIPPING" dark />
+            <h2 className="mt-7 text-[36px] font-semibold leading-tight sm:text-[46px]">持续更新，也欢迎来聊具体问题</h2>
+            <p className="mt-4 text-sm leading-7 text-white/55">文章讲方法，知识库查规则，具体问题可以直接交流。</p>
+            <div className="mt-10">
+              {latestArticles.map((article, index) => (
+                <Link
+                  key={article.slug}
+                  href={`/articles/${article.slug}`}
+                  className="group grid grid-cols-[68px_1fr_auto] items-center gap-5 border-b border-white/14 py-7"
+                >
+                  <div>
+                    <p className="font-mono text-3xl font-light text-white/60">{String(index + 1).padStart(2, "0")}</p>
+                    <p className="mt-2 font-mono text-[10px] text-white/40">{formatDate(article.updated || article.date)}</p>
                   </div>
-                )
-              })}
+                  <div className="border-l border-white/15 pl-6">
+                    <p className="text-xs text-wechat">{article.category}</p>
+                    <h3 className="mt-3 text-xl font-semibold leading-8 sm:text-2xl">{article.title}</h3>
+                  </div>
+                  <ArrowRight className="h-5 w-5 text-white/45 transition group-hover:translate-x-1 group-hover:text-wechat" />
+                </Link>
+              ))}
             </div>
+            <Link href="/articles" className="mt-9 inline-flex items-center gap-4 border-b border-cobalt pb-2 text-sm font-semibold text-cobalt">
+              查看全部文章
+              <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
-          <div className="border border-white/10 bg-white/[0.04] p-6 shadow-[0_24px_70px_rgba(0,0,0,0.18)]">
-            <div className="flex items-start justify-between gap-4 border-b border-white/10 pb-5">
-              <div>
-                <p className="text-xs font-semibold text-emerald-300">FOLLOW / CONTACT</p>
-                <h3 className="mt-2 text-xl font-semibold text-white">关注公开内容，再具体交流</h3>
-              </div>
-              <span className="mt-1 h-2.5 w-2.5 bg-emerald-300" />
-            </div>
-            <div className="grid">
-              {contactChannels.map((item) => {
-                const Icon = item.icon
-                return (
-                  <div key={item.label} className="grid grid-cols-[2.75rem_1fr] gap-4 border-b border-white/10 py-4 last:border-b-0">
-                    <div className="grid h-11 w-11 place-items-center border border-emerald-300/20 bg-emerald-300/10 text-emerald-300">
-                      <Icon className="h-5 w-5" />
-                    </div>
-                    <div className="min-w-0">
-                      <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                        <p className="text-xs font-semibold text-slate-400">{item.label}</p>
-                        <p className="text-lg font-semibold text-white">{item.value}</p>
-                      </div>
-                      <p className="mt-1 text-sm leading-6 text-slate-300">{item.description}</p>
-                    </div>
+
+          <div className="py-16 lg:pl-12 lg:py-20">
+            <SectionLabel title="信号台" english="SIGNAL DESK" dark />
+            <div className="mt-8">
+              {contactChannels.map((channel) => (
+                <article key={channel.index} className="grid grid-cols-[28px_112px_1fr] gap-4 border-b border-white/12 py-5 first:pt-0">
+                  <span className="mt-4 font-mono text-xs text-wechat">{channel.index}</span>
+                  <div className="relative aspect-square overflow-hidden bg-white p-1">
+                    <Image src={channel.src} alt={channel.alt} fill sizes="112px" className="object-contain" />
                   </div>
-                )
-              })}
+                  <div className="pt-3">
+                    <h3 className="text-base font-semibold">
+                      <span className="text-wechat">{channel.label}</span>
+                      <span className="mx-2 text-white/25">|</span>
+                      {channel.value}
+                    </h3>
+                    <p className="mt-3 text-xs leading-6 text-white/52">{channel.description}</p>
+                  </div>
+                </article>
+              ))}
             </div>
-            <p className="mt-4 border-t border-white/10 pt-4 text-xs leading-5 text-slate-400">
-              微信交流建议备注：微信生态 / AI / 内容资产
+            <p className="mt-5 text-xs leading-6 text-white/50">
+              交流请备注：微信生态 <span className="text-wechat">/</span> AI <span className="text-wechat">/</span> 内容资产
             </p>
+            <a href="weixin://" className="mt-6 inline-flex h-12 w-full items-center justify-center gap-5 bg-wechat text-sm font-semibold">
+              开始一次具体交流
+              <ArrowRight className="h-4 w-4" />
+            </a>
           </div>
         </Container>
       </section>
@@ -418,23 +393,10 @@ export default function HomePage() {
   )
 }
 
-function SectionHeader({
-  label,
-  title,
-  subtitle
-}: {
-  label: string
-  title: string
-  subtitle: string
-}) {
+function PhotoFrame({ src, alt }: { src: string; alt: string }) {
   return (
-    <div className="max-w-3xl">
-      <div className="inline-flex items-center gap-2 border border-emerald-200 bg-emerald-50 px-3 py-1.5 text-xs font-semibold text-wechat">
-        <span className="h-1.5 w-1.5 bg-wechat" />
-        {label}
-      </div>
-      <h2 className="mt-3 text-3xl font-semibold leading-tight text-ink sm:text-4xl">{title}</h2>
-      <p className="mt-4 text-base leading-8 text-slate-600">{subtitle}</p>
+    <div className="relative min-h-[320px] overflow-hidden">
+      <Image src={src} alt={alt} fill sizes="(max-width: 768px) 100vw, 30vw" className="object-cover" />
     </div>
   )
 }

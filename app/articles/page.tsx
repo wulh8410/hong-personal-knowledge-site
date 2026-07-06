@@ -2,7 +2,8 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 
-import { ArticleCard } from "@/components/article/ArticleCard"
+import { ArticleTopicBrowser } from "@/components/article/ArticleTopicBrowser"
+import { CoordinateMark, RedNote, SectionLabel } from "@/components/ip/ArchiveUI"
 import { Container } from "@/components/layout/Container"
 import { JsonLd } from "@/components/seo/JsonLd"
 import { getAllArticles } from "@/lib/content"
@@ -34,26 +35,20 @@ const categoryOrder = [
 ]
 
 const categoryDescriptions: Record<string, string> = {
-  微信小店: "围绕开店、商品、交易、履约、体验分和经营规则，先建立微信小店的完整业务底盘。",
-  视频号: "整理视频号直播、起号、内容、案例和账号经营方法，帮助判断直播间怎么持续迭代。",
-  广告投放: "覆盖微信豆、小店广告、ADQ、直播投流、赔付规则和投放复盘，适合做预算与增长判断。",
-  微信推客: "拆解推客机制、优选联盟、染色期、机构平台和私域分销，理解微信生态协作链路。",
-  违规规则及解析: "收拢直播、小店、短视频、申诉和治理规则，适合做运营前的风险检查清单。",
-  微信公私域联运: "关注视频号、小店、公众号、小程序、企微和社群之间的承接关系，解决流量沉淀问题。",
-  "AI 工具": "记录 AI 工具进入内容、开发、资料整理和自动化流程的实战方法。",
-  GEO: "探索个人品牌、专题内容和结构化资产如何被搜索引擎与 AI 搜索更准确理解。"
-}
-
-function categoryId(category: string) {
-  return `category-${category
-    .toLowerCase()
-    .replace(/\s+/g, "-")
-    .replace(/[^\p{Letter}\p{Number}-]/gu, "")}`
+  微信小店: "从平台规则、商品运营、数据工具到交易与售后，建立完整经营判断。",
+  视频号: "围绕账号定位、直播运营、内容分发与复盘，沉淀长期直播能力。",
+  广告投放: "覆盖微信豆、小店广告、ADQ、素材测试和投放复盘，让预算服务业务目标。",
+  微信推客: "拆解推客机制、优选联盟、机构平台与私域分销，理解协作链路。",
+  违规规则及解析: "收拢直播、小店、短视频和申诉治理规则，形成运营前的风险清单。",
+  微信公私域联运: "连接视频号、小店、公众号、小程序、企微和社群，解决流量承接与复购。",
+  "AI 工具": "记录 AI 工具进入内容、开发、资料整理和自动化流程的真实方法。",
+  GEO: "探索专题内容和结构化资产如何被搜索引擎与 AI 搜索准确理解。"
 }
 
 export default function ArticlesPage() {
   const articles = getAllArticles()
   const latestArticles = articles.slice(0, 6)
+  const leadArticle = latestArticles[0]
   const articleCategories = Array.from(new Set(articles.map((article) => article.category)))
   const categories = [
     ...categoryOrder.filter((category) => articleCategories.includes(category)),
@@ -61,7 +56,10 @@ export default function ArticlesPage() {
   ]
   const groupedArticles = categories.map((category) => ({
     category,
-    articles: articles.filter((article) => article.category === category)
+    description: categoryDescriptions[category] || "围绕这个专题持续整理可检索、可复用的实战文章。",
+    articles: articles
+      .filter((article) => article.category === category)
+      .map((article) => ({ slug: article.slug, title: article.title }))
   }))
 
   return (
@@ -72,79 +70,81 @@ export default function ArticlesPage() {
           { name: "文章", url: "/articles" }
         ])}
       />
-      <section id="top" className="bg-white py-14">
-        <Container>
-          <p className="text-sm font-semibold text-wechat">实战文章</p>
-          <h1 className="mt-4 text-4xl font-bold text-ink">微信生态实战文章</h1>
-          <p className="mt-5 max-w-3xl text-lg leading-9 text-slate-600">
-            如果你正在研究微信小店、视频号直播、投放、推客或公私域联运，可以先看最近更新，也可以按下面的主题直接进入对应内容。
-          </p>
-          <div className="mt-7 flex flex-wrap gap-2">
-            {groupedArticles.map((group) => (
-              <Link
-                key={group.category}
-                href={`#${categoryId(group.category)}`}
-                className="border border-line bg-white px-3 py-1.5 text-sm text-slate-700 transition hover:border-wechat hover:text-wechat"
-              >
-                {group.category}
-                <span className="ml-1 text-xs text-slate-400">{group.articles.length}</span>
-              </Link>
-            ))}
-          </div>
-        </Container>
-      </section>
 
-      <section className="border-y border-line bg-surface py-14">
+      <section className="paper-texture border-b border-line py-14 lg:py-20">
         <Container>
-          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <div className="flex items-start justify-between gap-8">
+            <SectionLabel title="文章" english="FIELD NOTES" />
+            <Link href="#topic-browser" className="hidden items-center gap-4 text-sm font-semibold text-cobalt sm:inline-flex">
+              全部文章
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+
+          <div className="mt-8 grid gap-12 lg:grid-cols-[1.12fr_0.88fr] lg:items-end">
             <div>
-              <p className="inline-flex border border-emerald-200 bg-emerald-50 px-3 py-1.5 text-xs font-semibold text-wechat">
-                最新文章
+              <h1 className="max-w-4xl text-[35px] font-semibold leading-[1.16] sm:text-[58px] sm:leading-[1.14]">
+                把规则、案例和方法，
+                <br />
+                写成可以反复查的文章
+              </h1>
+              <p className="mt-6 max-w-2xl text-base leading-8 text-ink/58">
+                先看最近更新，也可以按微信小店、视频号、广告投放、微信推客和违规规则进入专题。
               </p>
-              <h2 className="mt-3 text-3xl font-semibold text-ink">最新更新的 6 篇</h2>
-            </div>
-            <p className="max-w-xl text-sm leading-7 text-slate-600">
-              这里放最近整理和更新的内容，适合快速了解最近补充了哪些资料。
-            </p>
-          </div>
-          <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-            {latestArticles.map((article) => (
-              <ArticleCard key={article.slug} article={article} />
-            ))}
-          </div>
-        </Container>
-      </section>
 
-      <section className="bg-white py-14">
-        <Container className="grid gap-12">
-          {groupedArticles.map((group) => (
-            <section key={group.category} id={categoryId(group.category)} className="scroll-mt-24">
-              <div className="flex flex-col gap-4 border-b border-line pb-5 md:flex-row md:items-end md:justify-between">
-                <div>
-                  <div className="flex flex-wrap items-center gap-3">
-                    <h2 className="text-3xl font-semibold text-ink">{group.category}</h2>
-                    <span className="border border-line bg-slate-50 px-2.5 py-1 text-xs text-slate-500">
-                      {group.articles.length} 篇
+              {leadArticle ? (
+                <Link
+                  href={`/articles/${leadArticle.slug}`}
+                  className="group relative mt-9 block min-h-[330px] overflow-hidden border border-line bg-paper px-7 py-9 shadow-soft sm:px-10"
+                >
+                  <div className="relative z-10 max-w-full sm:max-w-[60%]">
+                    <p className="text-sm font-semibold text-wechat">最近更新 · {leadArticle.category}</p>
+                    <h2 className="mt-7 text-[30px] font-semibold leading-tight sm:text-[44px]">{leadArticle.title}</h2>
+                    <p className="mt-5 line-clamp-2 text-sm leading-7 text-ink/58">{leadArticle.description}</p>
+                    <span className="mt-8 inline-flex items-center gap-4 border-b border-wechat pb-2 text-sm font-semibold text-wechat">
+                      阅读文章
+                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </span>
                   </div>
-                  <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-600">
-                    {categoryDescriptions[group.category] || "围绕这个专题持续整理可检索、可复用的实战文章。"}
-                  </p>
-                </div>
-                <Link href="#top" className="inline-flex items-center gap-1 text-sm font-semibold text-wechat">
-                  回到顶部
-                  <ArrowRight className="h-4 w-4 rotate-[-90deg]" />
+                  <div className="absolute -bottom-16 -right-8 hidden h-[310px] w-[42%] rotate-[-10deg] border border-line bg-[#f3f3ef] shadow-soft sm:block">
+                    <div className="absolute inset-6 border-l border-t border-cobalt/65" />
+                    <div className="absolute left-10 top-12">
+                      <CoordinateMark />
+                    </div>
+                    <div className="absolute bottom-9 right-8">
+                      <span className="font-mono text-[10px] text-cobalt">FIELD DOSSIER<br />06 / 12</span>
+                    </div>
+                  </div>
                 </Link>
+              ) : null}
+            </div>
+
+            <div className="border-t border-line">
+              {latestArticles.slice(1).map((article, index) => (
+                <Link
+                  key={article.slug}
+                  href={`/articles/${article.slug}`}
+                  className="group grid min-h-24 grid-cols-[55px_1fr_auto] items-center gap-4 border-b border-line py-3"
+                >
+                  <span className="border-r border-line py-5 font-mono text-sm text-ink/62">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span className="text-lg font-semibold leading-7">{article.title}</span>
+                  <span className="hidden text-xs text-ink/48 sm:block">{article.category}</span>
+                  <ArrowRight className="h-4 w-4 text-cobalt transition-transform group-hover:translate-x-1 sm:hidden" />
+                </Link>
+              ))}
+              <div className="mt-10 flex justify-end">
+                <RedNote>重复三遍的事，值得被 AI 化。</RedNote>
               </div>
-              <div className="mt-6 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-                {group.articles.map((article) => (
-                  <ArticleCard key={article.slug} article={article} />
-                ))}
-              </div>
-            </section>
-          ))}
+            </div>
+          </div>
         </Container>
       </section>
+
+      <div id="topic-browser" className="scroll-mt-20">
+        <ArticleTopicBrowser groups={groupedArticles} />
+      </div>
     </>
   )
 }

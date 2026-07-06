@@ -1,14 +1,15 @@
 import type { Metadata } from "next"
+import Image from "next/image"
+import Link from "next/link"
+import { ArrowRight } from "lucide-react"
 
 import { ImaKnowledgeSearch } from "@/components/ima/ImaKnowledgeSearch"
-import { ImaSourceOverview } from "@/components/ima/ImaSourceOverview"
-import { KnowledgeCard } from "@/components/knowledge/KnowledgeCard"
+import { ArchiveLink, CoordinateMark, FieldIndex, RedNote, SectionLabel } from "@/components/ip/ArchiveUI"
 import { Container } from "@/components/layout/Container"
 import { JsonLd } from "@/components/seo/JsonLd"
-import { getAllArticles, getKnowledgeBases } from "@/lib/content"
 import { imaSources } from "@/lib/ima-sources"
 import { breadcrumbJsonLd } from "@/lib/seo"
-import { absoluteUrl, formatDate } from "@/lib/utils"
+import { absoluteUrl } from "@/lib/utils"
 
 export const metadata: Metadata = {
   title: "系统化知识库",
@@ -18,15 +19,66 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "系统化知识库",
-    description: "微信小店、视频号直播、广告投放、微信推客、违规规则、AI 工具、GEO 和公私域联运专题入口。",
+    description: "先查官方事实，再看解释、路径与可执行动作。",
     url: absoluteUrl("/knowledge")
   }
 }
 
-export default function KnowledgePage() {
-  const bases = getKnowledgeBases()
-  const latestArticles = getAllArticles().slice(0, 5)
+const qrLibraries = [
+  {
+    index: "01",
+    name: "微信小店官方公告与规则知识库",
+    src: "/images/ip-redesign/qr-store-rules.png"
+  },
+  {
+    index: "02",
+    name: "视频号投放大全",
+    src: "/images/ip-redesign/qr-video-ads.png"
+  },
+  {
+    index: "03",
+    name: "微信推客知识库",
+    src: "/images/ip-redesign/qr-wechat-tuike.png"
+  },
+  {
+    index: "04",
+    name: "微信小店视频号违规规则及案例大全",
+    src: "/images/ip-redesign/qr-violations.png"
+  }
+]
 
+const deckPositions = [
+  "lg:left-0 lg:bottom-0 lg:-rotate-[1.8deg]",
+  "lg:left-[20%] lg:bottom-[68px] lg:rotate-[1.4deg]",
+  "lg:left-[40%] lg:bottom-[136px] lg:-rotate-[1.8deg]",
+  "lg:left-[60%] lg:bottom-[204px] lg:rotate-[1.4deg]"
+]
+
+const paths = [
+  {
+    index: "01",
+    title: "官方来源",
+    description: "公告、规则原文、平台案例",
+    action: "查看来源",
+    href: "#libraries"
+  },
+  {
+    index: "02",
+    title: "宏的解释",
+    description: "判断适用场景，拆清平台逻辑与风险边界",
+    action: "阅读相关文章",
+    href: "/articles"
+  },
+  {
+    index: "03",
+    title: "执行动作",
+    description: "形成直播话术、商品页和复盘检查清单",
+    action: "保存学习路径",
+    href: "/knowledge/wechat-store"
+  }
+]
+
+export default function KnowledgePage() {
   return (
     <>
       <JsonLd
@@ -35,57 +87,124 @@ export default function KnowledgePage() {
           { name: "知识库", url: "/knowledge" }
         ])}
       />
-      <section className="bg-white py-14">
-        <Container>
-          <p className="text-sm font-semibold text-wechat">专题入口</p>
-          <h1 className="mt-4 text-4xl font-bold text-ink">系统化知识库</h1>
-          <p className="mt-5 max-w-3xl text-lg leading-9 text-slate-600">
-            围绕微信小店、视频号直播、广告投放、微信推客、违规规则、AI 工具、GEO 和公私域联运，持续更新可检索、可复用、可沉淀的专题内容。
-          </p>
-        </Container>
-      </section>
-      <section className="border-y border-line bg-surface py-14">
-        <Container className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {bases.map((base) => (
-            <KnowledgeCard key={base.slug} base={base} />
-          ))}
-        </Container>
-      </section>
-      <section className="bg-white py-14">
-        <Container>
-          <div className="max-w-3xl">
-            <p className="text-sm font-semibold text-wechat">官方资料来源</p>
-            <h2 className="mt-3 text-3xl font-semibold text-ink">用 ima 查公告、规则、投放和违规案例</h2>
-            <p className="mt-4 text-base leading-8 text-slate-600">
-              站内知识库负责把问题讲清楚，ima 资料库负责提供官方公告、规则原文和案例线索。两层配合，适合先查事实，再看方法。
-            </p>
-          </div>
-          <div className="mt-8">
-            <ImaSourceOverview />
-          </div>
-          <div className="mt-8">
-            <ImaKnowledgeSearch sources={imaSources} />
-          </div>
-        </Container>
-      </section>
-      <section className="bg-white py-14">
-        <Container className="grid gap-8 lg:grid-cols-[1fr_1fr]">
-          <div className="rounded-2xl border border-line p-6">
-            <h2 className="text-2xl font-bold text-ink">最新更新</h2>
-            <div className="mt-5 grid gap-4">
-              {latestArticles.map((article) => (
-                <a key={article.slug} href={`/articles/${article.slug}`} className="block rounded-xl bg-slate-100 p-4">
-                  <span className="text-xs text-slate-500">{formatDate(article.updated || article.date)}</span>
-                  <span className="mt-1 block font-medium text-ink">{article.title}</span>
-                </a>
+
+      <section id="libraries" className="archive-grid-dark overflow-hidden border-b border-white/10 text-white">
+        <Container className="grid min-w-0 min-h-[790px] gap-4 py-10 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:gap-12 lg:py-20">
+          <div className="relative order-2 min-w-0 min-h-[610px] lg:order-1">
+            <div className="absolute left-0 top-0 hidden lg:block">
+              <FieldIndex current="08" dark />
+            </div>
+            <div className="absolute left-0 top-14 hidden h-28 w-28 rounded-full border border-white/12 lg:block">
+              <div className="absolute inset-4 rounded-full border border-dashed border-white/20" />
+              <span className="absolute inset-0 grid place-items-center font-mono text-[9px] text-white/26">VERIFIED<br />SOURCES</span>
+            </div>
+
+            <div className="flex h-full snap-x items-end gap-4 overflow-x-auto pb-4 pt-8 lg:absolute lg:inset-x-0 lg:bottom-0 lg:block lg:overflow-visible lg:pt-0">
+              {qrLibraries.map((library, index) => (
+                <article
+                  key={library.index}
+                  className={`relative h-[500px] w-[300px] shrink-0 snap-start border border-white/35 bg-[#151a20] p-2 shadow-dossier lg:absolute lg:h-[510px] lg:w-[292px] ${deckPositions[index]}`}
+                  style={{ zIndex: index + 1 }}
+                >
+                  <span className="absolute -top-8 left-4 grid h-12 w-12 place-items-center border border-white/30 bg-ink font-mono text-xl text-white/80">
+                    {library.index}
+                  </span>
+                  <div className="relative h-full w-full overflow-hidden bg-white">
+                    <Image
+                      src={library.src}
+                      alt={`${library.name}知识码`}
+                      fill
+                      priority={index < 2}
+                      sizes="292px"
+                      className="object-contain"
+                    />
+                  </div>
+                </article>
               ))}
             </div>
+            <div className="absolute bottom-0 left-0 hidden h-14 w-[92%] border border-white/15 bg-[#11161c] lg:block" />
           </div>
-          <div className="rounded-2xl border border-line p-6">
-            <h2 className="text-2xl font-bold text-ink">推荐阅读路径</h2>
-            <p className="mt-4 text-base leading-8 text-slate-600">
-              新访问者建议先从微信小店、视频号和微信推客开始理解交易与分发，再看广告投放、违规规则、公私域联运、AI 工具和 GEO 如何沉淀成长期资产。
+
+          <div className="order-1 min-w-0 lg:order-2">
+            <div className="flex items-start justify-between gap-6">
+              <SectionLabel title="知识库" english="VERIFIED SOURCES" dark />
+              <FieldIndex current="08" dark />
+            </div>
+            <h1 className="mt-8 text-[38px] font-semibold leading-[1.14] sm:mt-10 sm:text-[58px]">
+              四套官方资料库，
+              <br />
+              先查事实，再谈方法
+            </h1>
+            <p className="mt-6 max-w-2xl text-base leading-8 text-white/58 sm:mt-7">
+              公告、规则、投放和违规案例放在 ima；站内文章负责解释判断、路径和落地动作。
             </p>
+
+            <div className="mt-7 border-t border-white/15 sm:mt-9">
+              {qrLibraries.map((library) => (
+                <div key={library.index} className="grid grid-cols-[44px_1fr_18px] items-center gap-4 border-b border-white/12 py-3 sm:py-4">
+                  <span className="font-mono text-sm text-white/62">{library.index}</span>
+                  <span className="text-sm text-white/72">{library.name}</span>
+                  <span className="h-5 border-r-2 border-y border-cobalt" />
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-7 flex flex-col gap-3 sm:mt-9 sm:flex-row">
+              <ArchiveLink href="#ima-search" primary className="sm:min-w-64">
+                打开知识库工作台
+              </ArchiveLink>
+              <ArchiveLink href="#learning-path" dark className="sm:min-w-48">
+                查看学习路径
+              </ArchiveLink>
+            </div>
+            <p className="mt-6 font-mono text-[10px] text-white/38 sm:mt-8">扫码可直接订阅 ima 知识库</p>
+          </div>
+        </Container>
+      </section>
+
+      <section id="learning-path" className="paper-texture border-b border-line py-16 lg:py-24">
+        <Container>
+          <div className="flex items-start justify-between gap-8">
+            <SectionLabel title="查询路径" english="FROM FACT TO ACTION" />
+            <div className="hidden lg:block">
+              <CoordinateMark />
+            </div>
+          </div>
+          <div className="mt-10 flex items-end justify-between gap-8">
+            <div>
+              <h2 className="max-w-6xl text-[38px] font-semibold leading-tight sm:text-[54px]">
+                一个问题，沿着来源、解释和动作往下走
+              </h2>
+              <p className="mt-5 text-base leading-8 text-ink/58">先核对官方资料，再理解规则逻辑，最后形成可以执行的清单。</p>
+            </div>
+            <FieldIndex current="09" />
+          </div>
+
+          <div className="mt-10">
+            <ImaKnowledgeSearch sources={imaSources} showIntro={false} />
+          </div>
+
+          <div className="relative mt-16 grid gap-0 border-t-2 border-wechat md:grid-cols-3">
+            {paths.map((path) => (
+              <article key={path.index} className="relative border-b border-line px-5 py-10 md:border-b-0 md:border-r md:last:border-r-0">
+                <span className="absolute -top-2 left-5 h-4 w-4 rounded-full border-2 border-wechat bg-paper" />
+                <div className="flex items-center gap-4">
+                  <span className="font-mono text-3xl font-semibold text-wechat">{path.index}</span>
+                  <span className="h-8 w-px bg-wechat" />
+                  <h3 className="text-2xl font-semibold">{path.title}</h3>
+                </div>
+                <p className="mt-7 min-h-14 text-sm leading-7 text-ink/58">{path.description}</p>
+                <Link href={path.href} className="mt-7 inline-flex items-center gap-5 border-b border-cobalt pb-2 text-sm font-semibold text-cobalt">
+                  {path.action}
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </article>
+            ))}
+          </div>
+
+          <div className="mt-12 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+            <RedNote>资料层负责准确，方法层负责可执行。</RedNote>
+            <span className="dot-field h-12 w-36 text-ink/12" />
           </div>
         </Container>
       </section>
