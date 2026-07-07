@@ -135,35 +135,16 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="relative z-10 min-h-[420px] overflow-hidden border border-white/12 bg-white/[0.03] sm:min-h-[520px] lg:h-[680px]">
+          <div className="relative z-10 min-h-[420px] overflow-hidden border border-white/12 bg-white/[0.03] shadow-[0_36px_120px_rgba(0,0,0,0.34)] sm:min-h-[520px] lg:h-[680px]">
             <Image
-              src="/images/ip-redesign/openclass-2026-stage-desktop.png"
-              alt=""
-              fill
-              priority
-              sizes="(max-width: 1024px) 90vw, 620px"
-              className="object-cover opacity-34"
-              style={{ objectPosition: "42% center" }}
-            />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_62%_38%,rgba(7,193,96,0.18),transparent_30%),linear-gradient(90deg,rgba(11,15,20,0.92)_0%,rgba(11,15,20,0.42)_46%,rgba(11,15,20,0.14)_100%)]" />
-            <div className="absolute inset-x-8 top-8 flex items-center justify-between border-b border-white/16 pb-4 font-mono text-[10px] text-white/54">
-              <span>REAL FIELD PHOTO</span>
-              <span>2026 WECHAT OPEN CLASS</span>
-            </div>
-            <Image
-              src="/images/ip-redesign/portrait-office.png"
-              alt="宏的个人商务照"
+              src="/images/ip-redesign/hero-business-portrait.png"
+              alt="宏的商务主视觉"
               fill
               priority
               unoptimized
-              sizes="(max-width: 1024px) 82vw, 560px"
-              className="object-contain object-bottom brightness-[0.96] contrast-[1.04]"
+              sizes="(max-width: 1024px) 90vw, 620px"
+              className="object-cover object-center"
             />
-            <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-ink via-ink/42 to-transparent" />
-            <div className="absolute bottom-8 left-8 hidden border-l-2 border-wechat bg-ink/58 px-4 py-3 backdrop-blur-sm sm:block">
-              <p className="text-sm font-semibold text-white">宏 · 微信生态实战</p>
-              <p className="mt-1 text-xs text-white/55">技术、运营、内容资产一线经验</p>
-            </div>
           </div>
 
           <div className="absolute bottom-10 left-12 hidden items-center gap-8 lg:flex">
