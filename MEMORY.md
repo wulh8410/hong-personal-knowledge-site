@@ -50,3 +50,4 @@
 - 2026-07-07：首页首屏个人照从演讲背景图改为 2026 微信公开课现场照，避免右侧主视觉像被裁掉的背景贴图；“懂技术，也懂运营”现场图用 CSS 上移 5px，不改动原始素材。文章详情已支持 `originalUrl` 原文链接字段：有飞书原文 URL 时显示“查看飞书原文”，没有 URL 时只展示 `sourcePath` 导入来源，不伪造不可跳转链接。
 - 2026-07-07：知识库搜索从“标题列表”升级为“答案优先 + 来源追溯”：`/api/ima/search` 先返回结构化答复、步骤、清单和命中依据，再返回资料结果；能通过 ima `get_media_info` 拿到 URL 的资料显示“查看来源”，拿不到 URL 的资料提示需在 ima 客户端查看，仍不在前端展示内部知识库或媒体 ID。
 - 2026-07-07：当前 `资料/文章集合` 与 `content/articles` 未保存飞书文档级原文 URL，只能找到飞书图片下载地址和部分微信/腾讯官方链接；文章详情的 `originalUrl` 字段已预留，批量补齐需要用户额外提供飞书文档链接清单或重新导出带原文链接的数据。GitHub 仓库当前为 private，已推送 `gh-pages` 跳转分支，但 GitHub API 返回当前计划不支持 private repo 启用 Pages；若必须发布 GitHub Pages，需要用户确认将仓库公开或升级支持 private Pages 的计划。
+- 2026-07-07：用户确认公开仓库后，GitHub 仓库 `wulh8410/hong-personal-knowledge-site` 已从 private 改为 public，并启用 GitHub Pages，发布源为 `gh-pages` 分支根目录；Pages 地址为 `https://wulh8410.github.io/hong-personal-knowledge-site/`，当前页面是跳转到 Vercel 正式站 `https://hong-amber.vercel.app/` 的静态入口，因为主站依赖 Vercel Serverless API 承载 ima 搜索。
