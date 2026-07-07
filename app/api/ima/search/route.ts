@@ -34,6 +34,15 @@ type SearchItem = {
   media_type?: number
 }
 
+type SearchResult = {
+  title: string
+  sourceName: string
+  sourceSlug: string
+  mediaType: string
+  excerpt: string
+  sourceUrl: string
+}
+
 const IMA_BASE_URL = "https://ima.qq.com"
 
 const knowledgeBaseIds: Record<string, string> = {
@@ -90,6 +99,12 @@ function queryTerms(query: string) {
     "入驻",
     "类目",
     "资质",
+    "商品上架",
+    "商品管理",
+    "上架",
+    "商品发布",
+    "商品信息",
+    "场景管理",
     "公告",
     "规则",
     "店铺体验分",
@@ -171,16 +186,44 @@ function compactText(value = "") {
     .slice(0, 240)
 }
 
-function pickEvidence(items: SearchItem[]) {
-  return items
-    .map((item) => compactText(item.highlight_content || item.title || ""))
-    .filter(Boolean)
+function pickEvidence(results: SearchResult[]) {
+  const seen = new Set<string>()
+  return results
+    .map((item) => ({
+      title: item.title,
+      url: item.sourceUrl,
+      excerpt: compactText(item.excerpt)
+    }))
+    .filter((item) => {
+      const key = normalizeForMatch(item.title)
+      if (!key || seen.has(key)) return false
+      seen.add(key)
+      return true
+    })
     .slice(0, 3)
 }
 
-function answerForQuery(query: string, sourceName: string, items: SearchItem[]) {
-  const evidence = pickEvidence(items)
+function answerForQuery(query: string, sourceName: string, results: SearchResult[]) {
+  const evidence = pickEvidence(results)
   const normalized = query.toLowerCase()
+
+  if (/商品上架|商品发布|上架商品|发布商品|商品管理|场景管理/.test(query)) {
+    return {
+      title: "商品上架按“信息完整、资质合规、场景可用、审核通过”四步走",
+      summary:
+        "你查到的资料指向商品管理和商品上架场景。实际操作不要只填标题和价格，要先把类目、资质、图文信息、库存履约和可售场景一次性核对清楚，否则后面容易卡在审核、直播挂载或场景曝光。",
+      steps: [
+        "先确认商品类目和经营资质：选择正确类目，涉及食品、美妆、品牌授权等商品时，提前准备许可证、检测报告或授权材料。",
+        "补齐商品基础信息：商品标题、主图、详情图、规格、价格、库存、运费模板、发货时效、售后规则都要完整且一致。",
+        "检查商品内容合规：不要使用夸大功效、绝对化用语、违规承诺、与资质不匹配的宣传素材，主图和详情页要能支撑真实履约。",
+        "选择商品可用场景：根据业务需要配置小店货架、视频号橱窗、直播间挂载、短视频挂载或推荐/搜索等场景，确认每个场景是否满足平台要求。",
+        "提交审核并复查结果：审核通过后再做直播挂载和投放；审核失败时先看失败原因，对应修改类目、资质、素材或商品信息后再提交。"
+      ],
+      checklist: ["类目是否正确", "资质/授权是否齐全", "标题主图详情是否一致", "价格库存运费是否可履约", "直播/橱窗/搜索等场景是否可用"],
+      note: `以上是基于「${sourceName}」命中的商品管理资料整理出的上架路径，最终入口和审核口径以微信小店后台最新页面为准。`,
+      evidence
+    }
+  }
 
   if (/开店|入驻|申请店铺|开通小店/.test(query)) {
     return {
@@ -339,7 +382,7 @@ export async function POST(request: Request) {
         sourceSlug: source.slug,
         mediaType: mediaTypeLabel(item.media_type),
         excerpt: stripMarkup(item.highlight_content || ""),
-        sourceUrl: item.sourceUrl
+        sourceUrl: item.sourceUrl || ""
       }))
 
     return NextResponse.json({
@@ -347,7 +390,7 @@ export async function POST(request: Request) {
       matchedQuery,
       sourceName: source.shortName,
       count: results.length,
-      answer: answerForQuery(query, source.shortName, visibleItems),
+      answer: answerForQuery(query, source.shortName, results),
       results: results.slice(0, 12)
     })
   } catch (error) {

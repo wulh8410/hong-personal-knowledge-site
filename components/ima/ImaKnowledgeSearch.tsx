@@ -20,7 +20,11 @@ type ImaAnswer = {
   steps: string[]
   checklist: string[]
   note: string
-  evidence: string[]
+  evidence: {
+    title: string
+    url?: string
+    excerpt?: string
+  }[]
 }
 
 type ImaKnowledgeSearchProps = {
@@ -213,12 +217,26 @@ export function ImaKnowledgeSearch({
 
                   {answer.evidence.length ? (
                     <div className="mt-7 border-t border-line pt-5">
-                      <p className="text-sm font-semibold text-ink">命中依据</p>
-                      <div className="mt-3 grid gap-2">
+                      <p className="text-sm font-semibold text-ink">命中的官方资料</p>
+                      <div className="mt-3 grid gap-3">
                         {answer.evidence.map((item) => (
-                          <p key={item} className="text-xs leading-6 text-ink/52">
-                            {item}
-                          </p>
+                          <article key={`${item.title}-${item.url || ""}`} className="border border-line bg-paper px-4 py-3">
+                            <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+                              <h4 className="text-sm font-semibold leading-6 text-ink">{item.title}</h4>
+                              {item.url ? (
+                                <a
+                                  href={item.url}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  className="inline-flex shrink-0 items-center gap-2 text-xs font-semibold text-cobalt hover:text-wechat"
+                                >
+                                  查看原文
+                                  <ExternalLink className="h-3.5 w-3.5" />
+                                </a>
+                              ) : null}
+                            </div>
+                            {item.excerpt ? <p className="mt-2 text-xs leading-6 text-ink/52">{item.excerpt}</p> : null}
+                          </article>
                         ))}
                       </div>
                     </div>
