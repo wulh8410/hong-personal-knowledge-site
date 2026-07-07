@@ -14,6 +14,7 @@ tags:
 author: 宏
 knowledgeBase: wechat-store
 summary: 关联账号是微信小店为商家提供的一种跨场景经营工具。简单来说，商家可以将自己的微信小店，与视频号、公众号、服务号、企业微信、小程序等多种微信生态账号进行绑定。
+originalUrl: https://my.feishu.cn/docx/R0gKdvapFoRuO1xFzPwcH0KMn1e
 sourcePath: 资料/文章集合/微信小店/微信小店「关联账号」完全使用指南：商家必读.md
 ---
 ## 一、 关联账号是什么意思？

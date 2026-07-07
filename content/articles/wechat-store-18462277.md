@@ -12,6 +12,7 @@ tags:
 author: 宏
 knowledgeBase: wechat-store
 summary: 微信小店2025年交出了一份令人振奋的成绩单：品牌GMV增速达平台大盘的4.3倍，月均动销商家数同比增长1.7倍，购买用户呈现出年轻化、高质量的新特征。
+originalUrl: https://my.feishu.cn/docx/ZPSUdZ4nToj0YcxFo6kcLfCOnab
 sourcePath: 资料/文章集合/微信小店/2026微信小店展望.md
 ---
 微信小店2025年交出了一份令人振奋的成绩单：品牌GMV增速达平台大盘的4.3倍，月均动销商家数同比增长1.7倍，购买用户呈现出年轻化、高质量的新特征。

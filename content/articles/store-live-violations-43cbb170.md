@@ -12,6 +12,7 @@ tags:
 author: 宏
 knowledgeBase: store-live-violations
 summary: 受视频号用户喜爱的内容在视频互动的各项数据上表现更好，有可能获得更好的推荐分发及更高的商品转化效率。
+originalUrl: https://my.feishu.cn/docx/WFVFdAFfHobhiUxgmWIcXSiunG9
 sourcePath: 资料/文章集合/违规规则及解析/视频号短视频内容创作方向及常见违规内容.md
 ---
 受视频号用户喜爱的内容在视频互动的各项数据上表现更好，有可能获得更好的推荐分发及更高的商品转化效率。

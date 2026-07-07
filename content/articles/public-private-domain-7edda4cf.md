@@ -13,6 +13,7 @@ tags:
 author: 宏
 knowledgeBase: public-private-domain
 summary: 想让推客平台真正跑通、实现高效运营，商家需要抓住4个核心关键点：好货盘、好内容、强私域、强运营。
+originalUrl: https://my.feishu.cn/docx/JM6xdYGLWoYJFZxA3ywc0CXPnWV
 sourcePath: 资料/文章集合/微信推客/拆解推客平台4大核心要素：“好货盘+好内容+强私域+ 强运营” 的实战方法论.md
 ---
 想让推客平台真正跑通、实现高效运营，商家需要抓住4个核心关键点：好货盘、好内容、强私域、强运营。  

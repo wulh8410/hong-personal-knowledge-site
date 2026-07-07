@@ -14,6 +14,7 @@ tags:
 author: 宏
 knowledgeBase: wechat-tuike
 summary: 腾讯想做全域电商，今年加入了一个重要的板块，推客。想了解微信推客？先看一个真实例子。
+originalUrl: https://my.feishu.cn/docx/S6OGdU0dSoVg9RxmzQecN6DenFf
 sourcePath: 资料/文章集合/微信推客/一文读懂微信推客：裂变锁定+闭环成交+全域分发.md
 ---
 ![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZWFkYzhjNDlhN2VhNWY4MWYzMzZiOTY3MDE1YTg2OGNfZWQ2YzQ5Nzc5MDFlYTY0MTc4OTJjMGYxN2JjNjQyMDFfSUQ6NzUwOTgyNTU5MTU1NTE3ODQ5OF8xNzgyNzMwOTM1OjE3ODI3MzQ1MzVfVjM)

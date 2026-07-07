@@ -14,6 +14,7 @@ tags:
 author: 宏
 knowledgeBase: store-live-violations
 summary: 视频号违规申诉书SOP——短视频违规/直播违规/小店违规
+originalUrl: https://my.feishu.cn/docx/HW10dhHLKo5jR9xHLyLctabUnGh
 sourcePath: 资料/文章集合/违规规则及解析/视频号违规申诉书SOP.md
 ---
 **视频号违规申诉书SOP——短视频违规/直播违规/小店违规**

@@ -14,6 +14,7 @@ tags:
 author: 宏
 knowledgeBase: wechat-store
 summary: 一个正在微信生态内掀起社交购物新浪潮的功能——微信小店的 「一起买」。这不仅仅是一个拼团工具，更是为商家打造的、基于微信强社交关系链的 “增长加速器”。
+originalUrl: https://my.feishu.cn/docx/TEqOdNo0Pojdv7xChuvcp9tjnTg
 sourcePath: 资料/文章集合/微信小店/微信小店「一起买」功能：社交裂变新引擎，商家增长新利器.md
 ---
 一个正在微信生态内掀起社交购物新浪潮的功能——微信小店的 **「一起买」**。这不仅仅是一个拼团工具，更是为商家打造的、基于微信强社交关系链的 **“增长加速器”**。

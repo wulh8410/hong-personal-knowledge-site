@@ -14,6 +14,7 @@ tags:
 author: 宏
 knowledgeBase: ad-traffic
 summary: 这段时间问我“小店广告到底靠不靠谱”的商家特别多。
+originalUrl: https://my.feishu.cn/docx/TgIQd75zkoZ9dYxY0TBc1ofBnNf
 sourcePath: 资料/文章集合/广告投放/原创｜一个投手眼里的“小店广告”：这不是新工具，而是微信在重塑投放底层逻辑.md
 ---
 ![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=OGZkZDEwZDlmNWE5OTEzNjBhNWY5MzA2MTI2ZWRjNGFfYzVlMzNiODY4NDdmNDBkNTllN2I1M2ZiZmEzNjAxZDJfSUQ6NzU3ODY5Mjc1MzcwMzQyMjk0NF8xNzgyNzMxMzQyOjE3ODI3MzQ5NDJfVjM)

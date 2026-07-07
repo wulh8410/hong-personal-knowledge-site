@@ -14,6 +14,7 @@ tags:
 author: 宏
 knowledgeBase: ad-traffic
 summary: 投放最终目的是保证直播间有持续，稳定，精准的流量进入，促使直播成交量冲突原有的层级，上升到更高的一个量级，同时为了有更好的利润，综合ROI更大。投放的人群会更加精准，促使转化会更加容易一些，因此成交量更容易提升。
+originalUrl: https://my.feishu.cn/docx/T6Y1dlEOAoYFOfxyQRDcmCR9nHc
 sourcePath: 资料/文章集合/广告投放/视频号直播投放底层逻辑及赔付规则.md
 ---
 ## 视频号投放目的

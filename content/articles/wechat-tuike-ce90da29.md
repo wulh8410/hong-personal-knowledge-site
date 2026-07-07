@@ -12,6 +12,7 @@ tags:
 author: 宏
 knowledgeBase: wechat-tuike
 summary: 定义：“染色期”（又称计佣时效或锁客期），是指用户点击推客分享的推广载体（链接/视频/海报）后，系统将该用户与推客建立佣金归因关系的有效时间窗口。在此期间内，用户产生的有效购买行为，均会计入该推客的业绩佣金.
+originalUrl: https://my.feishu.cn/docx/Op5bddL94o8RQLxD5zNcxIranJd
 sourcePath: 资料/文章集合/微信推客/微信小店推客“染色期”深度解读：定义、时效与归因逻辑.md
 ---
 ![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NGVjMDNjMDk4ODUyNjlhNjJiYzI3ZmQwNmYyYzhlNmVfYWU1MmY1Zjc5YTE2MzMxNWM5M2MzMmQxNjNjODE0MDVfSUQ6NzU5MTc4MDcxMDUwNDM4NTQ3NV8xNzgyNzMwODU0OjE3ODI3MzQ0NTRfVjM)

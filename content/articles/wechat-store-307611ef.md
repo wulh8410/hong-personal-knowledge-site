@@ -14,6 +14,7 @@ tags:
 author: 宏
 knowledgeBase: wechat-store
 summary: 以下内容由官方运营整理，针对性的做了部分删减调整。如需指定行业运营方案的，扫码联系我！
+originalUrl: https://my.feishu.cn/docx/QVD7dILjroliMBx7VVUcSqIpnFc
 sourcePath: 资料/文章集合/微信小店/微信小店全能运营规则汇总（官方精简版）.md
 ---
 # 前言

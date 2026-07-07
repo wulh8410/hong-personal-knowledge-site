@@ -14,6 +14,7 @@ tags:
 author: 宏
 knowledgeBase: video-account
 summary: 今天分享的主题是《视频号直播起号的几个核心因素》，分享的内容主要分为三大部分，视频号直播基本情况，直播起号核心因素，直播复盘。
+originalUrl: https://my.feishu.cn/docx/doxcnOnueOpVRMNcj35Utbl9gBg
 sourcePath: 资料/文章集合/视频号/视频号直播起号的几个核心因素【视频号06篇】.md
 ---
 今天分享的主题是《视频号直播起号的几个核心因素》，分享的内容主要分为三大部分，视频号直播基本情况，直播起号核心因素，直播复盘。

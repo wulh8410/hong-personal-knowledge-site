@@ -14,6 +14,7 @@ tags:
 author: 宏
 knowledgeBase: wechat-tuike
 summary: 本文将从概念、核心角色及优势等方面，对「推客带货」进行系统剖析，为商家朋友们提供专业参考。
+originalUrl: https://my.feishu.cn/docx/APFOdAbB0ogQr7xjAIecekp9n9f
 sourcePath: 资料/文章集合/微信推客/「推客带货」是什么？商家接入后，私域流量变现效率翻倍.md
 ---
 本文将从概念、核心角色及优势等方面，对「推客带货」进行系统剖析，为商家朋友们提供专业参考。

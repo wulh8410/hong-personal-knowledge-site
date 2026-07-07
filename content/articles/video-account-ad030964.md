@@ -14,6 +14,7 @@ tags:
 author: 宏
 knowledgeBase: video-account
 summary: 这次分享的主题是视频号直播案例拆解。
+originalUrl: https://my.feishu.cn/docx/JD0Od14m2o8RWBxCehzcyI4FnRg
 sourcePath: 资料/文章集合/视频号/视频号直播案例拆解【视频号07篇】.md
 ---
 这次分享的主题是视频号直播案例拆解。

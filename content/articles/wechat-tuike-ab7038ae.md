@@ -14,6 +14,7 @@ tags:
 author: 宏
 knowledgeBase: wechat-tuike
 summary: 一直以来，我都在做微信生态里的电商。最早我是程序员出身，后来专门做SaaS小程序品牌商城，前后服务过惠氏、嘉实多、立白、梦芭莎等一些知名品牌，在小程序品牌商城这块做了差不多10年。做久了也慢慢发现，光做技术交付，很难把一件事真正做起来。
+originalUrl: https://my.feishu.cn/docx/Ofbjd6bwHoV9p7xpgNRczV8bnag
 sourcePath: 资料/文章集合/微信推客/【万字长文】微信推客到底是什么？一篇讲透机制、流程与赚钱逻辑.md
 ---
 大家好，我是宏。

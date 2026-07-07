@@ -14,6 +14,7 @@ tags:
 author: 宏
 knowledgeBase: ad-traffic
 summary: 500块如何给直播间带来几万人？
+originalUrl: https://my.feishu.cn/docx/R06edjjWkouswoxbT0mcRfgFnPh
 sourcePath: 资料/文章集合/广告投放/第二波红利，视频号直播带货如何通过投放放大.md
 ---
 500块如何给直播间带来几万人？

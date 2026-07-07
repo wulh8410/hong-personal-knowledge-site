@@ -14,6 +14,7 @@ tags:
 author: 宏
 knowledgeBase: wechat-store
 summary: 1. 为什么视频号合规是第一生产力？
+originalUrl: https://my.feishu.cn/docx/GH5FdUZ9Mo06goxQ38hcPqLgnMe
 sourcePath: 资料/文章集合/微信小店/视频号微信小店违规解读与经验技巧.md
 ---
 #### **第一部分：开场与平台底层逻辑** 

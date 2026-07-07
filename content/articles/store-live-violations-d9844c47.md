@@ -13,6 +13,7 @@ tags:
 author: 宏
 knowledgeBase: store-live-violations
 summary: 自直播信用分功能上线以来，视频号直播环境逐渐规范。
+originalUrl: https://my.feishu.cn/docx/RKThdhz99oaYLAxIxEQcazmYnQd
 sourcePath: 资料/文章集合/视频号/视频号直播敏感词汇注意事项.md
 ---
 自直播信用分功能上线以来，视频号直播环境逐渐规范。

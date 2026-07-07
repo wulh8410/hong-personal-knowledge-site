@@ -14,6 +14,7 @@ tags:
 author: 宏
 knowledgeBase: ad-traffic
 summary: 小店投放（官方名"小店广告"/"腾讯广告小店版"）是内嵌在微信小店后台的极简投放能力，核心定位是：以成交为目标、以CPA结算为兜底、以AI验证为内核的安全起步系统。
+originalUrl: https://my.feishu.cn/docx/EZb0dNVkGoR10Ix92eYcnM3NnPe
 sourcePath: 资料/文章集合/广告投放/微信小店投放完全指南：从0到1构建确定性增长体系.md
 ---
 ## 一、产品本质：重新定义"小店投放"的战略价值

@@ -14,6 +14,7 @@ tags:
 author: 宏
 knowledgeBase: ad-traffic
 summary: 分享一下关于视频号直播投放最新的一些情况，分享的内容主要分为两部分
+originalUrl: https://my.feishu.cn/docx/WKvHdDTlho7NiPx3rcrcYvp2nMe
 sourcePath: 资料/文章集合/广告投放/视频号直播投放现状及一些新变化【视频号05篇】.md
 ---
 分享一下关于视频号直播投放最新的一些情况，分享的内容主要分为两部分

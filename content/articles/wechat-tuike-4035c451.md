@@ -14,6 +14,7 @@ tags:
 author: 宏
 knowledgeBase: wechat-tuike
 summary: 微信小店推客，是指在微信生态内，通过与带货机构合作，利用社交渠道（如朋友圈、社群）或内容渠道（如直播、短视频）分享商品推广素材，从而基于 CPS模式赚取销售佣金的个人带货者。
+originalUrl: https://my.feishu.cn/docx/OzPEdzVvOoTmaYxuGpWcVatBn4g
 sourcePath: 资料/文章集合/微信推客/微信小店推客实战指南：定义、规则与收益机制.md
 ---
 ![](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=ZWFhMGY5MGViNmRlNzdkNDczOTViZmI1OTVjZDE3YTZfZDA3ODhhYThiMDU5OTcyYjczNjhhYzExNzI5N2FkYzlfSUQ6NzU5MTQ2NjQwNTM0ODYyNTMzOF8xNzgyNzMwODczOjE3ODI3MzQ0NzNfVjM)

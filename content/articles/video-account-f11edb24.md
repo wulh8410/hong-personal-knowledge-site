@@ -14,6 +14,7 @@ tags:
 author: 宏
 knowledgeBase: video-account
 summary: '起号最核心的三个指标:场观UV，成交额GMV，停留时长。最终呈现效果:通过直播间的表现能否撬动平台的自然流量，每个平台的推荐原则都是给优质直播间更多的爆光。'
+originalUrl: https://my.feishu.cn/docx/RrzEdmnfSoAVXLxsTmCcyvcOn7b
 sourcePath: 资料/文章集合/视频号/视频号直播起号的一些猜想【视频号03篇】.md
 ---
 起号最核心的三个指标:场观UV，成交额GMV，停留时长。最终呈现效果:通过直播间的表现能否撬动平台的自然流量，每个平台的推荐原则都是给优质直播间更多的爆光。

@@ -14,6 +14,7 @@ tags:
 author: 宏
 knowledgeBase: public-private-domain
 summary: 在微信公开课上，推出了微信小程序与微信小店打通的能力。具体来说，就是在小程序里查看商品和交易都可以内嵌微信小店的商品组件，最终在微信小店内完成浏览产品和下单交易。商品和支付都在微信小店里面完成。这样小程序就可以脱离商品和交易环节，专注于做营。
+originalUrl: https://my.feishu.cn/docx/UBSodRvRmoyDGfxLl0rcjnvBnxe
 sourcePath: 资料/文章集合/微信小店/微信电商重新打开做私域的口子！！！.md
 ---
 ## 微信电商的最新能力实现了微信小店、小程序、公众号、视频号的打通联运

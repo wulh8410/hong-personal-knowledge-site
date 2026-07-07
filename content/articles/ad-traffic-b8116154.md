@@ -14,6 +14,7 @@ tags:
 author: 宏
 knowledgeBase: ad-traffic
 summary: 本周参加了官方关于小店广告投放的线上培训，这次会议的核心信息量是对于食品饮料、生鲜、酒水行业的商家来说，释放了一个增长信号。
+originalUrl: https://my.feishu.cn/docx/HljSdu8l5oMeyGxvBteckJxWnKh
 sourcePath: 资料/文章集合/广告投放/一篇看懂微信小店广告：食品行业投放的底层逻辑与实操指南.md
 ---
 本周参加了官方关于小店广告投放的线上培训，这次会议的核心信息量是对于食品饮料、生鲜、酒水行业的商家来说，释放了一个增长信号。

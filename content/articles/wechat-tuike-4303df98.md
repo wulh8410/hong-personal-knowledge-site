@@ -12,6 +12,7 @@ tags:
 author: 宏
 knowledgeBase: wechat-tuike
 summary: 你可能听说过“带货”，但你听说过“推客”吗？如果你想利用业余时间，通过微信分享好物来赚取收益，或者想搞清楚朋友圈里的商品链接是怎么赚钱的，那么你一定要读懂这篇文章。
+originalUrl: https://my.feishu.cn/docx/QRZndETm0oYwI0xFcsVc9offnod
 sourcePath: 资料/文章集合/微信推客/微信小店“推客”完全指南：普通人也能看懂的带货秘籍.md
 ---
 你可能听说过“带货”，但你听说过“推客”吗？如果你想利用业余时间，通过微信分享好物来赚取收益，或者想搞清楚朋友圈里的商品链接是怎么赚钱的，那么你一定要读懂这篇文章。

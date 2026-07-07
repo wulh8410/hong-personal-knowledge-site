@@ -14,6 +14,7 @@ tags:
 author: 宏
 knowledgeBase: ad-traffic
 summary: 投放赔付也叫成本保障计划，主要是平台为了帮助投放商家有效控制加热成本，会按照商家加热目标，保障商家的加热成本不过分超出预期而出台的一份保障规则。当总实际消耗的微信豆/总预期消耗的微信豆120%，平台就会以成本保障流量券形式返还你超出总预期消。
+originalUrl: https://my.feishu.cn/docx/AplTdNIH8oZS9ux7C8Mc2Bxunue
 sourcePath: 资料/文章集合/广告投放/视频号直播投放赔付规则【视频号10篇】.md
 ---
 ### 一、赔付规则定义

@@ -14,6 +14,7 @@ tags:
 author: 宏
 knowledgeBase: ad-traffic
 summary: 这一篇主要是全面介绍视频号直播的投放情况，包括投放的各种方式及投放工具，各投放方式的投放效果，投放基础知识以及投放配置详解。
+originalUrl: https://my.feishu.cn/docx/SXGvdR22do5QUmxqjCucpcnanmg
 sourcePath: 资料/文章集合/广告投放/视频号直播投放介绍【视频号09篇】.md
 ---
 这一篇主要是全面介绍视频号直播的投放情况，包括投放的各种方式及投放工具，各投放方式的投放效果，投放基础知识以及投放配置详解。

@@ -11,6 +11,7 @@ tags:
 author: 宏
 knowledgeBase: wechat-store
 summary: 大家好！今天我们要聊的是微信小店运营中最核心的指标——店铺体验分。
+originalUrl: https://my.feishu.cn/docx/VUZId3QBPonZymxtDkvcogNUnVc
 sourcePath: 资料/文章集合/微信小店/微信小店店铺体验分——流量与转化的生命线.md
 ---
 ## 第一部分：开场引入——为什么体验分是“命门”？

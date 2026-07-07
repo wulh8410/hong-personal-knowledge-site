@@ -12,6 +12,7 @@ tags:
 author: 宏
 knowledgeBase: wechat-store
 summary: 「价格保护」(简称“价保”) 是微信小店向用户提供的一种保障机制。具体来说，就是用户在微信小店购买了带有“价格保护”服务标识的商品后，在规定的时间内（如7天、15天、30天），如果该商品发生了降价（包括直接降价或新增可适用的优惠券等），用户。
+originalUrl: https://my.feishu.cn/docx/VfE5dYLxqo9p8ix8A8ecOkLFnJe
 sourcePath: 资料/文章集合/微信小店/微信小店「价格保护」使用指南：商家必读.md
 ---
 ## 一、 价格保护是什么意思？

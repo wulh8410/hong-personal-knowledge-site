@@ -12,6 +12,7 @@ tags:
 author: 宏
 knowledgeBase: wechat-store
 summary: 作为微信小店的商家，了解并维护好你的“店铺体验分”至关重要。它不仅是店铺服务质量的“晴雨表”，更是你在平台经营的“通行证”和“资源包”。
+originalUrl: https://my.feishu.cn/docx/GGH1dUx48oCAHsx4w8dcPi6pnZd
 sourcePath: 资料/文章集合/微信小店/微信小店「店铺体验分」全面解读：定义、影响、规则与提分攻略.md
 ---
 作为微信小店的商家，了解并维护好你的“店铺体验分”至关重要。它不仅是店铺服务质量的“晴雨表”，更是你在平台经营的“通行证”和“资源包”。

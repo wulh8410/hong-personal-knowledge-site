@@ -14,6 +14,7 @@ tags:
 author: 宏
 knowledgeBase: wechat-store
 summary: “送礼物”（俗称“蓝包”）是微信内置的一项功能，它将在线下单与送礼社交行为无缝结合。用户可以在微信小店挑选商品，无需获取收礼人的地址，直接以礼物形式“打包”送给微信好友。收礼人点击接收后，才需填写地址，由商家完成发货。
+originalUrl: https://my.feishu.cn/docx/Jrvpd1jYNoPxn1x8MN0cOU4BnBe
 sourcePath: 资料/文章集合/微信小店/微信小店送礼物能力分享.md
 ---
 **“送礼物”功能的定义**

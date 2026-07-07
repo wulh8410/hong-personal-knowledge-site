@@ -51,3 +51,4 @@
 - 2026-07-07：知识库搜索从“标题列表”升级为“答案优先 + 来源追溯”：`/api/ima/search` 先返回结构化答复、步骤、清单和命中依据，再返回资料结果；能通过 ima `get_media_info` 拿到 URL 的资料显示“查看来源”，拿不到 URL 的资料提示需在 ima 客户端查看，仍不在前端展示内部知识库或媒体 ID。
 - 2026-07-07：当前 `资料/文章集合` 与 `content/articles` 未保存飞书文档级原文 URL，只能找到飞书图片下载地址和部分微信/腾讯官方链接；文章详情的 `originalUrl` 字段已预留，批量补齐需要用户额外提供飞书文档链接清单或重新导出带原文链接的数据。GitHub 仓库当前为 private，已推送 `gh-pages` 跳转分支，但 GitHub API 返回当前计划不支持 private repo 启用 Pages；若必须发布 GitHub Pages，需要用户确认将仓库公开或升级支持 private Pages 的计划。
 - 2026-07-07：用户确认公开仓库后，GitHub 仓库 `wulh8410/hong-personal-knowledge-site` 已从 private 改为 public，并启用 GitHub Pages，发布源为 `gh-pages` 分支根目录；Pages 地址为 `https://wulh8410.github.io/hong-personal-knowledge-site/`，当前页面是跳转到 Vercel 正式站 `https://hong-amber.vercel.app/` 的静态入口，因为主站依赖 Vercel Serverless API 承载 ima 搜索。
+- 2026-07-07：用户提供 `C:\Users\xiang\WorkBuddy\2026-07-07-17-38-20\微信小店文章整理.md` 作为文章标题到飞书原文的映射来源；已按标题归一化为 51 篇站内文章补齐 `originalUrl`，详情页通过既有“查看飞书原文”按钮跳转。未匹配文章不强行挂链接，避免误导到错误原文。
