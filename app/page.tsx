@@ -200,7 +200,7 @@ export default function HomePage() {
               fill
               sizes="(max-width: 1440px) 100vw, 1344px"
               className="hidden object-cover object-top md:block"
-              style={{ objectPosition: "center calc(50% - 1px)" }}
+              style={{ objectPosition: "center calc(50% - 2px)" }}
             />
             <Image
               src="/images/ip-redesign/openclass-2026-talk-mobile.png"
