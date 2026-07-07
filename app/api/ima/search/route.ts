@@ -20,6 +20,20 @@ type IMAKnowledgeSearchData = {
   }[]
 }
 
+type IMAMediaInfoData = {
+  url_info?: {
+    url?: string
+  }
+}
+
+type SearchItem = {
+  media_id?: string
+  title?: string
+  parent_folder_id?: string
+  highlight_content?: string
+  media_type?: number
+}
+
 const IMA_BASE_URL = "https://ima.qq.com"
 
 const knowledgeBaseIds: Record<string, string> = {
@@ -97,6 +111,115 @@ function queryCandidates(query: string) {
   return [...new Set(candidates)]
 }
 
+async function getSourceUrl(mediaId?: string) {
+  if (!mediaId) return ""
+
+  const response = await imaPost<IMAMediaInfoData>("openapi/wiki/v1/get_media_info", {
+    media_id: mediaId
+  })
+
+  if (response.code !== 0) return ""
+  return response.data?.url_info?.url || ""
+}
+
+function compactText(value = "") {
+  return stripMarkup(value)
+    .replace(/([。！？；])\s+/g, "$1")
+    .replace(/\s{2,}/g, " ")
+    .slice(0, 240)
+}
+
+function pickEvidence(items: SearchItem[]) {
+  return items
+    .map((item) => compactText(item.highlight_content || item.title || ""))
+    .filter(Boolean)
+    .slice(0, 3)
+}
+
+function answerForQuery(query: string, sourceName: string, items: SearchItem[]) {
+  const evidence = pickEvidence(items)
+  const normalized = query.toLowerCase()
+
+  if (/开店|入驻|申请店铺|开通小店/.test(query)) {
+    return {
+      title: "开店先按“主体资质 → 类目资质 → 结算账户 → 审核上架”走",
+      summary:
+        "如果你问的是微信小店怎么开，先不要急着上商品。核心是先确认主体能不能入驻、类目需不需要额外资质，再完成店铺与结算配置。",
+      steps: [
+        "进入微信小店/视频号小店相关入口，选择开店或入驻申请。",
+        "选择经营主体类型，按要求提交营业执照、经营者或法人身份信息。",
+        "选择经营类目，涉及食品、美妆、医疗、品牌授权等类目时，补充对应资质或授权文件。",
+        "配置店铺基础信息、客服联系方式、结算账户和协议签署。",
+        "等待平台审核，通过后再配置商品、运费模板、售后规则和直播/内容挂载路径。"
+      ],
+      checklist: ["营业执照或主体证明", "法人/经营者身份证明", "结算银行卡或对公账户", "类目资质", "品牌授权或商标资料"],
+      note: `以上是基于「${sourceName}」命中的资料整理的操作路径，具体入口名称和类目资质以平台最新页面为准。`,
+      evidence
+    }
+  }
+
+  if (/推客|佣金|带货计划|分销/.test(query)) {
+    return {
+      title: "推客问题先拆成“计划、佣金、授权、结算”四件事",
+      summary: "商家侧重点不是先找人带货，而是先把可推广商品、佣金规则和归因口径配置清楚。",
+      steps: [
+        "确认商品是否适合开放推客推广，并检查价格、库存、履约和售后是否稳定。",
+        "创建或调整带货计划，设置可推广商品、佣金比例、推广时间和生效范围。",
+        "明确推客或机构的授权关系，避免重复归因、佣金争议和无效推广。",
+        "上线后按成交、退款、佣金支出和推客质量做复盘，淘汰低质量渠道。"
+      ],
+      checklist: ["可推广商品清单", "佣金比例", "推广周期", "授权范围", "结算和退款口径"],
+      note: `结果来自「${sourceName}」的命中资料，建议结合具体商品毛利再决定佣金。`,
+      evidence
+    }
+  }
+
+  if (/微信豆|投放|广告|加热|adq|素材/i.test(normalized)) {
+    return {
+      title: "投放问题先确定目标，再看素材、转化链路和复盘指标",
+      summary: "不要只问“怎么投”。先判断你要拉直播间人气、商品成交、线索还是内容曝光，不同目标对应不同账户、素材和数据口径。",
+      steps: [
+        "确定投放目标：直播间进入、商品成交、内容加热、线索收集或品牌曝光。",
+        "准备素材和落地链路，确认直播间、商品页、小店和客服承接没有断点。",
+        "小预算测试不同素材、定向和时段，先看点击、进入、停留、成交和退款。",
+        "放量前设置止损线，按 ROI、成交成本、互动质量和复购线索做复盘。"
+      ],
+      checklist: ["投放目标", "素材版本", "预算和止损线", "商品页/直播间承接", "复盘指标"],
+      note: `这是按「${sourceName}」命中资料整理的执行框架，具体投放入口和能力以账户实际开通情况为准。`,
+      evidence
+    }
+  }
+
+  if (/违规|处罚|申诉|整改|封禁|限流/.test(query)) {
+    return {
+      title: "违规问题先定位规则条款，再做证据、整改和申诉",
+      summary: "不要先写申诉理由。先确认违规类型、触发场景和平台引用的规则，再决定是整改、补充资质还是申诉。",
+      steps: [
+        "记录违规通知里的处罚类型、违规对象、时间和平台引用规则。",
+        "对照资料库中的规则原文或案例，确认触发点是商品、内容、直播话术、资质还是履约。",
+        "整理证据：商品资质、授权证明、聊天/直播截图、整改前后对比。",
+        "先完成可整改项，再按平台申诉入口提交简洁说明和证据材料。"
+      ],
+      checklist: ["违规通知", "规则条款", "整改截图", "资质/授权证明", "申诉说明"],
+      note: `结果基于「${sourceName}」相关规则和案例。涉及处罚时，以平台后台通知和最新规则为准。`,
+      evidence
+    }
+  }
+
+  return {
+    title: "先看命中的官方资料，再把问题转成可执行检查清单",
+    summary: `我在「${sourceName}」里找到了相关资料。这个问题更适合先确认规则来源，再判断适用场景，最后形成操作清单。`,
+    steps: [
+      "先阅读下方最相关的 3 条来源，确认平台原文或案例的适用范围。",
+      "把问题拆成对象、场景、限制和动作，例如商品、直播、推客、投放或违规整改。",
+      "按来源资料形成自己的执行清单，避免只凭经验判断。"
+    ],
+    checklist: ["问题对象", "适用场景", "规则来源", "风险边界", "下一步动作"],
+    note: "如果搜索结果太宽泛，可以换成更具体的词，例如“开店资质”“微信豆投放目标”“推客佣金”“违规申诉”。",
+    evidence
+  }
+}
+
 export async function POST(request: Request) {
   let payload: { query?: string; source?: string }
   try {
@@ -144,8 +267,15 @@ export async function POST(request: Request) {
       }
     }
 
+    const enrichedItems = await Promise.all(
+      items.slice(0, 12).map(async (item, index) => ({
+        ...item,
+        sourceUrl: index < 6 ? await getSourceUrl(item.media_id) : ""
+      }))
+    )
+
     const seen = new Set<string>()
-    const results = items
+    const results = enrichedItems
       .filter((item) => {
         const key = item.media_id || item.title || ""
         if (!key || seen.has(key)) return false
@@ -157,7 +287,8 @@ export async function POST(request: Request) {
         sourceName: source.shortName,
         sourceSlug: source.slug,
         mediaType: mediaTypeLabel(item.media_type),
-        excerpt: stripMarkup(item.highlight_content || "")
+        excerpt: stripMarkup(item.highlight_content || ""),
+        sourceUrl: item.sourceUrl
       }))
 
     return NextResponse.json({
@@ -165,6 +296,7 @@ export async function POST(request: Request) {
       matchedQuery,
       sourceName: source.shortName,
       count: results.length,
+      answer: answerForQuery(query, source.shortName, items),
       results: results.slice(0, 12)
     })
   } catch (error) {

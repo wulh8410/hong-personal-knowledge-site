@@ -52,6 +52,8 @@ export function getAllArticles(): Article[] {
       readingTime: data.readingTime ? String(data.readingTime) : estimateReadingTime(content),
       knowledgeBase: data.knowledgeBase ? String(data.knowledgeBase) : undefined,
       summary: data.summary ? String(data.summary) : undefined,
+      originalUrl: data.originalUrl ? String(data.originalUrl) : undefined,
+      sourcePath: data.sourcePath ? String(data.sourcePath) : undefined,
       faq: Array.isArray(data.faq) ? data.faq : undefined,
       content
     }))

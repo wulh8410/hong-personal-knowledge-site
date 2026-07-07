@@ -143,14 +143,15 @@ export default function HomePage() {
             }}
           >
             <Image
-              src="/images/avatar/hong-stage-background.png"
-              alt="宏在微信生态增长峰会进行视频号直播分享"
+              src="/images/ip-redesign/openclass-2026-mascots-desktop.png"
+              alt="宏在 2026 微信公开课现场"
               fill
               priority
               sizes="(max-width: 1024px) 90vw, 620px"
-              className="object-cover object-[60%_center] lg:scale-[1.16]"
+              className="object-cover object-center"
             />
-            <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(11,15,20,0.48),transparent_36%)]" />
+            <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(11,15,20,0.62),rgba(11,15,20,0.16)_34%,rgba(11,15,20,0.12)_100%)]" />
+            <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-ink/85 to-transparent" />
           </div>
 
           <div className="absolute bottom-10 left-12 hidden items-center gap-8 lg:flex">
@@ -206,6 +207,7 @@ export default function HomePage() {
               fill
               sizes="(max-width: 1440px) 100vw, 1344px"
               className="hidden object-cover object-top md:block"
+              style={{ objectPosition: "center calc(50% - 5px)" }}
             />
             <Image
               src="/images/ip-redesign/openclass-2026-talk-mobile.png"

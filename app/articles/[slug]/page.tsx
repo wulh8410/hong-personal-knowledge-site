@@ -1,5 +1,7 @@
 import type { Metadata } from "next"
+import Link from "next/link"
 import { notFound } from "next/navigation"
+import { ArrowRight, FileText } from "lucide-react"
 
 import { ArticleCard } from "@/components/article/ArticleCard"
 import { TableOfContents } from "@/components/article/TableOfContents"
@@ -95,6 +97,42 @@ export default async function ArticleDetailPage({ params }: PageProps) {
           <div className="mx-auto grid max-w-[1080px] gap-10 xl:grid-cols-[minmax(0,760px)_260px] xl:items-start">
             <div className="min-w-0 border-t-2 border-ink pt-8 sm:pt-10">
               <div className="content-body" dangerouslySetInnerHTML={{ __html: html }} />
+              <div className="mt-14 border-t-2 border-ink bg-paper px-5 py-6 sm:px-7 sm:py-8">
+                <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+                  <div>
+                    <div className="flex items-center gap-3">
+                      <FileText className="h-5 w-5 text-wechat" />
+                      <h2 className="text-xl font-semibold text-ink">原文与来源</h2>
+                    </div>
+                    <p className="mt-3 text-sm leading-7 text-ink/58">
+                      {article.originalUrl
+                        ? "这篇文章由原始飞书文档整理排版，点击可回到原文查看。"
+                        : article.sourcePath
+                          ? `当前导入记录来自：${article.sourcePath}`
+                          : "当前文章暂无可公开跳转的原文链接。"}
+                    </p>
+                  </div>
+                  {article.originalUrl ? (
+                    <a
+                      href={article.originalUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex h-12 shrink-0 items-center justify-center gap-4 bg-ink px-5 text-sm font-semibold text-white transition hover:bg-wechat"
+                    >
+                      查看飞书原文
+                      <ArrowRight className="h-4 w-4" />
+                    </a>
+                  ) : (
+                    <Link
+                      href="/articles"
+                      className="inline-flex h-12 shrink-0 items-center justify-center gap-4 border border-line px-5 text-sm font-semibold text-ink transition hover:border-wechat hover:text-wechat"
+                    >
+                      返回文章列表
+                      <ArrowRight className="h-4 w-4" />
+                    </Link>
+                  )}
+                </div>
+              </div>
               {article.faq?.length ? (
                 <div className="mt-14 border-t-2 border-wechat bg-paper p-6 sm:p-8">
                   <h2 className="text-xl font-semibold text-ink">常见问题</h2>

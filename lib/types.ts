@@ -17,6 +17,8 @@ export type Article = {
   readingTime: string
   knowledgeBase?: string
   summary?: string
+  originalUrl?: string
+  sourcePath?: string
   faq?: FAQItem[]
   content: string
 }
