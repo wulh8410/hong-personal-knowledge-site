@@ -100,21 +100,24 @@ export default function AboutPage() {
         />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(11,15,20,0.98)_0%,rgba(11,15,20,0.86)_48%,rgba(11,15,20,0.35)_100%)]" />
 
-        <aside className="absolute inset-y-0 left-0 hidden w-32 bg-paper text-ink xl:block">
-          <div className="absolute inset-x-6 top-16 font-mono text-[10px] leading-6 text-ink/55">
-            <span className="text-lg font-bold text-wechat">{"//"}</span>
-            <p className="mt-3">视频号培训讲师</p>
-            <span className="mt-4 block h-28 w-px bg-ink/22" />
-            <p className="mt-4">腾讯广告分享嘉宾</p>
-            <span className="mt-4 block h-28 w-px bg-ink/22" />
-            <p className="mt-4">微信豆千万级<br />投放经验</p>
+        <aside className="absolute inset-y-0 left-0 hidden w-44 border-r border-white/12 bg-ink/82 text-white backdrop-blur xl:block">
+          <div className="absolute inset-x-7 top-16">
+            <p className="font-mono text-[11px] font-semibold tracking-[0.18em] text-wechat">PROFILE</p>
+            <div className="mt-8 grid gap-4">
+              {["视频号培训讲师", "腾讯广告分享嘉宾", "微信豆千万级投放经验"].map((item, index) => (
+                <div key={item} className="border-l-2 border-wechat bg-white/[0.045] px-4 py-3">
+                  <p className="font-mono text-[11px] text-white/42">{String(index + 1).padStart(2, "0")}</p>
+                  <p className="mt-2 text-sm font-semibold leading-6 text-white">{item}</p>
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="absolute bottom-12 left-6">
-            <FieldIndex current="10" />
+          <div className="absolute bottom-12 left-7">
+            <FieldIndex current="10" dark />
           </div>
         </aside>
 
-        <Container className="relative grid min-h-[calc(100svh-104px)] gap-8 py-12 lg:grid-cols-[1fr_0.82fr] lg:items-center lg:py-16 xl:pl-44">
+          <Container className="relative grid min-h-[calc(100svh-104px)] gap-8 py-12 lg:grid-cols-[1fr_0.82fr] lg:items-center lg:py-16 xl:pl-52">
           <div className="relative z-10 archive-fade-in">
             <SectionLabel title="关于宏" english="FROM CODE TO GROWTH" dark />
             <h1 className="mt-9 max-w-3xl text-[36px] font-semibold leading-[1.18] sm:text-[58px]">
@@ -183,9 +186,9 @@ export default function AboutPage() {
         <div className="archive-grid-dark px-5 py-12 text-white sm:px-8 lg:px-12 lg:py-16">
           <div className="mx-auto max-w-[1440px]">
             <div className="hidden grid-cols-[150px_repeat(6,minmax(0,1fr))] gap-x-0 lg:grid">
-              <div className="border-r border-white/16 pr-6 font-mono text-[10px] text-white/45">能力维度</div>
+              <div className="border-r border-white/18 pr-6 text-sm font-semibold text-white/82">能力维度</div>
               {Array.from({ length: 6 }, (_, index) => (
-                <div key={index} className="border-r border-dashed border-white/18 px-3 pb-3 font-mono text-sm text-wechat">
+                <div key={index} className="border-r border-white/12 px-3 pb-3 font-mono text-sm font-semibold text-wechat">
                   {String(index + 1).padStart(2, "0")}
                 </div>
               ))}
@@ -194,26 +197,26 @@ export default function AboutPage() {
                 const Icon = row.icon
                 return (
                   <div key={row.label} className="contents">
-                    <div className="flex h-24 items-center gap-4 border-r border-t border-dashed border-white/18 pr-5">
+                    <div className="flex h-28 items-center gap-4 border-r border-t border-white/14 pr-5">
                       <span className="grid h-11 w-11 place-items-center rounded-full border border-wechat text-wechat">
                         <Icon className="h-5 w-5" strokeWidth={1.5} />
                       </span>
                       <span className="text-lg font-semibold">{row.label}</span>
                     </div>
-                    <div className="relative col-span-6 h-24 border-t border-dashed border-white/18">
+                    <div className="relative col-span-6 h-28 border-t border-white/14">
                       {projectBars
                         .filter((item) => item.row === rowIndex)
                         .map((item) => (
                           <div
                             key={item.title}
-                            className="absolute top-5 flex h-12 items-center justify-between gap-5 border-r-4 border-wechat bg-paper px-4 text-ink shadow-soft"
+                            className="absolute top-5 flex h-16 items-center justify-between gap-5 border-r-4 border-wechat bg-paper px-5 text-ink shadow-soft"
                             style={{
                               left: `${((item.start - 1) / 6) * 100}%`,
                               width: `${(item.span / 6) * 100}%`
                             }}
                           >
-                            <strong className="truncate text-sm">{item.title}</strong>
-                            <span className="truncate text-[10px] text-ink/52">{item.note}</span>
+                            <strong className="min-w-0 truncate text-base leading-6">{item.title}</strong>
+                            <span className="min-w-[190px] truncate text-xs leading-5 text-ink/62">{item.note}</span>
                           </div>
                         ))}
                     </div>

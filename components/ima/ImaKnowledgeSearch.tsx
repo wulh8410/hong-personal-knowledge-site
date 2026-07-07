@@ -1,7 +1,7 @@
 "use client"
 
 import { FormEvent, useMemo, useState } from "react"
-import { ArrowRight, ExternalLink, Loader2, Search } from "lucide-react"
+import { ExternalLink, Loader2, Search } from "lucide-react"
 
 import type { ImaSource } from "@/lib/ima-sources"
 
@@ -246,12 +246,7 @@ export function ImaKnowledgeSearch({
                           查看来源
                           <ExternalLink className="h-3.5 w-3.5" />
                         </a>
-                      ) : (
-                        <span className="inline-flex shrink-0 items-center gap-2 text-xs text-ink/36">
-                          来源需在 ima 客户端查看
-                          <ArrowRight className="h-3.5 w-3.5" />
-                        </span>
-                      )}
+                      ) : null}
                     </div>
                     {item.excerpt ? <p className="mt-2 text-sm leading-7 text-ink/58">{item.excerpt}</p> : null}
                   </article>

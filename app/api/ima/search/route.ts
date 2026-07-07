@@ -64,6 +64,44 @@ function mediaTypeLabel(mediaType?: number) {
   return mediaType ? labels[mediaType] || "资料" : "资料"
 }
 
+function normalizeForMatch(value = "") {
+  return stripMarkup(value).toLowerCase().replace(/\s+/g, "")
+}
+
+function queryTerms(query: string) {
+  const dictionary = [
+    "微信小店",
+    "视频号",
+    "直播",
+    "微信豆",
+    "小店广告",
+    "ADQ",
+    "投放",
+    "推客",
+    "佣金",
+    "分销",
+    "带货计划",
+    "违规",
+    "申诉",
+    "处罚",
+    "整改",
+    "保证金",
+    "开店",
+    "入驻",
+    "类目",
+    "资质",
+    "公告",
+    "规则",
+    "店铺体验分",
+    "优选联盟",
+    "电商罗盘",
+    "搜索场景",
+    "推荐场景"
+  ]
+  const normalized = normalizeForMatch(query)
+  return dictionary.filter((term) => normalized.includes(normalizeForMatch(term)))
+}
+
 async function imaPost<T>(path: string, body: unknown): Promise<ImaApiResponse<T>> {
   const clientId = process.env.IMA_OPENAPI_CLIENTID
   const apiKey = process.env.IMA_OPENAPI_APIKEY
@@ -94,21 +132,25 @@ async function imaPost<T>(path: string, body: unknown): Promise<ImaApiResponse<T
 
 function queryCandidates(query: string) {
   const candidates = [query]
-  const rules: [RegExp, string][] = [
-    [/微信豆/, "微信豆"],
-    [/加热/, "加热"],
-    [/投放|广告|ADQ/i, "投放"],
-    [/推客|佣金|分销|带货计划/, "推客"],
-    [/违规|处罚|申诉|整改/, "违规"],
-    [/公告/, "公告"],
-    [/规则|保证金|开店|类目|准入|变化/, "规则"]
-  ]
 
-  for (const [pattern, keyword] of rules) {
-    if (pattern.test(query)) candidates.push(keyword)
+  const terms = queryTerms(query)
+  if (terms.length >= 2) {
+    candidates.push(terms.slice(0, 4).join(" "))
+  }
+
+  if (query.length <= 10) {
+    for (const term of terms) {
+      candidates.push(term)
+    }
   }
 
   return [...new Set(candidates)]
+}
+
+function relevanceScore(item: SearchItem, terms: string[]) {
+  if (!terms.length) return 1
+  const haystack = normalizeForMatch(`${item.title || ""} ${item.highlight_content || ""}`)
+  return terms.reduce((score, term) => score + (haystack.includes(normalizeForMatch(term)) ? 1 : 0), 0)
 }
 
 async function getSourceUrl(mediaId?: string) {
@@ -267,10 +309,19 @@ export async function POST(request: Request) {
       }
     }
 
+    const terms = queryTerms(query)
+    const filteredItems = items
+      .map((item) => ({ item, score: relevanceScore(item, terms) }))
+      .filter(({ score }) => score > 0)
+      .sort((a, b) => b.score - a.score)
+      .map(({ item }) => item)
+
+    const visibleItems = terms.length ? filteredItems : items
+
     const enrichedItems = await Promise.all(
-      items.slice(0, 12).map(async (item, index) => ({
+      visibleItems.slice(0, 12).map(async (item) => ({
         ...item,
-        sourceUrl: index < 6 ? await getSourceUrl(item.media_id) : ""
+        sourceUrl: await getSourceUrl(item.media_id)
       }))
     )
 
@@ -296,7 +347,7 @@ export async function POST(request: Request) {
       matchedQuery,
       sourceName: source.shortName,
       count: results.length,
-      answer: answerForQuery(query, source.shortName, items),
+      answer: answerForQuery(query, source.shortName, visibleItems),
       results: results.slice(0, 12)
     })
   } catch (error) {
