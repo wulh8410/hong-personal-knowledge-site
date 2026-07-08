@@ -240,8 +240,8 @@ export default function AboutPage() {
         <Container className="grid gap-8 py-10 lg:grid-cols-[0.88fr_1.12fr] lg:items-center">
           <div className="relative aspect-[16/7] overflow-hidden">
             <Image
-              src="/images/ip-redesign/openclass-2026-talk-desktop.png"
-              alt="宏在微信公开课 TALK 展区"
+              src="/images/ip-redesign/openclass-2026-stage-desktop.png"
+              alt="宏在 2026 微信公开课现场"
               fill
               sizes="(max-width: 1024px) 100vw, 45vw"
               className="object-cover"
