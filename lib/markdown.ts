@@ -10,12 +10,42 @@ import { unified } from "unified"
 import type { TocItem } from "./types"
 import { slugify } from "./utils"
 
+const feishuImageUrlSource = String.raw`https:\/\/internal-api-drive-stream\.feishu\.cn\/space\/api\/box\/stream\/download\/authcode\/\?code=[^\s)\]<>"']+`
+const feishuImageUrlRegex = new RegExp(feishuImageUrlSource, "g")
+const feishuMarkdownImageRegex = new RegExp(String.raw`!\[[^\]]*\]\(\s*(${feishuImageUrlSource})\s*\)`, "g")
+
+function normalizeFeishuImages(markdown: string) {
+  return markdown
+    .split("\n")
+    .flatMap((line) => {
+      const urls = Array.from(new Set(Array.from(line.matchAll(feishuImageUrlRegex), (match) => match[0])))
+
+      if (urls.length === 0) {
+        return line
+      }
+
+      const lineWithoutUrls = line
+        .replace(feishuMarkdownImageRegex, "")
+        .replace(feishuImageUrlRegex, "")
+        .replace(/!\[[^\]]*\]\(\s*\)?/g, "")
+        .replace(/[ \t]+$/g, "")
+
+      const readableText = lineWithoutUrls.replace(/[!()[\]\s.,，、;；:：-]+/g, "").trim()
+      const normalizedImages = urls.map((url) => `![](${url})`)
+
+      return readableText ? [lineWithoutUrls.trimEnd(), ...normalizedImages] : normalizedImages
+    })
+    .join("\n")
+}
+
 function normalizeMarkdown(markdown: string) {
-  const cleaned = markdown
+  const cleaned = normalizeFeishuImages(markdown)
     .replace(/^\s*<title>[\s\S]*?<\/title>\s*/i, "")
     .replace(/^\s*#\s+(功能介绍|目录|正文|文章)\s*/m, "")
-    .replace(/^\s*(-{3,}|—{3,}|_{3,}|\*{3,})\s*$/gm, "")
+    .replace(/^\s*(-{3,}|—{3,}|_{3,}|\*{3,}|<hr\s*\/?>)\s*$/gim, "")
     .replace(/<img\b([^>]*?)\shref=(["'])(.*?)\2([^>]*?)>/gi, '<img$1 src=$2$3$2$4>')
+    .replace(/!\[[^\]]*\]\(\s*\)/g, "")
+    .replace(/^(?!\s*!\[[^\]]*\]\().*internal-api-drive-stream\.feishu\.cn.*$/gm, "")
     .replace(/\n{3,}/g, "\n\n")
     .trim()
 
