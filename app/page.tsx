@@ -199,8 +199,8 @@ export default function HomePage() {
               alt="宏在微信公开课互动展区"
               fill
               sizes="(max-width: 1440px) 100vw, 1344px"
-              className="hidden object-cover object-top md:block"
-              style={{ objectPosition: "center calc(50% - 2px)" }}
+              className="hidden object-cover object-center md:block"
+              style={{ transform: "translateY(-24px) scale(1.035)" }}
             />
             <Image
               src="/images/ip-redesign/openclass-2026-talk-mobile.png"
@@ -209,6 +209,7 @@ export default function HomePage() {
               sizes="(max-width: 767px) 100vw, 1px"
               className="object-cover md:hidden"
             />
+            <div className="absolute inset-x-0 top-0 hidden h-7 bg-paper md:block" />
           </div>
 
           <div className="relative mt-5 grid gap-8 border-t-2 border-wechat pt-10 md:grid-cols-3">

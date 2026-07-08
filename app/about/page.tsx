@@ -186,7 +186,7 @@ export default function AboutPage() {
         <div className="archive-grid-dark px-5 py-12 text-white sm:px-8 lg:px-12 lg:py-16">
           <div className="mx-auto max-w-[1440px]">
             <div className="hidden grid-cols-[150px_repeat(6,minmax(0,1fr))] gap-x-0 lg:grid">
-              <div className="border-r border-white/18 pr-6 text-sm font-semibold text-white/82">能力维度</div>
+              <div className="border-r border-white/18 pr-6 text-[13px] font-semibold leading-none text-white/82">能力维度</div>
               {Array.from({ length: 6 }, (_, index) => (
                 <div key={index} className="border-r border-white/12 px-3 pb-3 font-mono text-sm font-semibold text-wechat">
                   {String(index + 1).padStart(2, "0")}
@@ -209,14 +209,15 @@ export default function AboutPage() {
                         .map((item) => (
                           <div
                             key={item.title}
-                            className="absolute top-5 flex h-16 items-center justify-between gap-5 border-r-4 border-wechat bg-paper px-5 text-ink shadow-soft"
+                            className="absolute top-4 flex h-[72px] min-w-0 flex-col justify-center border-r-4 border-wechat bg-paper px-5 text-ink shadow-soft"
                             style={{
                               left: `${((item.start - 1) / 6) * 100}%`,
                               width: `${(item.span / 6) * 100}%`
                             }}
+                            title={`${item.title}｜${item.note}`}
                           >
-                            <strong className="min-w-0 truncate text-base leading-6">{item.title}</strong>
-                            <span className="min-w-[190px] truncate text-xs leading-5 text-ink/62">{item.note}</span>
+                            <strong className="min-w-0 truncate text-[15px] font-semibold leading-5">{item.title}</strong>
+                            <span className="mt-1.5 min-w-0 truncate text-[12px] font-medium leading-5 text-ink/58">{item.note}</span>
                           </div>
                         ))}
                     </div>
