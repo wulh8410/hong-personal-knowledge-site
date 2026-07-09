@@ -64,3 +64,4 @@
 - 2026-07-08：关于页“直播实践/系统与商城”现场证据区左侧图片改用 `public/images/ip-redesign/openclass-2026-stage-desktop.png`，不再使用 TALK 展区图。
 - 2026-07-08：为迁移到新电脑新增交接文档：`docs/handoff/project-conversation-record.md` 记录项目对话与决策进度，`docs/handoff/codex-resume-prompt.md` 可直接复制给新 Codex 接续开发，`docs/handoff/migration-checklist.md` 作为新电脑迁移核对清单。
 - 2026-07-09：从 `D:\Downloads` 的 5 个微信小店 Word 文档新增文章：小店会员、一起买、营销优惠券、评价抽奖、礼物营销；Word 内嵌 Excel 对象不使用残缺预览图，统一提取为 Markdown 表格，文章归类为「微信小店」并关联 `wechat-store`。
+- 2026-07-09：用户明确反馈文章正文中不应出现 Markdown 加粗星号，已全量清理 `content/articles` 中的 `**` 标记，后续导入文章也应避免保留 `**字段：**` 这类写法，直接用自然文本或标题层级表达。
