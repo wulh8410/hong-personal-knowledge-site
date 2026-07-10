@@ -35,9 +35,9 @@ export const siteConfig = {
 
 export const navItems = [
   { label: "首页", href: "/" },
-  { label: "课程", href: "/courses" },
   { label: "文章", href: "/articles" },
   { label: "知识库", href: "/knowledge" },
+  { label: "小课堂", href: "/courses" },
   { label: "关于我", href: "/about" }
 ]
 
