@@ -27,7 +27,7 @@ export function Header() {
           <span className="truncate text-sm font-semibold sm:text-base">宏 · 微信生态实战</span>
         </Link>
 
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="hidden items-center gap-8 lg:flex">
           {navItems.map((item) => {
             const active = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href)
             return (
@@ -62,7 +62,7 @@ export function Header() {
           </Link>
           <button
             className={cn(
-              "grid h-10 w-10 place-items-center border md:hidden",
+              "grid h-10 w-10 place-items-center border lg:hidden",
               dark ? "border-white/25 text-white" : "border-ink/20 text-ink"
             )}
             onClick={() => setOpen((value) => !value)}
@@ -75,7 +75,7 @@ export function Header() {
       </Container>
 
       {open ? (
-        <div className={cn("border-t md:hidden", dark ? "border-white/10 bg-ink" : "border-line bg-paper")}>
+        <div className={cn("border-t lg:hidden", dark ? "border-white/10 bg-ink" : "border-line bg-paper")}>
           <Container className="grid py-3">
             {navItems.map((item) => (
               <Link

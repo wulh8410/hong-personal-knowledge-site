@@ -59,3 +59,34 @@ export type TocItem = {
   text: string
   level: 2 | 3
 }
+
+export type CourseLessonStatus = "complete" | "text" | "video"
+
+export type CourseLesson = {
+  slug: string
+  title: string
+  description: string
+  track: string
+  order: number
+  sourceIssue: string
+  sourceDate: string
+  sourceUrl?: string
+  replayUrl?: string
+  infographic?: string
+  status: CourseLessonStatus
+  duration: string
+  content: string
+}
+
+export type CourseTrack = {
+  slug: string
+  title: string
+  shortTitle: string
+  description: string
+  promise: string
+  audience: string
+  index: string
+  color: "green" | "blue" | "red" | "amber" | "violet"
+  planned?: boolean
+  lessons: CourseLesson[]
+}

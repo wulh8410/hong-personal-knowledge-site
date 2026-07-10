@@ -4,7 +4,8 @@ import path from "node:path"
 import matter from "gray-matter"
 
 import { knowledgeBases } from "./constants"
-import type { Article, CaseItem, KnowledgeBase } from "./types"
+import { courseTrackDefinitions } from "./course-data"
+import type { Article, CaseItem, CourseLesson, CourseLessonStatus, CourseTrack, KnowledgeBase } from "./types"
 
 const contentDir = path.join(process.cwd(), "content")
 
@@ -119,4 +120,50 @@ export function getAllCases(): CaseItem[] {
       content
     }))
     .sort((a, b) => (a.order ?? 999) - (b.order ?? 999))
+}
+
+export function getAllCourseLessons(): CourseLesson[] {
+  return readMarkdownFiles("courses")
+    .map(({ slug, data, content }) => ({
+      slug,
+      title: String(data.title || slug),
+      description: String(data.description || ""),
+      track: String(data.track || "wechat-store"),
+      order: Number(data.order || 999),
+      sourceIssue: String(data.sourceIssue || ""),
+      sourceDate: String(data.sourceDate || "2026-07-10"),
+      sourceUrl: data.sourceUrl ? String(data.sourceUrl) : undefined,
+      replayUrl: data.replayUrl ? String(data.replayUrl) : undefined,
+      infographic: data.infographic ? String(data.infographic) : undefined,
+      status: String(data.status || "text") as CourseLessonStatus,
+      duration: String(data.duration || estimateReadingTime(content)),
+      content
+    }))
+    .sort((a, b) => a.track.localeCompare(b.track) || a.order - b.order)
+}
+
+export function getCourseTracks(): CourseTrack[] {
+  const lessons = getAllCourseLessons()
+  return courseTrackDefinitions.map((track) => ({
+    ...track,
+    lessons: lessons.filter((lesson) => lesson.track === track.slug)
+  }))
+}
+
+export function getCourseTrackBySlug(slug: string) {
+  return getCourseTracks().find((track) => track.slug === slug)
+}
+
+export function getCourseLesson(trackSlug: string, lessonSlug: string) {
+  return getAllCourseLessons().find((lesson) => lesson.track === trackSlug && lesson.slug === lessonSlug)
+}
+
+export function getAdjacentCourseLessons(trackSlug: string, lessonSlug: string) {
+  const track = getCourseTrackBySlug(trackSlug)
+  if (!track) return { previous: undefined, next: undefined }
+  const index = track.lessons.findIndex((lesson) => lesson.slug === lessonSlug)
+  return {
+    previous: index > 0 ? track.lessons[index - 1] : undefined,
+    next: index >= 0 && index < track.lessons.length - 1 ? track.lessons[index + 1] : undefined
+  }
 }

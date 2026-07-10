@@ -65,3 +65,7 @@
 - 2026-07-08：为迁移到新电脑新增交接文档：`docs/handoff/project-conversation-record.md` 记录项目对话与决策进度，`docs/handoff/codex-resume-prompt.md` 可直接复制给新 Codex 接续开发，`docs/handoff/migration-checklist.md` 作为新电脑迁移核对清单。
 - 2026-07-09：从 `D:\Downloads` 的 5 个微信小店 Word 文档新增文章：小店会员、一起买、营销优惠券、评价抽奖、礼物营销；Word 内嵌 Excel 对象不使用残缺预览图，统一提取为 Markdown 表格，文章归类为「微信小店」并关联 `wechat-store`。
 - 2026-07-09：用户明确反馈文章正文中不应出现 Markdown 加粗星号，已全量清理 `content/articles` 中的 `**` 标记，后续导入文章也应避免保留 `**字段：**` 这类写法，直接用自然文本或标题层级表达。
+- 2026-07-10：规划新增「宏的实战课」课程板块，定位为可按业务问题进入、按路径完成学习的独立产品，不是文章分类页。首发只完整上线「微信小店每周一堂」以保证内容密度；广告投放、微信推客、视频号直播、视频号短视频先作为课程方向入口与订阅位。每节课统一收拢文字稿、信息图、直播回放三类材料，并具备课程路径、单节学习页、资料与学习进度的可扩展结构。
+- 2026-07-10：课程源资料位于飞书文档 `https://my.feishu.cn/docx/FF9ydX9cGoGSRRxnGWWccCuAnKf`，标题为「智零-小店5星服务商-培训资料库」。当前包含 17 期培训记录，但实际跨微信小店、广告投放、微信推客和 AI 四类；课程站应按学习方向重组，不按原始期数全部塞入微信小店课程。第 12、13 期为回看既有内容，不应重复生成独立课；第 3、4、5 期存在回放缺失或回放字段不是视频链接，导入前需补齐或标注仅有图文资料。
+- 2026-07-10：已完成课程源资料建档，清单位于 `docs/course-training/content-inventory.md`。15 个独立主题中 14 个逐字稿可读取，总量约 4.6 万字；第 10 期逐字稿资源不可读。信息图原图下载需要飞书应用身份权限 `docs:document.media:download`，权限未开通前不得使用截图、压缩图或 AI 重绘替代。
+- 2026-07-10：飞书媒体下载权限已开通，15 张信息图原图已无损导入 `public/images/courses`，13 节首发课程正文位于 `content/courses`。课程板块采用 `/courses`、`/courses/[track]`、`/courses/[track]/[lesson]` 三层静态路由，本地浏览器保存学习完成进度，不引入账号或后台；第 10 期因逐字稿不可读，仅作为回放课展示。课程参考图归档于 `design-references/course-training/generated-reference`。
