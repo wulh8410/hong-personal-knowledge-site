@@ -23,7 +23,7 @@ npm install
 - 技术栈：Next.js App Router + TypeScript + Tailwind CSS + Markdown 内容管理 + 静态生成。
 - 主分支：main。
 - GitHub 仓库：https://github.com/wulh8410/hong-personal-knowledge-site
-- 生产站：https://hong-amber.vercel.app
+- 生产站：https://hong1234.com
 - GitHub Pages 入口：https://wulh8410.github.io/hong-personal-knowledge-site/
 
 当前设计方向是“实战档案馆”：
@@ -81,4 +81,3 @@ npm run build
 
 然后根据我的下一条需求继续开发。
 ```
-

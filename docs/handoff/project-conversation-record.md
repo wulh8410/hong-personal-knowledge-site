@@ -15,7 +15,7 @@
 
 当前线上地址：
 
-- Vercel 正式站：https://hong-amber.vercel.app
+- Vercel 正式站：https://hong1234.com
 - GitHub Pages 入口：https://wulh8410.github.io/hong-personal-knowledge-site/
 - GitHub 仓库：https://github.com/wulh8410/hong-personal-knowledge-site
 
@@ -185,7 +185,7 @@ b03d40b remove feature photo top mask
 
 当前生产部署：
 
-- Vercel alias 到 `https://hong-amber.vercel.app`
+- Vercel alias 到 `https://hong1234.com`
 
 ## 7. 迁移到新电脑的推荐流程
 
@@ -275,4 +275,3 @@ npm exec --yes vercel@latest -- deploy --prod --yes --scope wulh19841020-9594s-p
 - 文章排版问题优先改 `lib/markdown.ts` 和 `app/globals.css`，不要逐篇手工修，除非是单篇内容事实错误。
 - 二维码素材只做等比显示或无损裁切，不用 AI 重绘。
 - 生产部署前至少跑 `npm run lint` 和 `npm run build`。
-

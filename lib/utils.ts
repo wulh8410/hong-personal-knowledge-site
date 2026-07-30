@@ -5,7 +5,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function absoluteUrl(path = "") {
-  const base = process.env.NEXT_PUBLIC_SITE_URL || "https://hong-amber.vercel.app"
+  const base = process.env.NEXT_PUBLIC_SITE_URL || "https://hong1234.com"
   return `${base.replace(/\/$/, "")}${path.startsWith("/") ? path : `/${path}`}`
 }
 

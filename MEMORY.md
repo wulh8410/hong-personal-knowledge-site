@@ -15,6 +15,7 @@
 
 ## 本次记录
 
+- 2026-07-31：正式访问域名改为 `https://hong1234.com`，注册商与 DNS 管理平台为 Spaceship；Vercel 项目 `hong` 已绑定根域名到 Production，并将 `www.hong1234.com` 以 308 永久重定向到根域名。Spaceship DNS 使用 `A @ -> 216.198.79.1` 和 `CNAME www -> cname.vercel-dns.com`，TTL 30 分钟；账号凭据、验证码和密钥均不写入仓库或项目记忆。
 - 2026-06-27：当前仓库初始只有个人主页开发方案文档，根目录缺少 `AGENTS.md` 和 `MEMORY.md`；因模板目录 `~/.codex/templates/` 不存在，已按用户提供规则创建本地约束文件。
 - 2026-06-27：V1 采用无复杂后台方案，文章放在 `content/articles`，案例放在 `content/cases`，知识库配置集中在 `lib/constants.ts`，内容读取集中在 `lib/content.ts`，便于后续替换为 Decap CMS 等 Markdown CMS。
 - 2026-06-27：当前 Windows 环境下 Next.js 16 默认 Turbopack 构建缺少可用原生绑定，`package.json` 已将 `dev` 和 `build` 固定为 `--webpack`，避免本地构建失败。
