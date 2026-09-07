@@ -68,11 +68,13 @@ export default async function CourseLessonPage({ params }: PageProps) {
     isAccessibleForFree: true,
     author: {
       "@type": "Person",
+      "@id": absoluteUrl("/#person"),
       name: siteConfig.author,
       url: siteConfig.authorUrl
     },
     provider: {
       "@type": "Person",
+      "@id": absoluteUrl("/#person"),
       name: siteConfig.author,
       url: siteConfig.authorUrl
     },

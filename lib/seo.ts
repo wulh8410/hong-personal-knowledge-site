@@ -6,6 +6,7 @@ export function personJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "Person",
+    "@id": absoluteUrl("/#person"),
     name: siteConfig.author,
     description:
       "微信生态电商与 AI 工具实战观察者，长期关注微信小店、微信推客、小程序商城、微信豆投放和 GEO 内容资产建设。",
@@ -21,12 +22,14 @@ export function websiteJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": absoluteUrl("/#website"),
     name: siteConfig.name,
     url: siteConfig.url,
     description: siteConfig.description,
     inLanguage: "zh-CN",
     author: {
       "@type": "Person",
+      "@id": absoluteUrl("/#person"),
       name: siteConfig.author,
       url: siteConfig.authorUrl
     }
@@ -42,7 +45,9 @@ export function profilePageJsonLd() {
     description: siteConfig.description,
     dateModified: siteConfig.lastModified,
     inLanguage: "zh-CN",
-    mainEntity: personJsonLd()
+    mainEntity: {
+      "@id": absoluteUrl("/#person")
+    }
   }
 }
 
@@ -56,11 +61,13 @@ export function articleJsonLd(article: Article) {
     dateModified: article.updated || article.date,
     author: {
       "@type": "Person",
+      "@id": absoluteUrl("/#person"),
       name: article.author,
       url: siteConfig.authorUrl
     },
     publisher: {
       "@type": "Person",
+      "@id": absoluteUrl("/#person"),
       name: siteConfig.author,
       url: siteConfig.authorUrl
     },
