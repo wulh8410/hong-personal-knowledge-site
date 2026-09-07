@@ -22,6 +22,15 @@ export function Footer() {
               {item.label}
             </Link>
           ))}
+          <Link href="/about#contact" className="text-xs text-white/55 transition hover:text-wechat">
+            联系我
+          </Link>
+          <Link href="/privacy" className="text-xs text-white/55 transition hover:text-wechat">
+            隐私说明
+          </Link>
+          <Link href="/terms" className="text-xs text-white/55 transition hover:text-wechat">
+            使用条款
+          </Link>
         </nav>
       </Container>
       <Container className="border-t border-white/10 py-5 text-center text-xs text-white/42">

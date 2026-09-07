@@ -6,7 +6,8 @@ import { ArchiveLink, CoordinateMark, FieldIndex, RedNote, SectionLabel } from "
 import { Container } from "@/components/layout/Container"
 import { JsonLd } from "@/components/seo/JsonLd"
 import { getFeaturedArticles, getKnowledgeBases } from "@/lib/content"
-import { personJsonLd, websiteJsonLd } from "@/lib/seo"
+import { siteConfig } from "@/lib/constants"
+import { faqJsonLd, personJsonLd, profilePageJsonLd, websiteJsonLd } from "@/lib/seo"
 import { formatDate } from "@/lib/utils"
 
 const capabilityTrack = [
@@ -95,6 +96,29 @@ const contactChannels = [
   }
 ]
 
+const homeQuestions = [
+  {
+    question: "微信小店运营，应该先看规则还是先做增长？",
+    answer:
+      "先确认主体、类目和商品资质，再设计内容、投放与成交路径。资质或履约基础没有跑通时，增长动作越快，返工和违规风险越大。"
+  },
+  {
+    question: "视频号直播投放，为什么不能只看单场 ROI？",
+    answer:
+      "单场 ROI 只能说明一次投放结果，还要同时观察素材、停留、成交、复购和私域承接。真正可复制的增长来自稳定的货盘、内容和复盘机制。"
+  },
+  {
+    question: "微信推客项目，应该先搭系统还是先跑通业务？",
+    answer:
+      "先用最小业务闭环验证选品、佣金、触达和结算，再决定系统边界。没有被人工验证过的流程，直接做成系统只会固化错误。"
+  },
+  {
+    question: "AI 与 GEO，怎样变成长期内容资产？",
+    answer:
+      "把真实问题整理成有作者、时间、来源和明确答案的专题内容，再用稳定链接、内部关联和结构化数据帮助搜索与 AI 理解。自动化应放在内容标准跑通之后。"
+  }
+]
+
 export default function HomePage() {
   const knowledgeBases = getKnowledgeBases()
   const latestArticles = getFeaturedArticles(3)
@@ -103,6 +127,8 @@ export default function HomePage() {
     <>
       <JsonLd data={personJsonLd()} />
       <JsonLd data={websiteJsonLd()} />
+      <JsonLd data={profilePageJsonLd()} />
+      <JsonLd data={faqJsonLd(homeQuestions)} />
 
       <section className="archive-grid-dark relative min-h-[calc(100svh-104px)] overflow-hidden border-b border-white/10 text-white">
         <Container className="relative grid min-h-[calc(100svh-104px)] gap-8 py-10 lg:grid-cols-[minmax(0,1fr)_minmax(430px,0.82fr)] lg:items-center lg:gap-10 lg:py-16 2xl:pr-[250px]">
@@ -177,6 +203,66 @@ export default function HomePage() {
               TO EXPLORE
             </p>
           </aside>
+        </Container>
+      </section>
+
+      <section className="paper-texture border-b border-line py-16 lg:py-24" aria-labelledby="home-questions-title">
+        <Container>
+          <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
+            <div>
+              <SectionLabel title="先回答关键问题" english="PRACTICAL ANSWERS" />
+              <h2 id="home-questions-title" className="mt-8 text-[36px] font-semibold leading-tight sm:text-[48px]">
+                先把判断讲清楚，
+                <br />
+                再谈工具和动作
+              </h2>
+              <p className="mt-5 max-w-lg text-sm leading-7 text-ink/60">
+                以下结论来自项目实践与公开规则整理。涉及准入、处罚和平台能力时，以微信官方最新页面为准。
+              </p>
+              <p className="mt-6 font-mono text-[11px] text-ink/45">
+                作者 / 宏&nbsp;&nbsp;·&nbsp;&nbsp;更新 / <time dateTime={siteConfig.lastModified}>2026-09-08</time>
+              </p>
+            </div>
+
+            <div className="border-t-2 border-ink">
+              {homeQuestions.map((item, index) => (
+                <article key={item.question} className="grid gap-4 border-b border-line py-7 sm:grid-cols-[52px_1fr] sm:py-8">
+                  <span className="font-mono text-sm font-semibold text-wechat">{String(index + 1).padStart(2, "0")}</span>
+                  <div>
+                    <h3 className="text-xl font-semibold leading-8 sm:text-2xl">{item.question}</h3>
+                    <p className="mt-3 text-sm leading-7 text-ink/62 sm:text-base sm:leading-8">{item.answer}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-10 border-l-2 border-cobalt pl-5 text-sm leading-7 text-ink/60">
+            <p className="font-semibold text-ink">公开资料依据</p>
+            <p className="mt-2">
+              <cite className="not-italic">
+                <a
+                  href="https://developers.weixin.qq.com/doc/channels/Operating_Specifications/Category_Product_Qualification.html"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="border-b border-cobalt text-cobalt"
+                >
+                  微信开放文档：视频号橱窗类目与商品资质总览
+                </a>
+              </cite>
+              <span className="mx-3 text-ink/25">/</span>
+              <cite className="not-italic">
+                <a
+                  href="https://support.weixin.qq.com/cgi-bin/mmsupportacctnodeweb-bin/pages/IUPaL12CZdMSb1YQ"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="border-b border-cobalt text-cobalt"
+                >
+                  微信小店：延迟、无法发货报备指引
+                </a>
+              </cite>
+            </p>
+          </div>
         </Container>
       </section>
 

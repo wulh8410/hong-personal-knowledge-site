@@ -10,7 +10,10 @@ export function personJsonLd() {
     description:
       "微信生态电商与 AI 工具实战观察者，长期关注微信小店、微信推客、小程序商城、微信豆投放和 GEO 内容资产建设。",
     url: siteConfig.url,
-    sameAs: []
+    image: absoluteUrl("/images/ip-redesign/hero-business-portrait.png"),
+    jobTitle: "微信生态与 AI 实战顾问",
+    knowsAbout: ["微信小店", "视频号直播", "微信豆投放", "微信推客", "AI 工具", "GEO"],
+    sameAs: [siteConfig.githubUrl]
   }
 }
 
@@ -20,7 +23,26 @@ export function websiteJsonLd() {
     "@type": "WebSite",
     name: siteConfig.name,
     url: siteConfig.url,
-    description: siteConfig.description
+    description: siteConfig.description,
+    inLanguage: "zh-CN",
+    author: {
+      "@type": "Person",
+      name: siteConfig.author,
+      url: siteConfig.authorUrl
+    }
+  }
+}
+
+export function profilePageJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    name: siteConfig.name,
+    url: siteConfig.url,
+    description: siteConfig.description,
+    dateModified: siteConfig.lastModified,
+    inLanguage: "zh-CN",
+    mainEntity: personJsonLd()
   }
 }
 
@@ -34,9 +56,20 @@ export function articleJsonLd(article: Article) {
     dateModified: article.updated || article.date,
     author: {
       "@type": "Person",
-      name: article.author
+      name: article.author,
+      url: siteConfig.authorUrl
+    },
+    publisher: {
+      "@type": "Person",
+      name: siteConfig.author,
+      url: siteConfig.authorUrl
     },
     mainEntityOfPage: absoluteUrl(`/articles/${article.slug}`),
+    url: absoluteUrl(`/articles/${article.slug}`),
+    inLanguage: "zh-CN",
+    isAccessibleForFree: true,
+    articleSection: article.category,
+    image: article.cover ? absoluteUrl(article.cover) : absoluteUrl("/images/ip-redesign/hero-business-portrait.png"),
     keywords: article.tags.join(",")
   }
 }

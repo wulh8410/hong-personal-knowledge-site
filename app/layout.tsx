@@ -14,6 +14,9 @@ export const metadata: Metadata = {
     template: `%s｜${siteConfig.name}`
   },
   description: siteConfig.description,
+  authors: [{ name: siteConfig.author, url: siteConfig.authorUrl }],
+  creator: siteConfig.author,
+  publisher: siteConfig.author,
   keywords: siteConfig.keywords,
   alternates: {
     canonical: absoluteUrl("/")

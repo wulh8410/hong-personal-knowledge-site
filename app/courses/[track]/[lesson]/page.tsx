@@ -9,6 +9,7 @@ import { TableOfContents } from "@/components/article/TableOfContents"
 import { FieldIndex, SectionLabel } from "@/components/ip/ArchiveUI"
 import { Container } from "@/components/layout/Container"
 import { JsonLd } from "@/components/seo/JsonLd"
+import { siteConfig } from "@/lib/constants"
 import { courseStatusLabels } from "@/lib/course-data"
 import {
   getAdjacentCourseLessons,
@@ -62,6 +63,19 @@ export default async function CourseLessonPage({ params }: PageProps) {
     learningResourceType: "lesson",
     educationalUse: "instruction",
     inLanguage: "zh-CN",
+    dateCreated: lesson.sourceDate,
+    dateModified: lesson.sourceDate,
+    isAccessibleForFree: true,
+    author: {
+      "@type": "Person",
+      name: siteConfig.author,
+      url: siteConfig.authorUrl
+    },
+    provider: {
+      "@type": "Person",
+      name: siteConfig.author,
+      url: siteConfig.authorUrl
+    },
     isPartOf: {
       "@type": "Course",
       name: track.title,

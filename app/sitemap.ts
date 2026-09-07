@@ -5,7 +5,7 @@ import { siteConfig } from "@/lib/constants"
 import { absoluteUrl } from "@/lib/utils"
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticRoutes = ["", "/about", "/knowledge", "/articles", "/courses", "/cases"].map((path) => ({
+  const staticRoutes = ["", "/about", "/knowledge", "/articles", "/courses", "/cases", "/privacy", "/terms"].map((path) => ({
     url: absoluteUrl(path || "/"),
     lastModified: new Date(),
     changeFrequency: "weekly" as const,
