@@ -19,7 +19,7 @@ export const siteConfig = {
     "持续整理微信小店、微信推客、小程序商城、微信豆投放、AI 工具与搜索和 AI 可见性内容资产建设的实战经验。",
   authorUrl: "https://hong1234.com/about",
   githubUrl: "https://github.com/wulh8410",
-  lastModified: "2026-09-08",
+  lastModified: "2026-09-12",
   keywords: [
     "微信小店",
     "微信推客",

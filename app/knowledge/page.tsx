@@ -4,12 +4,14 @@ import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 
 import { ImaKnowledgeSearch } from "@/components/ima/ImaKnowledgeSearch"
+import { ContentAttribution } from "@/components/content/ContentAttribution"
 import { ArchiveLink, CoordinateMark, FieldIndex, RedNote, SectionLabel } from "@/components/ip/ArchiveUI"
 import { KnowledgeQrList } from "@/components/knowledge/KnowledgeQrList"
 import { Container } from "@/components/layout/Container"
 import { JsonLd } from "@/components/seo/JsonLd"
 import { imaSources } from "@/lib/ima-sources"
-import { breadcrumbJsonLd } from "@/lib/seo"
+import { siteConfig } from "@/lib/constants"
+import { breadcrumbJsonLd, collectionPageJsonLd } from "@/lib/seo"
 import { absoluteUrl } from "@/lib/utils"
 
 export const metadata: Metadata = {
@@ -88,6 +90,14 @@ export default function KnowledgePage() {
           { name: "知识库", url: "/knowledge" }
         ])}
       />
+      <JsonLd
+        data={collectionPageJsonLd({
+          name: "微信生态系统化知识库",
+          description: metadata.description as string,
+          path: "/knowledge",
+          items: imaSources.map((source) => ({ name: source.name, path: "/knowledge#ima-search" }))
+        })}
+      />
 
       <section id="libraries" className="archive-grid-dark overflow-hidden border-b border-white/10 text-white">
         <Container className="grid min-w-0 min-h-[790px] gap-4 py-10 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:gap-12 lg:py-20">
@@ -141,6 +151,7 @@ export default function KnowledgePage() {
             <p className="mt-6 max-w-2xl text-base leading-8 text-white/58 sm:mt-7">
               公告、规则、投放和违规案例放在 ima；站内文章负责解释判断、路径和落地动作。
             </p>
+            <ContentAttribution dark className="mt-6" date={siteConfig.lastModified} note="资料范围与查询入口由宏维护" />
 
             <div className="mt-7 sm:mt-9">
               <KnowledgeQrList libraries={qrLibraries} />
@@ -181,23 +192,25 @@ export default function KnowledgePage() {
             <ImaKnowledgeSearch sources={imaSources} showIntro={false} />
           </div>
 
-          <div className="relative mt-16 grid gap-0 border-t-2 border-wechat md:grid-cols-3">
+          <ol aria-label="知识库查询三步路径" className="relative mt-16 grid list-none gap-0 border-t-2 border-wechat md:grid-cols-3">
             {paths.map((path) => (
-              <article key={path.index} className="relative border-b border-line px-5 py-10 md:border-b-0 md:border-r md:last:border-r-0">
-                <span className="absolute -top-2 left-5 h-4 w-4 rounded-full border-2 border-wechat bg-paper" />
-                <div className="flex items-center gap-4">
-                  <span className="font-mono text-3xl font-semibold text-wechat">{path.index}</span>
-                  <span className="h-8 w-px bg-wechat" />
-                  <h3 className="text-2xl font-semibold">{path.title}</h3>
-                </div>
-                <p className="mt-7 min-h-14 text-sm leading-7 text-ink/58">{path.description}</p>
-                <Link href={path.href} className="mt-7 inline-flex items-center gap-5 border-b border-cobalt pb-2 text-sm font-semibold text-cobalt">
-                  {path.action}
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </article>
+              <li key={path.index} className="relative border-b border-line px-5 py-10 md:border-b-0 md:border-r md:last:border-r-0">
+                <article>
+                  <span className="absolute -top-2 left-5 h-4 w-4 rounded-full border-2 border-wechat bg-paper" />
+                  <div className="flex items-center gap-4">
+                    <span className="font-mono text-3xl font-semibold text-wechat">{path.index}</span>
+                    <span className="h-8 w-px bg-wechat" />
+                    <h3 className="text-2xl font-semibold">{path.title}</h3>
+                  </div>
+                  <p className="mt-7 min-h-14 text-sm leading-7 text-ink/58">{path.description}</p>
+                  <Link href={path.href} className="mt-7 inline-flex items-center gap-5 border-b border-cobalt pb-2 text-sm font-semibold text-cobalt">
+                    {path.action}
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </article>
+              </li>
             ))}
-          </div>
+          </ol>
 
           <div className="mt-12 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
             <RedNote>资料层负责准确，方法层负责可执行。</RedNote>

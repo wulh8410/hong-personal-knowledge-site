@@ -16,6 +16,7 @@
 ## 本次记录
 
 - 2026-09-08：依据 GEO 审计补强首页机器可读性与信任信号：新增服务端渲染的关键问题答复和微信官方资料引用、`ProfilePage`/首页 FAQ 结构化数据、作者与更新时间、`/llms.txt`、隐私说明和使用条款；文章与课程 Schema 统一补充作者、日期和免费可访问属性。`sameAs` 仅使用已确认的 GitHub 个人主页，不虚构公众号或视频号网页链接。
+- 2026-09-12：依据 GEOHub 全站诊断补强非首页模板：课程、文章、知识库和案例列表增加可见整理者、更新时间、语义列表及 `CollectionPage`/`ItemList`；课程详情显示资料来源说明。本地课程中的虚构式经营结果统一改为“教学情境 + 观察指标”，不再把示例销量、转化率或曝光写成真实案例；缺少公开证据前，案例页使用脱敏经验说明并避免精确规模承诺。
 - 2026-07-31：正式访问域名改为 `https://hong1234.com`，注册商与 DNS 管理平台为 Spaceship；Vercel 项目 `hong` 已绑定根域名到 Production，并将 `www.hong1234.com` 以 308 永久重定向到根域名。Spaceship DNS 使用 `A @ -> 216.198.79.1` 和 `CNAME www -> cname.vercel-dns.com`，TTL 30 分钟；账号凭据、验证码和密钥均不写入仓库或项目记忆。
 - 2026-06-27：当前仓库初始只有个人主页开发方案文档，根目录缺少 `AGENTS.md` 和 `MEMORY.md`；因模板目录 `~/.codex/templates/` 不存在，已按用户提供规则创建本地约束文件。
 - 2026-06-27：V1 采用无复杂后台方案，文章放在 `content/articles`，案例放在 `content/cases`，知识库配置集中在 `lib/constants.ts`，内容读取集中在 `lib/content.ts`，便于后续替换为 Decap CMS 等 Markdown CMS。

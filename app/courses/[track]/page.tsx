@@ -4,10 +4,13 @@ import { notFound } from "next/navigation"
 import { ArrowLeft, ArrowRight, BookOpen, Clock3, FileText, Radio } from "lucide-react"
 
 import { CourseProgress } from "@/components/course/CourseProgress"
+import { ContentAttribution } from "@/components/content/ContentAttribution"
 import { FieldIndex, SectionLabel } from "@/components/ip/ArchiveUI"
 import { Container } from "@/components/layout/Container"
+import { JsonLd } from "@/components/seo/JsonLd"
 import { courseStatusLabels } from "@/lib/course-data"
 import { getCourseTrackBySlug, getCourseTracks } from "@/lib/content"
+import { collectionPageJsonLd } from "@/lib/seo"
 import { absoluteUrl } from "@/lib/utils"
 
 type PageProps = { params: Promise<{ track: string }> }
@@ -34,6 +37,17 @@ export default async function CourseTrackPage({ params }: PageProps) {
 
   return (
     <>
+      <JsonLd
+        data={collectionPageJsonLd({
+          name: track.title,
+          description: track.description,
+          path: `/courses/${track.slug}`,
+          items: track.lessons.map((lesson) => ({
+            name: lesson.title,
+            path: `/courses/${track.slug}/${lesson.slug}`
+          }))
+        })}
+      />
       <section className="archive-grid-dark border-b border-white/10 py-12 text-white sm:py-16 lg:py-20">
         <Container>
           <div className="flex items-start justify-between gap-8">
@@ -48,6 +62,7 @@ export default async function CourseTrackPage({ params }: PageProps) {
               <h1 className="mt-7 max-w-4xl text-[42px] font-semibold leading-[1.12] sm:text-[68px]">{track.title}</h1>
               <p className="mt-6 max-w-2xl text-base leading-8 text-white/62">{track.description}</p>
               <p className="mt-5 border-l-2 border-wechat pl-5 text-sm leading-7 text-white/72">{track.promise}</p>
+              <ContentAttribution dark className="mt-6" note="课程路径由宏持续维护" />
             </div>
             {track.lessons.length ? (
               <CourseProgress lessonKeys={track.lessons.map((lesson) => `${track.slug}/${lesson.slug}`)} />
@@ -85,13 +100,13 @@ export default async function CourseTrackPage({ params }: PageProps) {
               </div>
 
               {track.lessons.length ? (
-                <div>
+                <ol className="list-none">
                   {track.lessons.map((lesson, index) => (
-                    <Link
-                      key={lesson.slug}
-                      href={`/courses/${track.slug}/${lesson.slug}`}
-                      className="group grid gap-4 border-b border-line py-6 sm:grid-cols-[68px_minmax(0,1fr)_150px_24px] sm:items-center"
-                    >
+                    <li key={lesson.slug}>
+                      <Link
+                        href={`/courses/${track.slug}/${lesson.slug}`}
+                        className="group grid gap-4 border-b border-line py-6 sm:grid-cols-[68px_minmax(0,1fr)_150px_24px] sm:items-center"
+                      >
                       <span className="font-mono text-lg text-wechat">{String(index + 1).padStart(2, "0")}</span>
                       <span>
                         <strong className="block text-xl leading-8 transition group-hover:text-wechat">{lesson.title}</strong>
@@ -102,9 +117,10 @@ export default async function CourseTrackPage({ params }: PageProps) {
                         <span className="inline-flex items-center gap-1.5"><Clock3 className="h-3.5 w-3.5" />{lesson.duration}</span>
                       </span>
                       <ArrowRight className="h-4 w-4 text-cobalt transition-transform group-hover:translate-x-1" />
-                    </Link>
+                      </Link>
+                    </li>
                   ))}
-                </div>
+                </ol>
               ) : (
                 <div className="border-b border-line py-20 text-center">
                   <p className="text-2xl font-semibold">第一批课程资料正在整理</p>

@@ -61,13 +61,13 @@ export function ArticleTopicBrowser({ groups }: { groups: TopicGroup[] }) {
         <div className="mt-7 h-1 w-12 bg-wechat" />
         <p className="mt-6 max-w-3xl text-base leading-8 text-ink/60">{activeGroup.description}</p>
 
-        <div className="mt-10 border-t border-line">
+        <ol className="mt-10 list-none border-t border-line">
           {activeGroup.articles.slice(0, 6).map((article, index) => (
-            <Link
-              key={article.slug}
-              href={`/articles/${article.slug}`}
-              className="group grid min-h-24 grid-cols-[48px_1fr_auto] items-center gap-4 border-b border-line px-2 transition hover:bg-white/70 sm:grid-cols-[68px_1fr_130px]"
-            >
+            <li key={article.slug}>
+              <Link
+                href={`/articles/${article.slug}`}
+                className="group grid min-h-24 grid-cols-[48px_1fr_auto] items-center gap-4 border-b border-line px-2 transition hover:bg-white/70 sm:grid-cols-[68px_1fr_130px]"
+              >
               <span className="border-r border-line py-5 font-mono text-sm text-ink/65">
                 {String(index + 1).padStart(2, "0")}
               </span>
@@ -77,9 +77,10 @@ export function ArticleTopicBrowser({ groups }: { groups: TopicGroup[] }) {
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </span>
               <ArrowRight className="h-4 w-4 text-cobalt sm:hidden" />
-            </Link>
+              </Link>
+            </li>
           ))}
-        </div>
+        </ol>
 
         <Link
           href={`/knowledge/${categoryToKnowledgeSlug[activeGroup.category] || "wechat-store"}`}

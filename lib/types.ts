@@ -71,6 +71,7 @@ export type CourseLesson = {
   sourceIssue: string
   sourceDate: string
   sourceUrl?: string
+  sourcePath?: string
   replayUrl?: string
   infographic?: string
   status: CourseLessonStatus

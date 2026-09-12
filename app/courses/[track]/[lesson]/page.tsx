@@ -5,6 +5,7 @@ import { notFound } from "next/navigation"
 import { ArrowLeft, ArrowRight, ExternalLink, FileText, ImageIcon, Play, Radio } from "lucide-react"
 
 import { LessonCompleteButton } from "@/components/course/LessonCompleteButton"
+import { ContentAttribution } from "@/components/content/ContentAttribution"
 import { TableOfContents } from "@/components/article/TableOfContents"
 import { FieldIndex, SectionLabel } from "@/components/ip/ArchiveUI"
 import { Container } from "@/components/layout/Container"
@@ -119,6 +120,11 @@ export default async function CourseLessonPage({ params }: PageProps) {
               <span>{courseStatusLabels[lesson.status]}</span>
               <span>{lesson.duration}</span>
             </div>
+            <ContentAttribution
+              className="mt-5"
+              date={lesson.sourceDate}
+              note={lesson.sourceUrl ? "依据培训原始文字稿整理" : "依据本地培训资料整理；教学案例不代表实际经营结果"}
+            />
           </div>
         </Container>
       </article>
@@ -228,6 +234,15 @@ export default async function CourseLessonPage({ params }: PageProps) {
                   查看飞书原始文字稿 <ExternalLink className="h-4 w-4" />
                 </a>
               ) : null}
+
+              <div className="border border-line bg-white px-4 py-4 text-xs leading-6 text-ink/55">
+                <p className="font-semibold text-ink">资料来源说明</p>
+                <p className="mt-2">
+                  {lesson.sourceUrl
+                    ? `${lesson.sourceIssue}，资料日期 ${lesson.sourceDate}。正文由宏基于原始培训资料整理。`
+                    : `${lesson.sourceIssue}，资料日期 ${lesson.sourceDate}。原始文件为本地培训文字稿，页面不公开电脑内部路径。`}
+                </p>
+              </div>
 
               <div className="border-l-2 border-cobalt px-4 py-2 text-xs leading-6 text-ink/52">
                 <Radio className="mb-2 h-4 w-4 text-cobalt" />

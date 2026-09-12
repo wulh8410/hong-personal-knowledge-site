@@ -4,12 +4,13 @@ import Link from "next/link"
 import { ArrowRight, BookOpen, FileText, ImageIcon, Play, Radio, Route } from "lucide-react"
 
 import { CourseProgress } from "@/components/course/CourseProgress"
+import { ContentAttribution } from "@/components/content/ContentAttribution"
 import { FieldIndex, SectionLabel } from "@/components/ip/ArchiveUI"
 import { Container } from "@/components/layout/Container"
 import { JsonLd } from "@/components/seo/JsonLd"
 import { courseStatusLabels } from "@/lib/course-data"
 import { getCourseTracks } from "@/lib/content"
-import { breadcrumbJsonLd } from "@/lib/seo"
+import { breadcrumbJsonLd, collectionPageJsonLd } from "@/lib/seo"
 import { absoluteUrl, cn } from "@/lib/utils"
 
 export const metadata: Metadata = {
@@ -31,6 +32,14 @@ export default function CoursesPage() {
   return (
     <>
       <JsonLd data={breadcrumbJsonLd([{ name: "首页", url: "/" }, { name: "实战课程", url: "/courses" }])} />
+      <JsonLd
+        data={collectionPageJsonLd({
+          name: "宏的微信生态实战课程",
+          description: metadata.description as string,
+          path: "/courses",
+          items: tracks.map((track) => ({ name: track.title, path: `/courses/${track.slug}` }))
+        })}
+      />
 
       <section className="archive-grid-light overflow-hidden border-b border-line py-12 sm:py-16 lg:py-20">
         <Container>
@@ -41,17 +50,18 @@ export default function CoursesPage() {
 
           <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(520px,1.1fr)] lg:items-end">
             <div className="relative z-10 pb-2">
-              <h1 className="max-w-4xl text-[44px] font-semibold leading-[1.08] sm:text-[70px] lg:text-[82px]">
-                把经验，学成
+              <h1 className="max-w-4xl text-[42px] font-semibold leading-[1.08] sm:text-[58px] lg:text-[68px]">
+                <span className="sm:whitespace-nowrap">微信生态实战课程</span>
                 <br />
                 <span className="relative inline-block">
-                  可执行的方法
+                  把经验学成方法
                   <span className="absolute -bottom-2 left-0 h-1 w-[68%] bg-wechat" />
                 </span>
               </h1>
               <p className="mt-8 max-w-xl text-base leading-8 text-ink/62 sm:text-lg">
                 不从资料数量开始，而从你的业务问题开始。选一个方向，沿着课程路径完成每一节实战课。
               </p>
+              <ContentAttribution className="mt-6" note="依据真实培训资料持续整理" />
               <div className="mt-9 flex flex-wrap gap-3">
                 <Link
                   href="#course-map"
@@ -98,19 +108,16 @@ export default function CoursesPage() {
             <SectionLabel title="按业务问题选课" english="COURSE MAP" dark />
             <FieldIndex current="02" total="06" dark />
           </div>
-          <div className="mt-10 grid gap-px border border-white/15 bg-white/15 lg:grid-cols-5">
+          <ol className="mt-10 grid list-none gap-px border border-white/15 bg-white/15 lg:grid-cols-5">
             {tracks.map((track, index) => {
               const firstLesson = track.lessons[0]
               const href = track.planned ? `/courses/${track.slug}` : firstLesson ? `/courses/${track.slug}` : "/courses"
               return (
-                <Link
-                  key={track.slug}
-                  href={href}
-                  className={cn(
-                    "group relative min-h-[300px] overflow-hidden bg-ink p-6 transition hover:bg-[#111820] lg:min-h-[430px]",
-                    index === 0 && "lg:col-span-2"
-                  )}
-                >
+                <li key={track.slug} className={cn(index === 0 && "lg:col-span-2")}>
+                  <Link
+                    href={href}
+                    className="group relative block min-h-[300px] overflow-hidden bg-ink p-6 transition hover:bg-[#111820] lg:min-h-[430px]"
+                  >
                   <div className="flex items-start justify-between gap-4">
                     <span className="font-mono text-sm text-wechat">{track.index}</span>
                     <span className="border border-white/18 px-2 py-1 font-mono text-[10px] text-white/45">
@@ -135,10 +142,11 @@ export default function CoursesPage() {
                     {track.planned ? "查看筹备说明" : "进入课程"}
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </span>
-                </Link>
+                  </Link>
+                </li>
               )
             })}
-          </div>
+          </ol>
         </Container>
       </section>
 

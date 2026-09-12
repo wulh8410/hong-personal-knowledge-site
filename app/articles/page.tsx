@@ -3,11 +3,12 @@ import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 
 import { ArticleTopicBrowser } from "@/components/article/ArticleTopicBrowser"
+import { ContentAttribution } from "@/components/content/ContentAttribution"
 import { CoordinateMark, RedNote, SectionLabel } from "@/components/ip/ArchiveUI"
 import { Container } from "@/components/layout/Container"
 import { JsonLd } from "@/components/seo/JsonLd"
 import { getAllArticles } from "@/lib/content"
-import { breadcrumbJsonLd } from "@/lib/seo"
+import { breadcrumbJsonLd, collectionPageJsonLd } from "@/lib/seo"
 import { absoluteUrl } from "@/lib/utils"
 
 export const metadata: Metadata = {
@@ -70,6 +71,14 @@ export default function ArticlesPage() {
           { name: "文章", url: "/articles" }
         ])}
       />
+      <JsonLd
+        data={collectionPageJsonLd({
+          name: "宏的微信生态实战文章",
+          description: metadata.description as string,
+          path: "/articles",
+          items: articles.map((article) => ({ name: article.title, path: `/articles/${article.slug}` }))
+        })}
+      />
 
       <section className="paper-texture border-b border-line py-14 lg:py-20">
         <Container>
@@ -91,6 +100,7 @@ export default function ArticlesPage() {
               <p className="mt-6 max-w-2xl text-base leading-8 text-ink/58">
                 先看最近更新，也可以按微信小店、视频号、广告投放、微信推客和违规规则进入专题。
               </p>
+              <ContentAttribution className="mt-6" note={`${articles.length} 篇文章，按专题持续维护`} />
 
               {leadArticle ? (
                 <Link
@@ -119,25 +129,26 @@ export default function ArticlesPage() {
               ) : null}
             </div>
 
-            <div className="border-t border-line">
+            <ol className="list-none border-t border-line">
               {latestArticles.slice(1).map((article, index) => (
-                <Link
-                  key={article.slug}
-                  href={`/articles/${article.slug}`}
-                  className="group grid min-h-24 grid-cols-[55px_1fr_auto] items-center gap-4 border-b border-line py-3"
-                >
+                <li key={article.slug}>
+                  <Link
+                    href={`/articles/${article.slug}`}
+                    className="group grid min-h-24 grid-cols-[55px_1fr_auto] items-center gap-4 border-b border-line py-3"
+                  >
                   <span className="border-r border-line py-5 font-mono text-sm text-ink/62">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   <span className="text-lg font-semibold leading-7">{article.title}</span>
                   <span className="hidden text-xs text-ink/48 sm:block">{article.category}</span>
                   <ArrowRight className="h-4 w-4 text-cobalt transition-transform group-hover:translate-x-1 sm:hidden" />
-                </Link>
+                  </Link>
+                </li>
               ))}
               <div className="mt-10 flex justify-end">
                 <RedNote>重复三遍的事，值得被 AI 化。</RedNote>
               </div>
-            </div>
+            </ol>
           </div>
         </Container>
       </section>

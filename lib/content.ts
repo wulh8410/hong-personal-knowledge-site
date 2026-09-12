@@ -133,6 +133,7 @@ export function getAllCourseLessons(): CourseLesson[] {
       sourceIssue: String(data.sourceIssue || ""),
       sourceDate: String(data.sourceDate || "2026-07-10"),
       sourceUrl: data.sourceUrl ? String(data.sourceUrl) : undefined,
+      sourcePath: data.sourcePath ? String(data.sourcePath) : undefined,
       replayUrl: data.replayUrl ? String(data.replayUrl) : undefined,
       infographic: data.infographic ? String(data.infographic) : undefined,
       status: String(data.status || "text") as CourseLessonStatus,

@@ -1,9 +1,10 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowDown, FileText, Layers3, Send, UsersRound } from "lucide-react"
+import { ArrowDown, ExternalLink, FileText, Layers3, Send, UsersRound } from "lucide-react"
 
 import { ContactSignal } from "@/components/ip/ContactSignal"
+import { ContentAttribution } from "@/components/content/ContentAttribution"
 import { CoordinateMark, FieldIndex, SectionLabel } from "@/components/ip/ArchiveUI"
 import { Container } from "@/components/layout/Container"
 import { JsonLd } from "@/components/seo/JsonLd"
@@ -50,7 +51,7 @@ const projectBars = [
     row: 1,
     start: 2,
     span: 3,
-    title: "操盘多个知名品牌视频号直播",
+    title: "多个品牌视频号直播操盘",
     note: "直播策略、脚本、排期与复盘沉淀"
   },
   {
@@ -64,7 +65,7 @@ const projectBars = [
     row: 2,
     start: 1,
     span: 3,
-    title: "消耗千万级的微信豆代投",
+    title: "大规模微信豆代投",
     note: "投放策略、素材测试与 ROI 提升"
   },
   {
@@ -128,6 +129,7 @@ export default function AboutPage() {
             <p className="mt-7 max-w-2xl text-base leading-8 text-white/62">
               15 年微信生态全链路实践，把系统、内容、投放、直播和私域放到同一张经营地图里。
             </p>
+            <ContentAttribution dark className="mt-6" date={siteConfig.lastModified} label="个人资料" note="项目经历为本人脱敏整理" />
             <blockquote className="mt-8 flex items-start gap-4 text-base text-white/75">
               <span className="font-serif text-4xl leading-none text-wechat">“</span>
               <span>只分享经实战验证、可落地的解决方案。</span>
@@ -275,7 +277,17 @@ export default function AboutPage() {
             ))}
           </div>
           <div className="mt-10 flex justify-end">
-            <CoordinateMark />
+            <div className="flex items-center gap-8">
+              <a
+                href={siteConfig.githubUrl}
+                target="_blank"
+                rel="me noreferrer"
+                className="inline-flex items-center gap-3 border-b border-cobalt pb-2 text-sm font-semibold text-cobalt"
+              >
+                查看公开 GitHub 主页 <ExternalLink className="h-4 w-4" />
+              </a>
+              <CoordinateMark />
+            </div>
           </div>
         </Container>
       </section>
