@@ -220,7 +220,7 @@ export default function HomePage() {
                 以下结论来自项目实践与公开规则整理。涉及准入、处罚和平台能力时，以微信官方最新页面为准。
               </p>
               <p className="mt-6 font-mono text-[11px] text-ink/45">
-                作者 / 宏&nbsp;&nbsp;·&nbsp;&nbsp;更新 / <time dateTime={siteConfig.lastModified}>2026-09-08</time>
+                作者 / 宏&nbsp;&nbsp;·&nbsp;&nbsp;更新 / <time dateTime={siteConfig.lastModified}>{formatDate(siteConfig.lastModified)}</time>
               </p>
             </div>
 
